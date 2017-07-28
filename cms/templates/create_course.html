@@ -1,0 +1,107 @@
+<%page expression_filter="h"/>
+<%!
+from django.utils.translation import ugettext as _
+
+from openedx.core.djangolib.markup import HTML, Text
+%>
+<%inherit file="base.html" />
+
+<%def name="online_help_token()"><% return "home" %></%def>
+<%block name="title">${_("{studio_name} Home").format(studio_name=settings.STUDIO_SHORT_NAME)}</%block>
+<%block name="bodyclass">is-signedin index view-dashboard</%block>
+
+<%block name="requirejs">
+  require(["js/factories/index"], function (IndexFactory) {
+      IndexFactory();
+  });
+  require(['${static.url("https://demo-atp.themoocagency.com//media/studio/create.js")}']);
+</%block>
+<%namespace name='static' file='static_content.html'/>
+<%block name="content">
+
+<link rel="stylesheet" type="text/css" href="${static.url("js/vendor/timepicker/jquery.timepicker.css")}">
+<section id="content">
+  <section id="primary">
+    <div id="fil_ariane"><span>${_('My campaigns')} ></span></div>
+    <div id="title">
+      <h1>${_('Manage my campaign')}</h1>
+      <p>
+        ${_('Provide all the information you need to launch your training campaign: start / end date, loading of learners, invitation mail, etc.')}
+      </p>
+    </div>
+    <ul class="list-courses">
+      <!-- suite -->
+      <li class="course-item">
+        <div class="content_img">
+          <img src="${overview.image_urls['raw']}" class="img_course"/>
+        </div>
+        <div class="content_info">
+          <h3 class="course-title">${course.display_name_with_default_escaped}</h3>
+          <div class="duration_course">
+            <object oa-reusable-svg
+                    data="${static.url('images/duree.svg')}"
+                    type="image/svg+xml"
+                    class="svg-class"
+                    data-class="timer_svg_color"
+                    >
+            </object>
+            <span>${details.duration}</span>
+          </div>
+        </div>
+        <span style="clear:left;display:block;"></span>
+      </li>
+    </ul>
+    <!-- cell 1/1 -->
+    <!-- cell 1/1 -->
+    <!-- cell 1/1 -->
+    <!-- cell 1/1 -->
+    <!-- cell 1/1 -->
+    <div class="cell_title">
+      <h3 id="h3_2"><div class="num" id="num_2">1/1</div><span>${_('identifying your campaign')}</span></h3>
+    </div>
+    <div class="cell_content" id="cell_2">
+      <div class="date_title">
+        <h5 style="padding-top: 25px;">${_('Create an identifier')}</h5>
+        <p>${_('This identifier is reflected in the statistical dashboards')}</P>
+        <p>${_('This allows you to specify the target and / or training period')}</P>
+        <span style="clear:both;display:block;"></span>
+      </div>
+      <div class="field date">
+        <label>${_('Your identifier')}</label>
+        <input type="text" id="course_identity" placeholder="${_('')}" value="" data-course_key="${course.id}" data-org="${course.org}" data-display_name="${course.display_name_with_default_escaped}"/>
+      </div>
+      <div class="sub_input last_sub_input">
+        ${_('Rules to respect the choice of the identifier of the campaign: no space, no punctuation')}
+      </div>
+    </div>
+
+    <!-- bouton create -->
+    <!-- bouton create -->
+    <!-- bouton create -->
+    <!-- bouton create -->
+    <button id="create">${_('Create')}</button>
+  </section>
+  <section id="secondary">
+  </section>
+  <span style="display:block;clear:left;"></span>
+</section>
+<div class="wrapper wrapper-notification wrapper-notification-warning" id="notification-warning" aria-hidden="false" aria-labelledby="notification-warning-title" tabindex="-1" aria-describedby="notification-warning-description" role="dialog">
+  <div class="notification warning has-actions"><span class="feedback-symbol fa fa-warning" aria-hidden="true"></span>
+    <div class="copy">
+      <h2 class="title title-3" id="notification-warning-title">You've made some changes</h2>
+      <p class="message" id="notification-warning-description">Your changes will not take effect until you save your progress.</p>
+    </div>
+    <nav class="nav-actions">
+      <ul>
+        <li class="nav-item">
+          <button class="action-primary action-save">Save Changes</button>
+        </li>
+        <li class="nav-item">
+          <button class="action-secondary action-cancel">Cancel</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+<link rel="stylesheet" type="text/css" href="${static.url('css/create_course.css')}">
+</%block>

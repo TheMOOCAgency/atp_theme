@@ -1,0 +1,28 @@
+<%page expression_filter="h"/>
+<%!
+from django.utils.translation import ugettext as _
+
+from openedx.core.djangolib.markup import HTML, Text
+%>
+<%inherit file="base.html" />
+
+<%def name="online_help_token()"><% return "home" %></%def>
+<%block name="title">${_("{studio_name} Home").format(studio_name=settings.STUDIO_SHORT_NAME)}</%block>
+<%block name="bodyclass">is-signedin index view-dashboard</%block>
+
+<%block name="requirejs">
+  require(["js/factories/index"], function (IndexFactory) {
+      IndexFactory();
+  });
+</%block>
+<%namespace name='static' file='static_content.html'/>
+<%block name="content">
+<link rel="stylesheet" type="text/css" href="${static.url('css/dashboard.css')}">
+<link rel="stylesheet" type="text/css" href="${static.url('css/course_about.css')}">
+<script src="${static.url('js/course_about_atp.js')}"></script>
+<section id="course_about_contenair">
+<section id="course_about_up_content">
+<section id="atp_ariane_about">
+	<span>${_("Explore courses")}</span><span> > ${_(course.categ)}</span>
+</section>
+</%block>

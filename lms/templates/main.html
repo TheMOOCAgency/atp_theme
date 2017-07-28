@@ -27,7 +27,11 @@ from pipeline_mako import render_require_js_path_overrides
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<style>
+img.svg {
+  display: none;
+}
+</style>
 ## Define a couple of helper functions to make life easier when
 ## embedding theme conditionals into templates. All inheriting
 ## templates have access to these functions, and we can import these
@@ -190,3 +194,81 @@ from pipeline_mako import render_require_js_path_overrides
   }());
 </script>
 % endif
+
+
+<!-- WORK WITH SVGS -->
+<!--
+<script>
+document.querySelectorAll('.svg').forEach(function(img){
+    var imgID = img.id;
+    var imgClass = img.className;
+    var imgURL = img.src;
+
+    fetch(imgURL).then(function(response) {
+        return response.text();
+    }).then(function(text){
+
+        var parser = new DOMParser();
+        var xmlDoc = parser.parseFromString(text, "text/xml");
+
+        // Get the SVG tag, ignore the rest
+        var svg = xmlDoc.getElementsByTagName('svg')[0];
+
+        // Add replaced image's ID to the new SVG
+        if(typeof imgID !== 'undefined') {
+            svg.setAttribute('id', imgID);
+        }
+        // Add replaced image's classes to the new SVG
+        if(typeof imgClass !== 'undefined') {
+            svg.setAttribute('class', imgClass+' replaced-svg');
+        }
+
+        // Remove any invalid XML tags as per http://validator.w3.org
+        svg.removeAttribute('xmlns:a');
+
+        // Check if the viewport is set, if the viewport is not set the SVG wont't scale.
+        if(!svg.getAttribute('viewBox') && svg.getAttribute('height') && svg.getAttribute('width')) {
+            svg.setAttribute('viewBox', '0 0 ' + svg.getAttribute('height') + ' ' + svg.getAttribute('width'))
+        }
+
+        // Replace image with new SVG
+        img.parentNode.replaceChild(svg, img);
+
+    });
+
+});
+</script>
+-->
+<script>
+jQuery('img.svg').each(function(){
+    var $img = jQuery(this);
+    var imgID = $img.attr('id');
+    var imgClass = $img.attr('class');
+    var imgURL = $img.attr('src');
+    jQuery.get(imgURL, function(data) {
+        // Get the SVG tag, ignore the rest
+        var $svg = jQuery(data).find('svg');
+        // Add replaced image's ID to the new SVG
+        if(typeof imgID !== 'undefined') {
+            $svg = $svg.attr('id', imgID);
+        }
+        // Add replaced image's classes to the new SVG
+        if(typeof imgClass !== 'undefined') {
+            $svg = $svg.attr('class', imgClass+' replaced-svg');
+        }
+        // Remove any invalid XML tags as per http://validator.w3.org
+        $svg = $svg.removeAttr('xmlns:a');
+        // Replace image with new SVG
+        $img.replaceWith($svg);
+
+    }, 'xml');
+});
+$('img.svg').show();
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<%
+session = request.session
+%>
+<script>
+console.log('${session}');
+</script>

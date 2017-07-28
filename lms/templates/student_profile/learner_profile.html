@@ -1,0 +1,177 @@
+<%page expression_filter="h"/>
+<%inherit file="/main.html" />
+<%def name="online_help_token()"><% return "profile" %></%def>
+<%namespace name='static' file='/static_content.html'/>
+<%!
+import json
+from django.core.urlresolvers import reverse
+from django.utils.translation import ugettext as _
+from openedx.core.djangolib.js_utils import dump_js_escaped_json
+%>
+
+<%block name="pagetitle">${_("Learner Profile")}</%block>
+
+<%block name="bodyclass">view-profile</%block>
+
+<div class="message-banner" aria-live="polite"></div>
+<main id="main" aria-label="Content" tabindex="-1">
+    <div class="ariane">
+      <span>Mon compte ></span>
+    </div>
+    <div class="wrapper-profile">
+        <div class="ui-loading-indicator">
+            <p><span class="spin"><span class="icon fa fa-refresh" aria-hidden="true"></span></span> <span class="copy">${_("Loading")}</span></p>
+        </div>
+    </div>
+</main>
+<%block name="headextra">
+    <%static:css group='style-course'/>
+</%block>
+
+<%block name="js_extra">
+
+<%static:require_module module_name="js/student_profile/views/learner_profile_factory" class_name="LearnerProfileFactory">
+    var options = ${data | n, dump_js_escaped_json};
+    LearnerProfileFactory(options);
+</%static:require_module>
+</%block>
+<div class="user_info">
+  <h3>${request.user.first_name} ${request.user.last_name}</h3>
+  <h4>${request.user.email}</h4>
+  <p>
+<% i = 0 %>
+% for n in data['level']:
+  <% i = i + 1 %>
+    % if i < 4:
+      ${n}&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;
+    % else:
+      ${n}
+    % endif
+% endfor
+  </p>
+</div>
+<span style="clear:left;display:block;"></span>
+<style>
+.view-profile .profile-self .wrapper-profile-field-account-privacy,.view-profile .profile-section-two-fields .u-field.mode-placeholder,.view-profile .profile-section-one-fields .u-field {
+  display: none;
+}
+.view-profile .wrapper-profile-sections {
+  min-width: 0px;
+  width: 200px;
+  min-height: 200px;
+  height: auto;
+  padding: 0;
+}
+.view-profile .wrapper-profile-section-one {
+  margin: 0;
+}
+.view-profile .profile-image-field {
+  float: none;
+}
+.view-profile .wrapper-profile {
+  width: 200px;
+  min-height: 200px;
+  float: left;
+  border: 1px solid #c8c8c8;
+}
+.view-profile .profile-image-field .image-wrapper .image-frame {
+  width: 199px;
+  height: 200px;
+}
+.view-profile .profile-image-field .image-wrapper {
+  width: 200px;
+}
+.content-wrapper {
+  width: 1380px;
+  padding-left: 30px;
+  padding-right: 30px;
+  background-color: #F9F9F9;
+  padding-top: 25px;
+  padding-bottom: 50px;
+  min-height: calc(100vh - 363px);
+}
+.view-profile .profile-image-field .image-wrapper .u-field-upload-button {
+  width: 200px;
+  height: 200px;
+  margin: 0;
+  left: 0;
+  right: 0;
+}
+.user_info {
+  float: left;
+  margin-left: 40px;
+  border: 1px solid #c8c8c8;
+  height: 226px;
+  width: calc(95% - 244px);
+}
+.ariane {
+  margin-bottom: 25px;
+}
+.ariane span {
+  font-size: 16px;
+  font-family: 'Arial';
+}
+.user_info h3,h4,p {
+  color: #4A4A4A;
+  font-family: "Arial";
+  margin-left: 40px;
+  width: calc(100% - 40px);
+}
+.user_info h3 {
+  font-weight: bold;
+  font-size: 35px;
+  line-height: 35px;
+  min-height: 35px;
+  height: auto;
+}
+.user_info h4 {
+  font-size: 23px;
+  line-height: 23px;
+  min-height: 23px;
+  height: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  color: #000;
+}
+.user_info p {
+  font-size: 20px;
+  line-height: 20px;
+  min-height: 20px;
+  height: auto;
+  color: #000;
+}
+.profile-private--message {
+  display: none;
+}
+@media(max-width:1440px) {
+  .content-wrapper {
+    width: calc(100% - 60px);
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .user_info {
+    width: calc(100% - 244px);
+  }
+}
+@media(max-width:800px) {
+  .user_info {
+    width: calc(100%);
+    margin-left: 0;
+    margin-top: 25px;
+  }
+}
+</style>
+<script>
+function auto_height() {
+  var height = 25 + 25 + $('.user_info').find('h3').height() + $('.user_info').find('h4').height() + $('.user_info').find('p').height();
+  var all_height = $('.user_info').height();
+  var margin_top = ( all_height - height ) / 2;
+  $('.user_info').find('h3').css('margin-top',margin_top+'px');
+}
+$(document).ready(function(){
+  auto_height();
+})
+$(window).resize(function(){
+  auto_height();
+})
+</script>
