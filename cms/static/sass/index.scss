@@ -53,10 +53,20 @@
     color: $atp_secondary_color;
     border-bottom: 3px solid $atp_secondary_color;
   }
+  #no_course span {
+    font-weight:bold;
+  }
+  #no_course span:first-child {
+    color: #70767A;
+  }
+  #no_course span:last-child {
+    color: $atp_secondary_color;
+  }
   .img_course {
     height: auto;
     width: 100%;
     display: block;
+    min-height: 130px;
   }
   .content_img,.content_info {
     float: left;
@@ -96,6 +106,7 @@
     font-weight: bold;
     font-size: 1.8rem;
     line-height: 1.9rem;
+    width: 72%;
   }
   .view-dashboard .course-item:last-child {
     border-bottom: 1px solid #b2b2b2;
@@ -156,12 +167,12 @@
   }
   .more_about_courses {
     position: absolute;
-    height: 78px;
+    min-height: 78px;
     right: 10px;
     top: 50%;
     padding: 0;
     margin: 0;
-    margin-top: -39px;
+    margin-top: -59px;
     z-index: 2;
     list-style-type: none;
   }
@@ -260,8 +271,48 @@
       padding-right: 20px;
       padding-bottom: 20px;
       margin-top: 40px;
+      position: absolute;
+      top: 204px;
+      right: 10%;
   }
   .view-dashboard .course-item .course-link {
     width: 100%;
     margin-right: 0;
   }
+  #generic_title {
+    display: none;
+  }
+
+#generic_title svg path{
+  fill: #05144d;
+}
+#no_course span {
+  font-weight:bold;
+}
+#no_course span:first-child {
+  color: #70767A;
+}
+#no_course span:last-child {
+  color: #31aeee;
+}
+#generic_title {
+  display: none;
+}
+/* title svg */
+h3 .svg path {
+  fill: #05144d;
+}
+/* fill for time svg */
+
+.duration_course .svg {
+  width: 20px;
+  height: 20px;
+  position:absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -10px;
+}
+
+.duration_course .svg path{
+  fill: #dc9e29;
+}

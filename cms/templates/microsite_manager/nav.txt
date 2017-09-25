@@ -49,7 +49,7 @@
  margin-left: 0;
  position: absolute;
  top: 50%;
- right: 15px;
+ right: 120px;
  height: 32px;
  margin-top: -16px;
 }
@@ -106,7 +106,7 @@
  left: 0;
 }
 #menu_cat_apt {
- right: 0;
+ left: 261px;
 }
 #menu_module_apt button,#menu_cat_apt button,#menu_module_apt button:hover,#menu_cat_apt button:hover,#menu_module_apt button:focus,#menu_cat_apt button:focus {
  float: none;
@@ -184,20 +184,79 @@
   margin-left: 5px;
   width: 0px;
   height: 0px;
-  border-left: 7px solid transparent;
-  border-right: 7px solid transparent;
-  border-top: 11px solid #fff;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 4px solid #fff;
   display: inline-block;
   margin-top: 7px;
   position: absolute;
-  bottom: 10px;
+  bottom: 28px;
   left: 50%;
-  margin-left: -5.5px;
+  margin-left: -5px;
 }
 #sub_menu #my_course_covers {
   border-left: none;
 }
-
+/* login logout css */
+#log_user_action {
+  position: relative;
+  width: 90px !important;
+  min-width: 0px !important;
+  border-left: 1px solid #fff !important;
+}
+#log_user_action .svg {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -15px;
+  margin-top: -15px;
+}
+#log_user_action span{
+  position: absolute;
+  left: 0;
+  display: none;
+  width: calc(100% - 8px);
+  text-align: center;
+  top: 96px;
+  border : 1px solid ${atp_primary_color};
+  font-size: 10px;
+  line-height: 10px;
+  vertical-align: middle;
+  padding: 3px;
+  height: auto;
+  color: ${atp_primary_color};
+  background-color: #fff;
+}
+#log_user_action:hover span {
+  display: block;
+}
+#log_user_action_array {
+  display: block;
+  position:absolute;
+  top: -5px;
+  left: 50%;
+  margin-left: -5px;
+  width: 0px;
+  height: 0px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  font-family: ${font_family};
+  border-bottom: 5px solid ${atp_primary_color};
+}
+#down_apt_nav #sub_to_dashboard {
+  /*
+  position: relative;
+  width: 260px;
+  height: 90%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  */
+  width: 260px;
+  line-height: 90px;
+  vertical-align: middle;
+}
 @media(max-width:1440px) {
  #up_apt_nav,#down_apt_nav {
   width: 100%;
@@ -218,15 +277,15 @@
   margin-left: 5px;
   width: 0px;
   height: 0px;
-  border-left: 7px solid transparent;
-  border-right: 7px solid transparent;
-  border-top: 11px solid #fff;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 4px solid #fff;
   display: inline-block;
   margin-top: 7px;
   position: absolute;
-  bottom: 10px;
+  bottom: 28px;
   left: 50%;
-  margin-left: -5.5px;
+  margin-left: -5px;
 }
 #sub_menu #my_course_covers {
   border-left: none;
@@ -249,27 +308,28 @@
 #menu_cat_apt {
   right: 261px;
 }
-#down_apt_nav #sub_to_dashboard {
-  position: relative;
-  width: 260px;
-  height: 90%;
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
 #down_apt_nav #sub_to_dashboard_account {
   width: 260px;
   line-height: 90px;
   vertical-align: middle;
   border-left: 1px solid #fff;
 }
-@media(max-width:926px) {
+@media(max-width:1022px) {
  #up_apt_nav,#down_apt_nav {
    position: relative;
    top: 0;
    left: 0;
  }
+
+ #sub_to_dashboard_account,#sub_to_dashboard {
+   width: 100% !important;
+   border-left: none !important;
+ }
  .sub_picto {
   display:block;
+ }
+ #logo_atp_redirect {
+   cursor:pointer;
  }
  #sub_menu {
   display: none;
@@ -286,6 +346,7 @@
   position: relative;
   top: 0;
   float:none;
+  left: 0;
  }
  #sub_menu #nav_replace_before {
   border: none;
@@ -300,14 +361,16 @@
  }
  .arrow_button {
    left: calc(100% - 45px);
-   bottom: 25px;
+   bottom: 28px;
  }
 }
+/*
 #sub_to_dashboard {
   position: absolute;
   top: 0;
   right: 0;
 }
+*/
 @media(max-width:425px) {
   #down_apt_nav #sub_to_dashboard {
     width: 150px;

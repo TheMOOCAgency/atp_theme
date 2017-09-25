@@ -24,17 +24,33 @@ from student.roles import CourseInstructorRole,CourseStaffRole
   require(["js/factories/index"], function (IndexFactory) {
       IndexFactory();
   });
-  require(["https://demo-atp.themoocagency.com/media/studio/index.js"]);
+  //require(["https://demo-atp.themoocagency.com/media/studio/index.js"]);
+  require(['${static.url("js/atp/index.js")}']);
 </%block>
 <%namespace name='static' file='static_content.html'/>
 <%block name="content">
 <%
 user_email = request.user.email
 %>
+<style>
+.course_module_categ {
+  display:block;
+  position: absolute;
+  bottom: 0;
+  right: 1px;;
+  color: #fff;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.content_img {
+  position: relative;
+}
+</style>
 <div class="wrapper-mast wrapper">
   <header class="mast has-actions">
-    <h1 class="page-header">${_("welcome to your training modules management interface")}</h1>
-    <h2 class="page-sub-header">${_("You can navigate within two distinct universes :")}</h2>
+    <h1 class="page-header">${_("WELCOME TO YOUR TRAINING MODULES MANAGEMENT INTERFACE")}</h1>
+    <h2 class="page-sub-header">${_("You can browse within two separate universes")} :</h2>
     % if user.is_active:
     <nav class="nav-actions" aria-label="${_('Page Actions')}">
       <h3 class="sr">${_("Page Actions")}</h3>
@@ -381,277 +397,305 @@ user_email = request.user.email
       <!-- ici les cours -->
       <!-- GEOFFREY -->
       %if len(courses) > 0:
-      <div class="courses courses-tab active">
-        <!-- cours a venir -->
-        <!-- cours a venir -->
-        <!-- cours a venir -->
-        <!-- cours a venir -->
-        <div class="up_list_courses">
-          <h3>
-            <object oa-reusable-svg
-                    data="${static.url('images/campagne_prgrammee.svg')}"
-                    type="image/svg+xml"
-                    class="svg-class-title"
-                    >
-            </object>
-            <span>${_('programmed campaign')}</span>
-          </h3>
-          <p>${_('The following training campaigns have not yet been launched (start date not exceeded). To change the start / end dates, load new participants, etc, please click "Administer my campaign".')}</p>
-        </div>
-        <ul class="list-courses">
-          %for course_info in sorted(courses, key=lambda s: s['display_name'].lower() if s['display_name'] is not None else ''):
-              <%
-              course_key_id = CourseKey.from_string(course_info['course_key'])
-              is_true = False
-              staf_users = CourseStaffRole(course_key_id).users_with_role()
-              for n in staf_users:
-                  if n.email == user_email or request.user.is_staff:
-                      is_true = True
-              courses_overviews = CourseOverview.get_from_id(course_key_id)
-              courses_stats = get_course_by_id(course_key_id)
-              categories = courses_stats.categ
-              course_img = courses_overviews.image_urls
-              course_start = courses_overviews.start.strftime('%d-%m-%Y')
-              course_end = ''
-              if courses_overviews.end:
-                  course_end = courses_overviews.end.strftime('%d-%m-%Y')
-                  course_end_compare = int(courses_overviews.end.strftime("%s"))
-              else:
-                  course_end_compare = current_date
-              course_start_compare = int(courses_overviews.start.strftime("%s"))
-              duration = CourseDetails.fetch(course_key_id).effort
-              %>
-              % if not 'AMUNDI-GENERIC-TEMPLATE' in course_info['display_name'] and current_date < course_start_compare and is_true:
-                <li class="course-item" data-course-key="${course_info['course_key']}" data-status="all">
-                  <div class="content_img">
-                    <img src="${course_img['raw']}" class="img_course"/>
-                  </div>
-                  <div class="content_info">
-                    % if request.user.is_staff:
-                      <a class="course-link" href="${course_info['url']}">
-                    % else:
-                      <a class="course-link" href="#">
-                    % endif
-                      <h3 class="course-title">${course_info['display_name']}</h3>
-                    </a>
-                    <div class="all_dates">
-                      <ul>
-                        <li><span>${_('Start')} :</span> <span>${course_start}</span></li>
-                        <li><span>${_('End')} :</span> <span>${course_end}</span></li>
-                        <span style="display:block;clear:left;"></span>
-                      </ul>
-                    </div>
-                    <div class="duration_course">
-                      <object oa-reusable-svg
-                              data="${static.url('images/duree.svg')}"
-                              type="image/svg+xml"
-                              class="svg-class"
-                              data-class="timer_svg_color"
-                              >
-                      </object>
-                      <span>${duration}</span>
-                    </div>
-                    <ul class="more_about_courses">
-                      <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/about" target="_blank">${_('More about the module')}</a></li>
-                      <li><a href="/settings/manage/${course_info['course_key']}">${_('Manage your campaign')}</a></li>
-                      <li><a href="/settings/invite/${course_info['course_key']}">${_('Invite new users')}</a></li>
-                      % if request.user.is_staff:
-                      <li><a class="course-link" href="${course_info['url']}">${_('Course administration')}</a></li>
-                      % endif
-                    </ul>
-                  </div>
-                  <span style="clear:left;display:block;"></span>
-                </li>
-            % endif
-          %endfor
-        </ul>
-        <!-- cours en cours -->
-        <!-- cours en cours -->
-        <!-- cours en cours -->
-        <!-- cours en cours -->
-        <div class="up_list_courses next_list">
-          <h3>
-            <object oa-reusable-svg
-                    data="${static.url('images/campagne_encours.svg')}"
-                    type="image/svg+xml"
-                    class="svg-class-title"
-                    >
-            </object>
-            <span>${_('Campaign in PROGRESS')}</span>
-          </h3>
-          <p>${_('The following training campaigns have not yet been launched (start date not exceeded). To change the start / end dates, load new participants, etc, please click "Administer my campaign".')}</p>
-        </div>
-        <ul class="list-courses">
-          %for course_info in sorted(courses, key=lambda s: s['display_name'].lower() if s['display_name'] is not None else ''):
-              <%
-              course_key_id = CourseKey.from_string(course_info['course_key'])
-              is_true = False
-              staf_users = CourseStaffRole(course_key_id).users_with_role()
-              for n in staf_users:
-                  if n.email == user_email or request.user.is_staff:
-                      is_true = True
-              courses_overviews = CourseOverview.get_from_id(course_key_id)
-              courses_stats = get_course_by_id(course_key_id)
-              categories = courses_stats.categ
-              course_img = courses_overviews.image_urls
-              course_start = courses_overviews.start.strftime('%d-%m-%Y')
-              course_end = ''
-              if courses_overviews.end:
-                  course_end = courses_overviews.end.strftime('%d-%m-%Y')
-                  course_end_compare = int(courses_overviews.end.strftime("%s"))
-              else:
-                  course_end_compare = current_date
-              course_start_compare = int(courses_overviews.start.strftime("%s"))
-              duration = CourseDetails.fetch(course_key_id).effort
-              %>
-              % if not 'AMUNDI-GENERIC-TEMPLATE' in course_info['display_name'] and current_date > course_start_compare and current_date <= course_end_compare and is_true:
-                <li class="course-item" data-course-key="${course_info['course_key']}" data-status="all">
-                  <div class="content_img">
-                    <img src="${course_img['raw']}" class="img_course"/>
-                  </div>
-                  <div class="content_info">
-                    % if request.user.is_staff:
-                      <a class="course-link" href="${course_info['url']}">
-                    % else:
-                      <a class="course-link" href="#">
-                    % endif
-                      <h3 class="course-title">${course_info['display_name']}</h3>
-                    </a>
-                    <div class="all_dates">
-                      <ul>
-                        <li><span>${_('Start')} :</span> <span>${course_start}</span></li>
-                        <li><span>${_('End')} :</span> <span>${course_end}</span></li>
-                        <span style="display:block;clear:left;"></span>
-                      </ul>
-                    </div>
-                    <div class="duration_course">
-                      <object oa-reusable-svg
-                              data="${static.url('images/duree.svg')}"
-                              type="image/svg+xml"
-                              class="svg-class"
-                              data-class="timer_svg_color"
-                              >
-                      </object>
-                      <span>${duration}</span>
-                    </div>
-                    <ul class="more_about_courses">
-                      <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/about" target="_blank">${_('More about the module')}</a></li>
-                      <li><a href="/settings/manage/${course_info['course_key']}">${_('Manage your campaign')}</a></li>
-                      <li><a href="/settings/invite/${course_info['course_key']}">${_('Invite new users')}</a></li>
-                      % if request.user.is_staff:
-                      <li><a class="course-link" href="${course_info['url']}">${_('Course administration')}</a></li>
-                      % endif
-                    </ul>
-                  </div>
-                  <span style="clear:left;display:block;"></span>
-                </li>
-            % endif
-          %endfor
-          % if request.user.is_staff:
-            % if len(microsites)>0:
-              %for microsite_info in sorted(microsites, key=lambda s: s.name.lower() if s.name is not None else ''):
-              <li class="course-item" data-status="microsites" style="display:none;">
-              <div class="content_img">
-                <img src="https://${settings.SITE_NAME}/media/microsite/${microsite_info.name}/images/${microsite_info.logo}" class="img_course"/>
-              </div>
-              <div class="content_info">
-                <a class="course-link" href="/update-microsite/${microsite_info.id}">
-                  <h3 class="course-title">${microsite_info.name}</h3>
-                </a>
-                <h3 class="title" style="position:absolute;bottom:10px;width:calc(100% - 20px);left:10px;">
-                  <span class="label">
-                    <a href="/update-microsite/${microsite_info.id}" class="button">Voir le microsite<!--(Pensez à faire CTRL+F5)--></a>
-                  </span>
-                </h3>
-              </div>
-              <span style="clear:left;display:block;"></span>
-              </li>
+        <%
+        course_num_utils = 0
+        for course_info in sorted(courses, key=lambda s: s['display_name'].lower() if s['display_name'] is not None else ''):
+          if not 'AMUNDI-GENERIC-TEMPLATE' in course_info['display_name']:
+            course_num_utils = course_num_utils + 1
+
+        %>
+        %if course_num_utils == 0:
+        <style>
+        .view-dashboard .content-supplementary {
+          top: 0 !important;
+          z-index: 1000000;
+        }
+        </style>
+        <div class="courses courses-tab active">
+          <div id="no_course">
+            <p>${_("No training campaign has been set")}.</p>
+            <p>${_("To launch a training campaign")}, ${_("select a training module in")} <span>${_("My Modules")}</span></button>, ${_("then click on")} <span>${_("Launch my campaign")}</span>.</p>
+          </div>
+        %else:
+        <span id="courses_listing_all">
+            <!-- cours a venir -->
+            <!-- cours a venir -->
+            <!-- cours a venir -->
+            <!-- cours a venir -->
+            <div class="up_list_courses">
+              <h3>
+                <img src="${static.url('images/campagne_prgrammee.svg')}" class='svg svg-class-title' />
+                <span>${_('SCHEDULED TRAINING CAMPAIGNS')}</span>
+              </h3>
+
+              <p>${_("The following training campaigns have not been launched yet (starting date not exceeded).To modify starting/ending date, please click on")} « ${_("Manage my campaign")} ».${_("To add new participants, please click on")} « ${_("Invite participants")} » .</p>
+            </div>
+            <ul class="list-courses my_campaign_listing">
+              %for course_info in sorted(courses, key=lambda s: s['display_name'].lower() if s['display_name'] is not None else ''):
+                  <%
+                  course_key_id = CourseKey.from_string(course_info['course_key'])
+                  is_true = False
+                  staf_users = CourseStaffRole(course_key_id).users_with_role()
+                  for n in staf_users:
+                      if n.email == user_email or request.user.is_staff:
+                          is_true = True
+                  courses_overviews = CourseOverview.get_from_id(course_key_id)
+                  courses_stats = get_course_by_id(course_key_id)
+                  categories = courses_stats.categ
+                  course_img = courses_overviews.image_urls
+                  course_start = courses_overviews.start.strftime('%d-%m-%Y')
+                  course_end = ''
+                  if courses_overviews.end:
+                      course_end = courses_overviews.end.strftime('%d-%m-%Y')
+                      course_end_compare = int(courses_overviews.end.strftime("%s"))
+                  else:
+                      course_end_compare = current_date
+                  course_start_compare = int(courses_overviews.start.strftime("%s"))
+                  duration = CourseDetails.fetch(course_key_id).effort
+                  %>
+                  % if not 'AMUNDI-GENERIC-TEMPLATE' in course_info['display_name'] and current_date < course_start_compare and is_true:
+                    <li class="course-item" data-course-key="${course_info['course_key']}" data-status="all">
+                      <div class="content_img">
+                        <img src="${course_img['raw']}" class="img_course"/>
+                        <span class="course_module_categ">${_(categories)}</span>
+                      </div>
+                      <div class="content_info">
+                        % if request.user.is_staff:
+                          <a class="course-link" href="${course_info['url']}">
+                        % else:
+                          <a class="course-link" href="#">
+                        % endif
+                          <h3 class="course-title">${course_info['display_name']}</h3>
+                        </a>
+                        <div class="all_dates">
+                          <ul>
+                            <li><span>${_('Starting date')} :</span> <span>${course_start}</span></li>
+                            <li><span>${_('Ending date')} :</span> <span>${course_end}</span></li>
+                            <span style="display:block;clear:left;"></span>
+                          </ul>
+                        </div>
+                        <div class="all_dates">
+                          <ul>
+                            <li><span>${course_info['org']}</span></li>
+                            <span style="display:block;clear:left;"></span>
+                          </ul>
+                        </div>
+                        <div class="duration_course">
+                          <img src="${static.url('images/duree.svg')}" class='svg timer_svg_color' />
+                          <span>${duration}</span>
+                        </div>
+                        <ul class="more_about_courses">
+                          <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/about" target="_blank">${_('About the training module')}</a></li>
+                          <li><a href="/settings/manage/${course_info['course_key']}">${_('Manage my campaign')}</a></li>
+                          <li><a href="/settings/invite/${course_info['course_key']}">${_('Invite participants')}</a></li>
+                          <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/stat_dashboard" target="_blank">${_('Statistics')}</a></li>
+                          % if request.user.is_staff:
+                          <li><a class="course-link" href="${course_info['url']}">${_('Course administration')}</a></li>
+                          % endif
+                        </ul>
+                      </div>
+                      <span style="clear:left;display:block;"></span>
+                    </li>
+                % endif
               %endfor
-            % endif
-          % endif
-        </ul>
-        <!-- cours terminé -->
-        <!-- cours terminé -->
-        <!-- cours terminé -->
-        <!-- cours terminé -->
-        <div class="up_list_courses next_list">
-          <h3>
-            <object oa-reusable-svg
-                    data="${static.url('images/campagne_terminee.svg')}"
-                    type="image/svg+xml"
-                    class="svg-class-title"
-                    >
-            </object>
-            <span>${_('Campaign ended')}</span>
-          </h3>
-          <p>${_('The following training campaigns have not yet been launched (start date not exceeded). To change the start / end dates, load new participants, etc, please click "Administer my campaign".')}</p>
-        </div>
-        <ul class="list-courses">
-          %for course_info in sorted(courses, key=lambda s: s['display_name'].lower() if s['display_name'] is not None else ''):
-              <%
-              course_key_id = CourseKey.from_string(course_info['course_key'])
-              is_true = False
-              staf_users = CourseStaffRole(course_key_id).users_with_role()
-              for n in staf_users:
-                  if n.email == user_email or request.user.is_staff:
-                      is_true = True
-              courses_overviews = CourseOverview.get_from_id(course_key_id)
-              courses_stats = get_course_by_id(course_key_id)
-              categories = courses_stats.categ
-              course_img = courses_overviews.image_urls
-              course_start = courses_overviews.start.strftime('%d-%m-%Y')
-              course_end = ''
-              if courses_overviews.end:
-                  course_end = courses_overviews.end.strftime('%d-%m-%Y')
-                  course_end_compare = int(courses_overviews.end.strftime("%s"))
-              else:
-                  course_end_compare = current_date
-              duration = CourseDetails.fetch(course_key_id).effort
-              %>
-              % if not 'AMUNDI-GENERIC-TEMPLATE' in course_info['display_name'] and current_date > course_end_compare and is_true == True or request.user.is_staff == true:
-                <li class="course-item" data-course-key="${course_info['course_key']}" data-status="all">
+            </ul>
+            <!-- cours en cours -->
+            <!-- cours en cours -->
+            <!-- cours en cours -->
+            <!-- cours en cours -->
+            <div class="up_list_courses next_list">
+              <h3>
+                <img src="${static.url('images/campagne_encours.svg')}" class='svg svg-class-title' />
+                <span>${_('IN PROGRESS TRAINING CAMPAIGNS')}</span>
+              </h3>
+              <p>${_("The following training campaigns have not been launched yet (starting date not exceeded). To modify ending date, please click on")} « ${_('Manage my campaign')} ».${_("To add new participants, please click on")} « ${_("Invite participants")} » . ${_("To access statistics, please click on")} « ${_("Statistics")} ».</p>
+            </div>
+            <ul class="list-courses my_campaign_listing">
+              %for course_info in sorted(courses, key=lambda s: s['display_name'].lower() if s['display_name'] is not None else ''):
+                  <%
+                  course_key_id = CourseKey.from_string(course_info['course_key'])
+                  is_true = False
+                  staf_users = CourseStaffRole(course_key_id).users_with_role()
+                  for n in staf_users:
+                      if n.email == user_email or request.user.is_staff:
+                          is_true = True
+                  courses_overviews = CourseOverview.get_from_id(course_key_id)
+                  courses_stats = get_course_by_id(course_key_id)
+                  categories = courses_stats.categ
+                  course_img = courses_overviews.image_urls
+                  course_start = courses_overviews.start.strftime('%d-%m-%Y')
+                  course_end = ''
+                  if courses_overviews.end:
+                      course_end = courses_overviews.end.strftime('%d-%m-%Y')
+                      course_end_compare = int(courses_overviews.end.strftime("%s"))
+                  else:
+                      course_end_compare = current_date
+                  course_start_compare = int(courses_overviews.start.strftime("%s"))
+                  duration = CourseDetails.fetch(course_key_id).effort
+                  %>
+                  % if not 'AMUNDI-GENERIC-TEMPLATE' in course_info['display_name'] and current_date > course_start_compare and current_date <= course_end_compare and is_true:
+                    <li class="course-item" data-course-key="${course_info['course_key']}" data-status="all">
+                      <div class="content_img">
+                        <img src="${course_img['raw']}" class="img_course"/>
+                        <span class="course_module_categ">${_(categories)}</span>
+                      </div>
+                      <div class="content_info">
+                        % if request.user.is_staff:
+                          <a class="course-link" href="${course_info['url']}">
+                        % else:
+                          <a class="course-link" href="#">
+                        % endif
+                          <h3 class="course-title">${course_info['display_name']}</h3>
+                        </a>
+                        <div class="all_dates">
+                          <ul>
+                            <li><span>${_('Starting date')} :</span> <span>${course_start}</span></li>
+                            <li><span>${_('Ending date')} :</span> <span>${course_end}</span></li>
+                            <span style="display:block;clear:left;"></span>
+                          </ul>
+                        </div>
+                        <div class="all_dates">
+                          <ul>
+                            <li><span>${course_info['org']}</span></li>
+                            <span style="display:block;clear:left;"></span>
+                          </ul>
+                        </div>
+                        <div class="duration_course">
+                          <img src="${static.url('images/duree.svg')}" class='svg timer_svg_color' />
+                          <span>${duration}</span>
+                        </div>
+                        <ul class="more_about_courses">
+                          <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/about" target="_blank">${_('About the training module')}</a></li>
+                          <li><a href="/settings/manage/${course_info['course_key']}">${_('Manage my campaign')}</a></li>
+                          <li><a href="/settings/invite/${course_info['course_key']}">${_('Invite participants')}</a></li>
+                          <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/stat_dashboard" target="_blank">${_('Statistics')}</a></li>
+                          % if request.user.is_staff:
+                          <li><a class="course-link" href="${course_info['url']}">${_('Course administration')}</a></li>
+                          % endif
+                        </ul>
+                      </div>
+                      <span style="clear:left;display:block;"></span>
+                    </li>
+                % endif
+              %endfor
+              % if request.user.is_staff:
+                % if len(microsites)>0:
+                  %for microsite_info in sorted(microsites, key=lambda s: s.name.lower() if s.name is not None else ''):
+                  <li class="course-item" data-status="microsites" style="display:none;">
                   <div class="content_img">
-                    <img src="${course_img['raw']}" class="img_course"/>
+                    <a href="/update-microsite/${microsite_info.id}">
+                      <img src="https://${settings.SITE_NAME}/media/microsite/${microsite_info.name}/images/${microsite_info.logo}" class="img_course"/>
+                    </a>
+                    <span class="course_module_categ">${_(categories)}</span>
                   </div>
                   <div class="content_info">
-                    % if request.user.is_staff:
-                      <a class="course-link" href="${course_info['url']}">
-                    % else:
-                      <a class="course-link" href="#">
-                    % endif
-                      <h3 class="course-title">${course_info['display_name']}</h3>
+                    <a class="course-link" href="/update-microsite/${microsite_info.id}">
+                      <h3 class="course-title">${microsite_info.name}</h3>
                     </a>
-                    <div class="all_dates">
-                      <ul>
-                        <li><span>${_('Start')} :</span> <span>${course_start}</span></li>
-                        <li><span>${_('End')} :</span> <span>${course_end}</span></li>
-                        <span style="display:block;clear:left;"></span>
-                      </ul>
-                    </div>
-                    <div class="duration_course">
-                      <object oa-reusable-svg
-                              data="${static.url('images/duree.svg')}"
-                              type="image/svg+xml"
-                              class="svg-class"
-                              data-class="timer_svg_color"
-                              >
-                      </object>
-                      <span>${duration}</span>
-                    </div>
-                    <ul class="more_about_courses">
-                      <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/about" target="_blank">${_('More about the module')}</a></li>
-                      <li><a href="/settings/manage/${course_info['course_key']}">${_('Manage your campaign')}</a></li>
-                      <li><a href="/settings/invite/${course_info['course_key']}">${_('Invite new users')}</a></li>
-                      % if request.user.is_staff:
-                      <li><a class="course-link" href="${course_info['url']}">${_('Course administration')}</a></li>
-                      % endif
-                    </ul>
+                  <!---
+                    <h3 class="title" style="position:absolute;bottom:10px;width:calc(100% - 20px);left:10px;">
+                      <span class="label">
+                        <a href="https://${microsite_info.name}.${settings.SITE_NAME}" class="button">Voir le microsite(Pensez à faire CTRL+F5)</a>
+                      </span>
+                    </h3>
+                  -->
                   </div>
                   <span style="clear:left;display:block;"></span>
-                </li>
-            % endif
-          %endfor
-        </ul>
+                    <ul class="more_about_courses">
+                      <li><a href="https://${microsite_info.name}.${settings.SITE_NAME}">${_('Microsite')}</a></li>
+                      <li><a href="/update-microsite/${microsite_info.id}">${_('Manage Microsite')}</a></li>
+                      <li><a href="/admin-microsite/${microsite_info.id}">${_('Manage Microsite Admin')}</a></li>
+                    </ul>
+                  </li>
+                  %endfor
+                % endif
+              % endif
+            </ul>
+            <!-- cours terminé -->
+            <!-- cours terminé -->
+            <!-- cours terminé -->
+            <!-- cours terminé -->
+            <div class="up_list_courses next_list">
+              <h3>
+                <img src="${static.url('images/campagne_terminee.svg')}" class='svg svg-class-title' />
+                <span>${_('COMPLETED TRAINING CAMPAIGNS')}</span>
+              </h3>
+              <p>${_('The following training campaigns are completed (ending date is exceeded).To access statistics, please click on')}  « ${_("Statistics")} ».</p>
+            </div>
+            <ul class="list-courses my_campaign_listing">
+              %for course_info in sorted(courses, key=lambda s: s['display_name'].lower() if s['display_name'] is not None else ''):
+                  <%
+                  course_key_id = CourseKey.from_string(course_info['course_key'])
+                  is_true = False
+                  staf_users = CourseStaffRole(course_key_id).users_with_role()
+                  for n in staf_users:
+                      if n.email == user_email or request.user.is_staff:
+                          is_true = True
+                  courses_overviews = CourseOverview.get_from_id(course_key_id)
+                  courses_stats = get_course_by_id(course_key_id)
+                  categories = courses_stats.categ
+                  course_img = courses_overviews.image_urls
+                  course_start = courses_overviews.start.strftime('%d-%m-%Y')
+                  course_end = ''
+                  if courses_overviews.end:
+                      course_end = courses_overviews.end.strftime('%d-%m-%Y')
+                      course_end_compare = int(courses_overviews.end.strftime("%s"))
+                  else:
+                      course_end_compare = current_date
+                  duration = CourseDetails.fetch(course_key_id).effort
+                  %>
+                  % if not 'AMUNDI-GENERIC-TEMPLATE' in course_info['display_name'] and current_date > course_end_compare and is_true == True or request.user.is_staff == true:
+                    <li class="course-item" data-course-key="${course_info['course_key']}" data-status="all">
+                      <div class="content_img">
+                        <img src="${course_img['raw']}" class="img_course"/>
+                        <span class="course_module_categ">${_(categories)}</span>
+                      </div>
+                      <div class="content_info">
+                        % if request.user.is_staff:
+                          <a class="course-link" href="${course_info['url']}">
+                        % else:
+                          <a class="course-link" href="#">
+                        % endif
+                          <h3 class="course-title">${course_info['display_name']}</h3>
+                        </a>
+                        <div class="all_dates">
+                          <ul>
+                            <li><span>${_('Starting date')} :</span> <span>${course_start}</span></li>
+                            <li><span>${_('Ending date')} :</span> <span>${course_end}</span></li>
+                            <span style="display:block;clear:left;"></span>
+                          </ul>
+                        </div>
+                        <div class="all_dates">
+                          <ul>
+                            <li><span>${course_info['org']}</span></li>
+                            <span style="display:block;clear:left;"></span>
+                          </ul>
+                        </div>
+                        <div class="duration_course">
+                          <img src="${static.url('images/duree.svg')}" class='svg timer_svg_color' />
+                          <span>${duration}</span>
+                        </div>
+                        <ul class="more_about_courses">
+                          <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/about" target="_blank">${_('About the training module')}</a></li>
+                          <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/stat_dashboard" target="_blank">${_('Statistics')}</a></li>
+                        </ul>
+                      </div>
+                      <span style="clear:left;display:block;"></span>
+                    </li>
+                % endif
+              %endfor
+            </ul>
+            <!-- end courses end courses -->
+            <!-- end courses end courses -->
+          </span>
+        %endif
+        <div class="up_list_courses next_list" id="generic_title">
+          <h3>
+            <img src="${static.url('images/th.svg')}" class='svg svg-class-title' />
+            <span>${_('My Modules')}</span>
+          </h3>
+          <p>${_('You have at your disposal a library of training modules made available by Amundi. Select the module of your choice and launch the associated training campaign.')}</p>
+        </div>
         <ul class="list-courses">
           %for course_info in sorted(courses, key=lambda s: s['display_name'].lower() if s['display_name'] is not None else ''):
               <%
@@ -670,6 +714,7 @@ user_email = request.user.email
                 <li class="course-item" data-course-key="${course_info['course_key']}" data-status="template">
                   <div class="content_img">
                     <img src="${course_img['raw']}" class="img_course"/>
+                    <span class="course_module_categ">${_(categories)}</span>
                   </div>
                   <div class="content_info">
                   % if request.user.is_staff:
@@ -681,27 +726,24 @@ user_email = request.user.email
                     </a>
                     <div class="all_dates">
                       <ul>
-                        <li><span>${_('Start')} :</span> <span>${course_start}</span></li>
-                        <li><span>${_('End')} :</span> <span>${course_end}</span></li>
+                        <li><span>${_('Starting date')} :</span> <span>${course_start}</span></li>
+                        <li><span>${_('Ending date')} :</span> <span>${course_end}</span></li>
+                        <span style="display:block;clear:left;"></span>
+                      </ul>
+                    </div>
+                    <div class="all_dates">
+                      <ul>
+                        <li><span>${course_info['org']}</span></li>
                         <span style="display:block;clear:left;"></span>
                       </ul>
                     </div>
                     <div class="duration_course">
-                      <object oa-reusable-svg
-                              data="${static.url('images/duree.svg')}"
-                              type="image/svg+xml"
-                              class="svg-class"
-                              data-class="timer_svg_color"
-                              >
-                      </object>
+                      <img src="${static.url('images/duree.svg')}" class="svg timer_svg_color" />
                       <span>${duration}</span>
                     </div>
                     <ul class="more_about_courses">
-                      <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/about" target="_blank">${_('More about the module')}</a></li>
-                      <!--
-                      <li><a href="/settings/details/${course_info['course_key']}">${_('Manage your campaign')}</a></li>
-                      -->
-                      <li><a href="/settings/create/${course_info['course_key']}">${_("Launch your campaign")}</a></li>
+                      <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/about" target="_blank">${_('About the training module')}</a></li>
+                      <li><a href="/settings/create/${course_info['course_key']}">${_("Launch my campaign")}</a></li>
                       % if request.user.is_staff:
                       <li><a class="course-link" href="${course_info['url']}">${_('Course administration')}</a></li>
                       % endif
@@ -717,15 +759,8 @@ user_email = request.user.email
       <!-- fin de ici les cours -->
       <!-- fin de ici les cours -->
       %else:
+    <!--
       <div class="notice notice-incontext notice-instruction notice-instruction-nocourses list-notices courses-tab active">
-        <div class="notice-item">
-          <div class="msg">
-            <h3 class="title">${_("Are you staff on an existing {studio_name} course?").format(studio_name=settings.STUDIO_SHORT_NAME)}</h3>
-            <div class="copy">
-              <p>${_('The course creator must give you access to the course. Contact the course creator or administrator for the course you are helping to author.')}</p>
-            </div>
-          </div>
-        </div>
 
         %if course_creator_status == "granted":
         <div class="notice-item has-actions">
@@ -744,6 +779,11 @@ user_email = request.user.email
         </div>
         % endif
 
+      </div>
+    -->
+      <div id="no_course">
+        <p>${_("No training campaign has been set")}.</p>
+        <p>${_("To launch a training campaign")}, ${_("select a training module in")} <span>${_("My Modules")}</span></button>, ${_("then click on")} <span>${_("Launch my campaign")}</span>.</p>
       </div>
       % endif
 
@@ -858,6 +898,7 @@ user_email = request.user.email
       </div>
 
       %else:
+      <!--
       <div class="notice notice-incontext notice-instruction notice-instruction-nocourses list-notices libraries-tab">
         <div class="notice-item">
           <div class="msg">
@@ -867,6 +908,7 @@ user_email = request.user.email
               </div>
           </div>
         </div>
+
         % if show_new_library_button:
         <div class="notice-item has-actions">
           <div class="msg">
@@ -885,7 +927,7 @@ user_email = request.user.email
         % endif
       </div>
       %endif
-
+  -->
       % if is_programs_enabled:
         % if len(programs) > 0:
           <div class="programs programs-tab">
@@ -935,8 +977,58 @@ user_email = request.user.email
     </article>
     <aside class="content-supplementary" role="complementary">
       <div class="bit">
-        <h3 class="title title-3">${_('Lorem ipsum dolor sit amet')}</h3>
-        <p>${_('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')}</p>
+        <style>
+          #info_my_campaign {
+
+          }
+          #info_my_module {
+            display: none;
+          }
+          #info_my_module p {
+            font-size: 16px;
+          }
+          .list {
+            width: 96%;
+            margin: 0;
+            margin-left: 4%;
+            margin-bottom: 10px;
+          }
+          .list li {
+            margin-top: 3px;
+            margin-bottom: 3px;
+          }
+          .bit p {
+            margin-bottom: 6px;
+            margin-top: 15px;
+          }
+        </style>
+        <span id="info_my_campaign">
+          <h3 class="title title-3">${_('WHAT YOU CAN DO')}…</h3>
+          <p>${_('Schedules training campaigns:')}</p>
+          <ul class="list">
+            <li>- ${_('Update your settings: starting/ending dates, minimum percentage of success')}</li>
+            <li>- ${_('Add new participants')}</li>
+            <li>- ${_('Update the text of the email invitation and test your email invitation')}</li>
+          </ul>
+          <p>${_('In progress training campaigns:')}</p>
+          <ul class="list">
+            <li>- ${_('Update ending date')}</li>
+            <li>- ${_('Add new participants')}</li>
+            <li>- ${_('Access statistics: participation rate, success by participant, etc.')}</li>
+          </ul>
+          <p>${_('Completed training campaigns:')}</p>
+          <ul class="list">
+            <li>- ${_('Access statistics: participation rate, success by participant, etc.')}</li>
+          </ul>
+        </span>
+        <span id="info_my_module">
+          <h3 class="title title-3">${_('WHAT YOU CAN DO')}…</h3>
+          <p>${_('My modules:')}</p>
+          <ul class="list">
+            <li>- ${_('Access a training modules library provided by Amundi')}</li>
+            <li>- ${_('Launch a training campaign')}</li>
+          </ul>
+        </span>
       </div>
 
     </aside>
@@ -975,4 +1067,15 @@ user_email = request.user.email
 <!-- ici nouveau menu -->
 <!-- ici nouveau menu -->
 <link rel="stylesheet" type="text/css" href="${static.url('css/index.css')}">
+<style>
+#main {
+  min-height: calc(100vh - 207px);
+}
+.content,.wrapper-header header.primary,.wrapper-mast .mast, .wrapper-mast .metadata {
+  max-width: 1500px;
+}
+.view-dashboard .content-supplementary {
+  right: 8%;
+}
+</style>
 </%block>

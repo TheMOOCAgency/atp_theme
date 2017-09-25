@@ -15,41 +15,50 @@ from openedx.core.djangolib.markup import HTML, Text
       IndexFactory();
   });
   //require(['${static.url("js/invite.js")}']);
-  //require(['https://demo-atp.themoocagency.com/media/studio/update.js']);
-  require(['${static.url("js/atp/update.js")}']);
+  //require(['https://demo-atp.themoocagency.com/media/studio/admin_microsite.js']);
+  require(['${static.url("js/atp/admin_microsite.js")}']);
 </%block>
 <%namespace name='static' file='static_content.html'/>
 <%block name="content">
   <section id="primary">
     <div id="fil_ariane"><span>${_('Microsites')} ></span></div>
     <div id="title">
-      <h1>${_('Manage my microsite')}</h1>
+      <h1>${_('microsite admin management')}</h1>
     </div>
+    <div id="admin_management">
+    <style>
+      #admin_management {
+        width: 50%;
+        margin-top: 30px;
+      }
+      #admin_management div {
+        position: relative;
+        width: 100%;
+        height: auto;
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+      #admin_management div button {
+        position: absolute;
+        right: 0;
+        top: 0;
+        border-radius: 5px;
+        font-family: "mywebfont";
+      }
+      #pre_email {
+        margin-top: 30px;
+      }
+    </style>
+% for n in microsite_admin['users_admin']:
+      <div>
+        <span>${n['email']}</span><button data-type="DELETE" data-key="${key}" data-user_id="${n['user_id']}" class="microsite_admin_del">${_('delete')}</button>
+      </div>
+% endfor
+  </div>
     <div id="form">
-      <div id="pre_title" class="form_update">
-        <label data-value="${key}">${key}</label>
-        <input type="text" value="" name="key" id="micro_key" placeholder="microsite title" class="input_update">
-      </div>
-      <div id="pre_picture" class="form_update_logo">
-        <img src="https://${settings.SITE_NAME+logo_site}" />
-        <form id="upload_microsite_logo">
-          <input class="new-microsite-logo" id="new-microsite-logo" type="file" name="logo" required="" aria-describedby="tip-new-microsite-logo tip-error-new-microsite-logo">
-        </form>
-      </div>
-      <div id="pre_primary" class="form_update">
-        <label data-value="${primary_color}">${primary_color}</label>
-        <input type="text" value="" name="primary_color" id="micro_primary_color" placeholder="microsite primary color" class="input_update">
-      </div>
-      <div id="pre_secondary" class="form_update">
-        <label data-value="${secondary_color}">${secondary_color}</label>
-        <input type="text" value="" name="secondary_color" id="micro_secondary_color" placeholder="microsite secondary color" class="input_update">
-      </div>
-      <div id="language_code" class="form_update">
-        <label for="new-microsite-language">Choose Language</label>
-        <select class="input new-microsite-language select language-selector input_update" id="language-value" name="language_code">
-          <option value="fr">Français</value>
-          <option value="en">English</value>
-        </select>
+      <div id="pre_email" class="form_update">
+        <label data-value="email">${_('Email')}</label>
+        <input type="text" value="" name="email" id="micro_admin_email" placeholder="microsite admin email" class="input_update" data-key="${key}">
       </div>
     </div>
   </section>

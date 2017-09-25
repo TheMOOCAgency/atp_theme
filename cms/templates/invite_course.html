@@ -15,7 +15,8 @@ from openedx.core.djangolib.markup import HTML, Text
       IndexFactory();
   });
   //require(['${static.url("js/invite.js")}']);
-  require(['https://demo-atp.themoocagency.com/media/studio/invite.js']);
+  //require(['https://demo-atp.themoocagency.com/media/studio/invite.js']);
+  require(['${static.url("js/atp/invite.js")}']);
 </%block>
 <%namespace name='static' file='static_content.html'/>
 <%block name="content">
@@ -24,13 +25,21 @@ from openedx.core.djangolib.markup import HTML, Text
 <link rel="stylesheet" type="text/css" href="/static/420ed091b4/atp/css/cms-style-vendor.a8460e6e5e4b.css">
 <link rel="stylesheet" type="text/css" href="${static.url("atp/css/cms-style-vendor.css")}">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+<style>
+.participants .buton_from_file {
+  width: auto !important;
+  height: auto !important;
+  min-width: 100px;
+  min-height: 30px;
+}
+</style>
 <section id="content">
   <section id="primary">
     <div id="fil_ariane"><span>${_('My campaigns')} ></span></div>
     <div id="title">
       <h1>${_('Manage my campaign')}</h1>
       <p>
-        ${_('Provide all the information you need to launch your training campaign: start / end date, loading of learners, invitation mail, etc.')}
+        ${_('Add participants to your training campaign and customize the invitation email')}
       </p>
     </div>
     <ul class="list-courses">
@@ -66,7 +75,7 @@ from openedx.core.djangolib.markup import HTML, Text
     </div>
     <div class="cell_content" id="cell_5">
       <div class="date_title particulary">
-        <h5>${_('Load the list of participants')}</h5>
+        <h5>${_('Invite participants to your training campaign')}</h5>
         <span style="clear:both;display:block;"></span>
       </div>
       <div class="field participants">
@@ -74,7 +83,7 @@ from openedx.core.djangolib.markup import HTML, Text
           <input type="file" name="file" id="invite_participant">
         </form>
         <div id="choise_from_file">
-          <button class="buton_from_file" id="register_from_csv">${_("Register")}</button>
+          <button class="buton_from_file" id="register_from_csv">${_("Upload participants list")}</button>
           <span style="clear:left;display:block;"></span>
         </div>
       </div>
@@ -93,15 +102,15 @@ from openedx.core.djangolib.markup import HTML, Text
     <!-- cell 2/2 -->
 
     <div class="cell_title">
-      <h3 id="h3_6"><div class="num" id="num_6">2/2</div><span>${_("activation's mail")}</span></h3>
+      <h3 id="h3_6"><div class="num" id="num_6">2/2</div><span>${_("INVITATION EMAIL")}</span></h3>
     </div>
     <div class="cell_content" id="cell_6">
       <div class="date_title particulary">
-        <h5>${_('Edit and send your e-mail to the mailing list of your choice')}</h5>
+        <h5>${_('Edit and send the invitation email to participants of your choice.')}</h5>
         <span style="clear:both;display:block;"></span>
       </div>
       <div id="send_it">
-        <h6>${_('Send to')} :</h6>
+        <h6>${_('Send the invitation email to :')}</h6>
         <!-- checkbox 1 -->
         <div class="check_box_field">
           <input type="checkbox" class="checkbox_mail_field" name="checkbox_mail_field" id="checkbox_myself" value="myself">
@@ -110,17 +119,17 @@ from openedx.core.djangolib.markup import HTML, Text
         <!-- checkbox 2 -->
         <div class="check_box_field">
           <input type="checkbox" class="checkbox_mail_field" name="checkbox_mail_field" id="checkbox_staff" value="staff">
-          <label>${_('Staff and admins')}</label>
+          <label>${_('Admin Team')}</label>
         </div>
         <!-- checkbox 4 -->
         <div class="check_box_field">
           <input type="checkbox" class="checkbox_mail_field" name="checkbox_mail_field" id="checkbox_all" value="all">
-          <label>${_('All users')}</label>
+          <label>${_('Every participants')}</label>
         </div>
         <!-- checkbox 5 -->
         <div class="check_box_field">
           <input type="checkbox" class="checkbox_mail_field" name="checkbox_mail_field" id="checkbox_custom" value="custom">
-          <label>${_('Customs users')}</label>
+          <label>${_('Customized list of participants')}</label>
         </div>
       </div>
       <div class="field input_text" id="custom_mail_box">
@@ -130,14 +139,14 @@ from openedx.core.djangolib.markup import HTML, Text
         <textarea id="email_1"></textarea>
       </div>
       <div class="sub_input last_sub_input last_block">
-        ${_('You can copy and paste the email addresses of recipients to whom you wish to send an invitation to participate in this training campaign. Invitations will be sent only to invited participants in Part 1/2 Participants')}
+        ${_('If you want to send the invitation email to the training campaign to a customized list of participants, please copy/paste the email recipients above. Remember that invitation emails can be sent only to the participants who have been invited to participate to the training campaign in the section 1/2 PARTICIPANTS.')}
       </div>
       <h6>${_('Object')} :</h6>
       <div class="field input_text">
         <input type="text" id="email_2" name="email_2" value="">
       </div>
       <div class="sub_input last_sub_input last_block_compteur">
-       Maximum of 128 characters
+       128 characters maximum
       </div>
       <h6>${_('Body')} :</h6>
       <div class="field textarea">
@@ -147,10 +156,10 @@ from openedx.core.djangolib.markup import HTML, Text
         We recommend sending only one message per week to learners. Before sending your e-mail, read your text carefully and send it to your email address. You will be able to verify that all the links work and that the content is good.
       </div>
       <div class="sub_input last_sub_input last_block ending_page">
-        <span>${_('warning')} : </span>Once you have clicked on "send an email" you can no longer cancel.
+        <span>${_('WARNING')} : </span>${_("Don't hesitate to validate the email invitation by sending a test invitation to yourself. It will allow you to validate content and links included in the email invitation.")}
       </div>
       <div class="field email_send">
-        <button id="send_email">${_('Send mail')}</button>
+        <button id="send_email">${_('CTA : Send')}</button>
       </div>
       <span style="display:block;clear:left;"></span>
     </div>

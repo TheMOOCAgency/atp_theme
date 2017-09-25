@@ -14,7 +14,8 @@ from openedx.core.djangolib.markup import HTML, Text
   require(["js/factories/index"], function (IndexFactory) {
       IndexFactory();
   });
-  require(['${static.url("https://demo-atp.themoocagency.com//media/studio/create.js")}']);
+  //require(['${static.url("https://demo-atp.themoocagency.com//media/studio/create.js")}']);
+  require(['${static.url("js/atp/create.js")}']);
 </%block>
 <%namespace name='static' file='static_content.html'/>
 <%block name="content">
@@ -67,8 +68,13 @@ from openedx.core.djangolib.markup import HTML, Text
         <span style="clear:both;display:block;"></span>
       </div>
       <div class="field date">
-        <label>${_('Your identifier')}</label>
-        <input type="text" id="course_identity" placeholder="${_('')}" value="" data-course_key="${course.id}" data-org="${course.org}" data-display_name="${course.display_name_with_default_escaped}"/>
+        <label>${_('Course Number')}</label>
+        <input type="text" id="course_number" placeholder="${_('')}" value="" data-course_key="${course.id}" data-org="${course.org}" data-display_name="${course.display_name_with_default_escaped}"/>
+      </div>
+      <div class="field date">
+        <label>${_('Course Run')}</label>
+        <input type="text" id="course_run" placeholder="${_('')}" value="" data-course_key="${course.id}" data-org="${course.org}" data-display_name="${course.display_name_with_default_escaped}"/>
+        <input type="hidden" id="user_org" name="user_org" value="${user_org}" />
       </div>
       <div class="sub_input last_sub_input">
         ${_('Rules to respect the choice of the identifier of the campaign: no space, no punctuation')}

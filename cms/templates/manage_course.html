@@ -29,7 +29,7 @@ from openedx.core.djangolib.markup import HTML, Text
     <div id="title">
       <h1>${_('Manage my campaign')}</h1>
       <p>
-        ${_('Provide all the information you need to launch your training campaign: start / end date, loading of learners, etc.')}
+        ${_('Provide all the information required to launch your training campaign: starting/ending date, minimum percentage of success required, and campaign type.')}
       </p>
     </div>
     <ul class="list-courses">
@@ -60,22 +60,22 @@ from openedx.core.djangolib.markup import HTML, Text
     <!-- cell 1/4 -->
     <!-- cell 1/4 -->
     <div class="cell_title">
-      <h3 id="h3_2"><div class="num" id="num_2">1/4</div><span>${_('identifying your campaign')}</span></h3>
+      <h3 id="h3_2"><div class="num" id="num_2">1/4</div><span>${_('campaign id')}</span></h3>
     </div>
     <div class="cell_content" id="cell_2">
       <div class="date_title">
-        <h5 style="padding-top: 25px;">${_('Create an identifier')}</h5>
-        <p>${_('This identifier is reflected in the statistical dashboards')}</P>
-        <p>${_('This allows you to specify the target and / or training period')}</P>
+        <h5 style="padding-top: 25px;">${_('Create your campagne id')}</h5>
+        <p>${_('This id is indicated in statistic reports.')}</P>
+        <p>${_('Precise your target and/or campaign period.')}</P>
         <span style="clear:both;display:block;"></span>
       </div>
       <div class="field date">
         <div id="course_identity_voile"></div>
-        <label>${_('Your identifier')}</label>
+        <label>${_('Your id')}</label>
         <input type="text" id="course_identity" placeholder="${_('')}" value="" disabled="true" value="555"/>
       </div>
       <div class="sub_input last_sub_input">
-        ${_('Rules to respect the choice of the identifier of the campaign: no space, no punctuation')}
+        ${_('Rules to create your campaign id: no space, no  punctuation mark')}
       </div>
     </div>
     <!-- cell 2/4 -->
@@ -84,35 +84,35 @@ from openedx.core.djangolib.markup import HTML, Text
     <!-- cell 2/4 -->
     <!-- cell 2/4 -->
     <div class="cell_title">
-      <h3 id="h3_1"><div class="num" id="num_1">2/4</div><span>${_('campaign duration')}</span></h3>
+      <h3 id="h3_1"><div class="num" id="num_1">2/4</div><span>${_('PERIOD OF THE TRAINING CAMPAIGN')}</span></h3>
     </div>
     <div class="cell_content" id="cell_1">
       <div class="date_title">
-        <h5>${_('program your campaign')}</h5>
-        <p>${_('date of start and end of training')}</P>
+        <h5>${_('Schedule your training campaign')}</h5>
+        <p>${_('Starting and ending dates of the training campaign')}</P>
         <span style="clear:both;display:block;"></span>
       </div>
       <div class="field date" id="field-course-start-date">
-        <label>${_('Starting date of the course')}</label>
+        <label>${_('Starting date')}</label>
         <input type="text" id="course-start-date" placeholder="MM/DD/YYYY" data-key="start_date">
       </div>
       <div class="field date" id="field-course-start-date">
-        <label>${_('Stating time')}</label>
+        <label>${_('Time for email invitation dispatch UTC')}</label>
         <input type="text" id="course-start-time" placeholder="HH:MM" data-key="start_time">
       </div>
       <div class="sub_input">
-        ${_('The day when invitations will be issued for the training campaign')}
+        ${_('The day the first invitations are dispatched when launching the training campaign')}
       </div>
       <div class="field date" id="field-course-start-date">
-        <label>${_('Ending date of the course')}</label>
+        <label>${_('Ending date')}</label>
         <input type="text" id="course-end-date" placeholder="MM/DD/YYYY" data-key="end_date">
       </div>
       <div class="field date" id="field-course-start-date">
-        <label>${_('Ending time')}</label>
+        <label>${_('Ending time UTC')}</label>
         <input type="text" id="course-end-time" placeholder="HH:MM" data-key="end_time">
       </div>
       <div class="sub_input last_sub_input">
-        ${_('The closing day of the training campaign')}
+        ${_('Closing day of the training campaign')}
       </div>
     </div>
     <!-- end cell 2/4 -->
@@ -125,11 +125,11 @@ from openedx.core.djangolib.markup import HTML, Text
     <!-- cell 3/4 -->
     <!-- cell 3/4 -->
     <div class="cell_title">
-      <h3 id="h3_3"><div class="num" id="num_3">3/4</div><span>${_('percentage of requested minimum success')}</span></h3>
+      <h3 id="h3_3"><div class="num" id="num_3">3/4</div><span>${_('MINIMUM PERCENTAGE OF SUCCESS REQUIRED')}</span></h3>
     </div>
     <div class="cell_content" id="cell_3">
       <div class="date_title">
-        <h5>${_('set the minimum score requested')}</h5>
+        <h5>${_('Define the minimum score required to validate the training module')}</h5>
         <p>${_('Minimum score required to validate the training module and receive the certificate of achievement')}</P>
         <span style="clear:both;display:block;"></span>
       </div>
@@ -137,7 +137,7 @@ from openedx.core.djangolib.markup import HTML, Text
       <div id="resizable">
         <div class="info_grade" id="fail_grade"><h6>fail</h6><p>0 - <span></span></p></div>
       </div>
-      <div class="info_grade" id="passed_grade"><h6>passed</h6><p><span></span> - 100</p></div>
+      <div class="info_grade" id="passed_grade"><h6>Success</h6><p><span></span> - 100</p></div>
     </div>
     <ol class="increments">
       <li class="increment-0">0</li>
@@ -165,11 +165,11 @@ from openedx.core.djangolib.markup import HTML, Text
     <!-- cell 4/6 -->
     <!-- cell 4/6 -->
     <div class="cell_title">
-      <h3 id="h3_4"><div class="num" id="num_4">4/4</div><span>${_('Campaign type')}</span></h3>
+      <h3 id="h3_4"><div class="num" id="num_4">4/4</div><span>${_('CAMPAIGN TYPE')}</span></h3>
     </div>
     <div class="cell_content" id="cell_4">
       <div class="date_title particulary">
-        <h5>${_('Specify whether the training campaign is compulsory or optional')}</h5>
+        <h5>${_('Specify whether the training campaign is mandatory or optional')}</h5>
         <span style="clear:both;display:block;"></span>
       </div>
       <div class="field campaign">
