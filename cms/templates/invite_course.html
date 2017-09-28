@@ -15,15 +15,12 @@ from openedx.core.djangolib.markup import HTML, Text
       IndexFactory();
   });
   //require(['${static.url("js/invite.js")}']);
-  //require(['https://demo-atp.themoocagency.com/media/studio/invite.js']);
+  //require(['https://demo-atp.themoocagency.com/media/js/invite.js']);
   require(['${static.url("js/atp/invite.js")}']);
 </%block>
 <%namespace name='static' file='static_content.html'/>
 <%block name="content">
-<link rel="stylesheet" type="text/css" href="/static/420ed091b4/js/vendor/timepicker/jquery.timepicker.450aaf730030.css">
-<link rel="stylesheet" type="text/css" href="${static.url("js/vendor/timepicker/jquery.timepicker.css")}">
-<link rel="stylesheet" type="text/css" href="/static/420ed091b4/atp/css/cms-style-vendor.a8460e6e5e4b.css">
-<link rel="stylesheet" type="text/css" href="${static.url("atp/css/cms-style-vendor.css")}">
+<link rel="stylesheet" type="text/css" href="${static.url('js/vendor/timepicker/jquery.timepicker.css')}">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 <style>
 .participants .buton_from_file {
