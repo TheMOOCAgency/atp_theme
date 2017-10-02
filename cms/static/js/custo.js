@@ -18,8 +18,6 @@ define(['domReady', 'jquery', 'underscore'],
           $('.course-item').each(function(){
             var That = $(this);
             var that_data = That.data('status');
-            console.log('data : '+data);
-            console.log('that_data : '+that_data);
             if(that_data == data){
               That.show();
             }else{

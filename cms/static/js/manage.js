@@ -127,7 +127,6 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
             var q = false;
             $('.'+Class).each(function(){
               var This = $(this);
-              console.log(This.attr('value'));
               if(This.is(':checked')) {
                 if(This.val() == 'mandatory') {
                   q = true;
@@ -191,7 +190,6 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
         var advanced_data = new advancedClass();
         /* action au retour du get d'initialisation */
         $.when(get,grade, advanced).done(function(results1,results2,result3) {
-          console.log(results2[0]);
           // resizable
           grade_data.addResizable('resizable','content_resize');
           /* hydrate object */

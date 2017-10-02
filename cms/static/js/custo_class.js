@@ -99,7 +99,6 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
           var q = false;
           $('.'+Class).each(function(){
             var This = $(this);
-            console.log(This.attr('value'));
             if(This.is(':checked')) {
               alert(This.val());
               if(This.val() == 'mandatory') {

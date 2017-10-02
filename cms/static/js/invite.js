@@ -114,7 +114,6 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
           var data = $(this).data('mail');
           mails.push(data);
         })
-        console.log(mails);
         this.adress = mails;
       }
       /* get tinymce value method */
@@ -154,7 +153,6 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
         }
         // get all adresses
         this.setAdress(adress);
-        console.log(this.adress);
         data.append('adress',this.adress);
         // get object value
         data.append('object',this.object);
