@@ -29,9 +29,7 @@ from student.roles import CourseInstructorRole,CourseStaffRole
 </%block>
 <%namespace name='static' file='static_content.html'/>
 <%block name="content">
-<%
-user_email = request.user.email
-%>
+
 <style>
 .course_module_categ {
   display:block;
@@ -431,72 +429,63 @@ user_email = request.user.email
               <p>${_("The following training campaigns have not been launched yet (starting date not exceeded).To modify starting/ending date, please click on")} « ${_("Manage my campaign")} ».${_("To add new participants, please click on")} « ${_("Invite participants")} » .</p>
             </div>
             <ul class="list-courses my_campaign_listing">
-              %for course_info in sorted(courses, key=lambda s: s['display_name'].lower() if s['display_name'] is not None else ''):
+              %for q in course_scheduled:
                   <%
-                  course_key_id = CourseKey.from_string(course_info['course_key'])
-                  is_true = False
-                  staf_users = CourseStaffRole(course_key_id).users_with_role()
-                  for n in staf_users:
-                      if n.email == user_email or request.user.is_staff:
-                          is_true = True
-                  courses_overviews = CourseOverview.get_from_id(course_key_id)
-                  courses_stats = get_course_by_id(course_key_id)
-                  categories = courses_stats.categ
-                  course_img = courses_overviews.image_urls
-                  course_start = courses_overviews.start.strftime('%d-%m-%Y')
-                  course_end = ''
-                  if courses_overviews.end:
-                      course_end = courses_overviews.end.strftime('%d-%m-%Y')
-                      course_end_compare = int(courses_overviews.end.strftime("%s"))
-                  else:
-                      course_end_compare = current_date
-                  course_start_compare = int(courses_overviews.start.strftime("%s"))
-                  duration = CourseDetails.fetch(course_key_id).effort
+                  course_info = q['course_info']
+                  course_key_id = q['course_key_id']
+                  is_true = q['is_true']
+                  courses_overviews = q['courses_overviews']
+                  courses_stats = q['courses_stats']
+                  categories = q['categories']
+                  course_img = q['course_img']
+                  course_start = q['course_start']
+                  course_end = q['course_end']
+                  course_end_compare = q['course_end_compare']
+                  course_start_compare = q['course_start_compare']
+                  duration = q['duration']
                   %>
-                  % if not 'AMUNDI-GENERIC-TEMPLATE' in course_info['display_name'] and current_date < course_start_compare and is_true:
-                    <li class="course-item" data-course-key="${course_info['course_key']}" data-status="all">
-                      <div class="content_img">
-                        <img src="${course_img['raw']}" class="img_course"/>
-                        <span class="course_module_categ">${_(categories)}</span>
-                      </div>
-                      <div class="content_info">
-                        % if request.user.is_staff:
-                          <a class="course-link" href="${course_info['url']}">
-                        % else:
-                          <a class="course-link" href="#">
-                        % endif
-                          <h3 class="course-title">${course_info['display_name']}</h3>
-                        </a>
-                        <div class="all_dates">
-                          <ul>
-                            <li><span>${_('Starting date')} :</span> <span>${course_start}</span></li>
-                            <li><span>${_('Ending date')} :</span> <span>${course_end}</span></li>
-                            <span style="display:block;clear:left;"></span>
-                          </ul>
-                        </div>
-                        <div class="all_dates">
-                          <ul>
-                            <li><span>${course_info['org']}</span></li>
-                            <span style="display:block;clear:left;"></span>
-                          </ul>
-                        </div>
-                        <div class="duration_course">
-                          <img src="${static.url('images/duree.svg')}" class='svg timer_svg_color' />
-                          <span>${duration}</span>
-                        </div>
-                        <ul class="more_about_courses">
-                          <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/about" target="_blank">${_('About the training module')}</a></li>
-                          <li><a href="/settings/manage/${course_info['course_key']}">${_('Manage my campaign')}</a></li>
-                          <li><a href="/settings/invite/${course_info['course_key']}">${_('Invite participants')}</a></li>
-                          <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/stat_dashboard" target="_blank">${_('Statistics')}</a></li>
-                          % if request.user.is_staff:
-                          <li><a class="course-link" href="${course_info['url']}">${_('Course administration')}</a></li>
-                          % endif
+                  <li class="course-item" data-course-key="${course_info['course_key']}" data-status="all">
+                    <div class="content_img">
+                      <img src="${course_img['raw']}" class="img_course"/>
+                      <span class="course_module_categ">${_(categories)}</span>
+                    </div>
+                    <div class="content_info">
+                      % if request.user.is_staff:
+                        <a class="course-link" href="${course_info['url']}">
+                      % else:
+                        <a class="course-link" href="#">
+                      % endif
+                        <h3 class="course-title">${course_info['display_name']}</h3>
+                      </a>
+                      <div class="all_dates">
+                        <ul>
+                          <li><span>${_('Starting date')} :</span> <span>${course_start}</span></li>
+                          <li><span>${_('Ending date')} :</span> <span>${course_end}</span></li>
+                          <span style="display:block;clear:left;"></span>
                         </ul>
                       </div>
-                      <span style="clear:left;display:block;"></span>
-                    </li>
-                % endif
+                      <div class="all_dates">
+                        <ul>
+                          <li><span>${course_info['org']}</span></li>
+                          <span style="display:block;clear:left;"></span>
+                        </ul>
+                      </div>
+                      <div class="duration_course">
+                        <img src="${static.url('images/duree.svg')}" class='svg timer_svg_color' />
+                        <span>${duration}</span>
+                      </div>
+                      <ul class="more_about_courses">
+                        <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/about" target="_blank">${_('About the training module')}</a></li>
+                        <li><a href="/settings/manage/${course_info['course_key']}">${_('Manage my campaign')}</a></li>
+                        <li><a href="/settings/invite/${course_info['course_key']}">${_('Invite participants')}</a></li>
+                        <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/stat_dashboard" target="_blank">${_('Statistics')}</a></li>
+                        % if request.user.is_staff:
+                        <li><a class="course-link" href="${course_info['url']}">${_('Course administration')}</a></li>
+                        % endif
+                      </ul>
+                    </div>
+                    <span style="clear:left;display:block;"></span>
+                  </li>
               %endfor
             </ul>
             <!-- cours en cours -->
@@ -511,82 +500,74 @@ user_email = request.user.email
               <p>${_("The following training campaigns have not been launched yet (starting date not exceeded). To modify ending date, please click on")} « ${_('Manage my campaign')} ».${_("To add new participants, please click on")} « ${_("Invite participants")} » . ${_("To access statistics, please click on")} « ${_("Statistics")} ».</p>
             </div>
             <ul class="list-courses my_campaign_listing">
-              %for course_info in sorted(courses, key=lambda s: s['display_name'].lower() if s['display_name'] is not None else ''):
+              <!-- new script -->
+              %for q in course_in_progress:
                   <%
-                  course_key_id = CourseKey.from_string(course_info['course_key'])
-                  is_true = False
-                  staf_users = CourseStaffRole(course_key_id).users_with_role()
-                  for n in staf_users:
-                      if n.email == user_email or request.user.is_staff:
-                          is_true = True
-                  courses_overviews = CourseOverview.get_from_id(course_key_id)
-                  courses_stats = get_course_by_id(course_key_id)
-                  categories = courses_stats.categ
-                  course_img = courses_overviews.image_urls
-                  course_start = courses_overviews.start.strftime('%d-%m-%Y')
-                  course_end = ''
-                  if courses_overviews.end:
-                      course_end = courses_overviews.end.strftime('%d-%m-%Y')
-                      course_end_compare = int(courses_overviews.end.strftime("%s"))
-                  else:
-                      course_end_compare = current_date
-                  course_start_compare = int(courses_overviews.start.strftime("%s"))
-                  duration = CourseDetails.fetch(course_key_id).effort
+                  course_info = q['course_info']
+                  course_key_id = q['course_key_id']
+                  is_true = q['is_true']
+                  courses_overviews = q['courses_overviews']
+                  courses_stats = q['courses_stats']
+                  categories = q['categories']
+                  course_img = q['course_img']
+                  course_start = q['course_start']
+                  course_end = q['course_end']
+                  course_end_compare = q['course_end_compare']
+                  course_start_compare = q['course_start_compare']
+                  duration = q['duration']
                   %>
-                  % if not 'AMUNDI-GENERIC-TEMPLATE' in course_info['display_name'] and current_date > course_start_compare and current_date <= course_end_compare and is_true:
-                    <li class="course-item" data-course-key="${course_info['course_key']}" data-status="all">
-                      <div class="content_img">
-                        <img src="${course_img['raw']}" class="img_course"/>
-                        <span class="course_module_categ">${_(categories)}</span>
-                      </div>
-                      <div class="content_info">
-                        % if request.user.is_staff:
-                          <a class="course-link" href="${course_info['url']}">
-                        % else:
-                          <a class="course-link" href="#">
-                        % endif
-                          <h3 class="course-title">${course_info['display_name']}</h3>
-                        </a>
-                        <div class="all_dates">
-                          <ul>
-                            <li><span>${_('Starting date')} :</span> <span>${course_start}</span></li>
-                            <li><span>${_('Ending date')} :</span> <span>${course_end}</span></li>
-                            <span style="display:block;clear:left;"></span>
-                          </ul>
-                        </div>
-                        <div class="all_dates">
-                          <ul>
-                            <li><span>${course_info['org']}</span></li>
-                            <span style="display:block;clear:left;"></span>
-                          </ul>
-                        </div>
-                        <div class="duration_course">
-                          <img src="${static.url('images/duree.svg')}" class='svg timer_svg_color' />
-                          <span>${duration}</span>
-                        </div>
-                        <ul class="more_about_courses">
-                          <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/about" target="_blank">${_('About the training module')}</a></li>
-                          <li><a href="/settings/manage/${course_info['course_key']}">${_('Manage my campaign')}</a></li>
-                          <li><a href="/settings/invite/${course_info['course_key']}">${_('Invite participants')}</a></li>
-                          <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/stat_dashboard" target="_blank">${_('Statistics')}</a></li>
-                          % if request.user.is_staff:
-                          <li><a class="course-link" href="${course_info['url']}">${_('Course administration')}</a></li>
-                          % endif
+                  <li class="course-item" data-course-key="${course_info['course_key']}" data-status="all">
+                    <div class="content_img">
+                      <img src="${course_img['raw']}" class="img_course"/>
+                      <span class="course_module_categ">${_(categories)}</span>
+                    </div>
+                    <div class="content_info">
+                      % if request.user.is_staff:
+                        <a class="course-link" href="${course_info['url']}">
+                      % else:
+                        <a class="course-link" href="#">
+                      % endif
+                        <h3 class="course-title">${course_info['display_name']}</h3>
+                      </a>
+                      <div class="all_dates">
+                        <ul>
+                          <li><span>${_('Starting date')} :</span> <span>${course_start}</span></li>
+                          <li><span>${_('Ending date')} :</span> <span>${course_end}</span></li>
+                          <span style="display:block;clear:left;"></span>
                         </ul>
                       </div>
-                      <span style="clear:left;display:block;"></span>
-                    </li>
-                % endif
+                      <div class="all_dates">
+                        <ul>
+                          <li><span>${course_info['org']}</span></li>
+                          <span style="display:block;clear:left;"></span>
+                        </ul>
+                      </div>
+                      <div class="duration_course">
+                        <img src="${static.url('images/duree.svg')}" class='svg timer_svg_color' />
+                        <span>${duration}</span>
+                      </div>
+                      <ul class="more_about_courses">
+                        <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/about" target="_blank">${_('About the training module')}</a></li>
+                        <li><a href="/settings/manage/${course_info['course_key']}">${_('Manage my campaign')}</a></li>
+                        <li><a href="/settings/invite/${course_info['course_key']}">${_('Invite participants')}</a></li>
+                        <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/stat_dashboard" target="_blank">${_('Statistics')}</a></li>
+                        % if request.user.is_staff:
+                        <li><a class="course-link" href="${course_info['url']}">${_('Course administration')}</a></li>
+                        % endif
+                      </ul>
+                    </div>
+                    <span style="clear:left;display:block;"></span>
+                  </li>
               %endfor
+              <!-- new script -->
               % if request.user.is_staff:
                 % if len(microsites)>0:
                   %for microsite_info in sorted(microsites, key=lambda s: s.name.lower() if s.name is not None else ''):
                   <li class="course-item" data-status="microsites" style="display:none;">
                   <div class="content_img">
                     <a href="/update-microsite/${microsite_info.id}">
-                      <img src="https://${settings.SITE_NAME}/media/microsite/${microsite_info.name}/images/${microsite_info.logo}" class="img_course"/>
+                      <img src="${settings.LMS_ROOT_URL}/media/microsite/${microsite_info.name}/images/${microsite_info.logo}" class="img_course"/>
                     </a>
-                    <span class="course_module_categ">${_(categories)}</span>
                   </div>
                   <div class="content_info">
                     <a class="course-link" href="/update-microsite/${microsite_info.id}">
@@ -623,67 +604,64 @@ user_email = request.user.email
               <p>${_('The following training campaigns are completed (ending date is exceeded).To access statistics, please click on')}  « ${_("Statistics")} ».</p>
             </div>
             <ul class="list-courses my_campaign_listing">
-              %for course_info in sorted(courses, key=lambda s: s['display_name'].lower() if s['display_name'] is not None else ''):
+              <!-- new script -->
+              %for q in course_completed:
                   <%
-                  course_key_id = CourseKey.from_string(course_info['course_key'])
-                  is_true = False
-                  staf_users = CourseStaffRole(course_key_id).users_with_role()
-                  for n in staf_users:
-                      if n.email == user_email or request.user.is_staff:
-                          is_true = True
-                  courses_overviews = CourseOverview.get_from_id(course_key_id)
-                  courses_stats = get_course_by_id(course_key_id)
-                  categories = courses_stats.categ
-                  course_img = courses_overviews.image_urls
-                  course_start = courses_overviews.start.strftime('%d-%m-%Y')
-                  course_end = ''
-                  if courses_overviews.end:
-                      course_end = courses_overviews.end.strftime('%d-%m-%Y')
-                      course_end_compare = int(courses_overviews.end.strftime("%s"))
-                  else:
-                      course_end_compare = current_date
-                  duration = CourseDetails.fetch(course_key_id).effort
+                  course_info = q['course_info']
+                  course_key_id = q['course_key_id']
+                  is_true = q['is_true']
+                  courses_overviews = q['courses_overviews']
+                  courses_stats = q['courses_stats']
+                  categories = q['categories']
+                  course_img = q['course_img']
+                  course_start = q['course_start']
+                  course_end = q['course_end']
+                  course_end_compare = q['course_end_compare']
+                  course_start_compare = q['course_start_compare']
+                  duration = q['duration']
                   %>
-                  % if not 'AMUNDI-GENERIC-TEMPLATE' in course_info['display_name'] and current_date > course_end_compare and is_true == True or request.user.is_staff == true:
-                    <li class="course-item" data-course-key="${course_info['course_key']}" data-status="all">
-                      <div class="content_img">
-                        <img src="${course_img['raw']}" class="img_course"/>
-                        <span class="course_module_categ">${_(categories)}</span>
-                      </div>
-                      <div class="content_info">
-                        % if request.user.is_staff:
-                          <a class="course-link" href="${course_info['url']}">
-                        % else:
-                          <a class="course-link" href="#">
-                        % endif
-                          <h3 class="course-title">${course_info['display_name']}</h3>
-                        </a>
-                        <div class="all_dates">
-                          <ul>
-                            <li><span>${_('Starting date')} :</span> <span>${course_start}</span></li>
-                            <li><span>${_('Ending date')} :</span> <span>${course_end}</span></li>
-                            <span style="display:block;clear:left;"></span>
-                          </ul>
-                        </div>
-                        <div class="all_dates">
-                          <ul>
-                            <li><span>${course_info['org']}</span></li>
-                            <span style="display:block;clear:left;"></span>
-                          </ul>
-                        </div>
-                        <div class="duration_course">
-                          <img src="${static.url('images/duree.svg')}" class='svg timer_svg_color' />
-                          <span>${duration}</span>
-                        </div>
-                        <ul class="more_about_courses">
-                          <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/about" target="_blank">${_('About the training module')}</a></li>
-                          <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/stat_dashboard" target="_blank">${_('Statistics')}</a></li>
+                  <li class="course-item" data-course-key="${course_info['course_key']}" data-status="all">
+                    <div class="content_img">
+                      <img src="${course_img['raw']}" class="img_course"/>
+                      <span class="course_module_categ">${_(categories)}</span>
+                    </div>
+                    <div class="content_info">
+                      % if request.user.is_staff:
+                        <a class="course-link" href="${course_info['url']}">
+                      % else:
+                        <a class="course-link" href="#">
+                      % endif
+                        <h3 class="course-title">${course_info['display_name']}</h3>
+                      </a>
+                      <div class="all_dates">
+                        <ul>
+                          <li><span>${_('Starting date')} :</span> <span>${course_start}</span></li>
+                          <li><span>${_('Ending date')} :</span> <span>${course_end}</span></li>
+                          <span style="display:block;clear:left;"></span>
                         </ul>
                       </div>
-                      <span style="clear:left;display:block;"></span>
-                    </li>
-                % endif
+                      <div class="all_dates">
+                        <ul>
+                          <li><span>${course_info['org']}</span></li>
+                          <span style="display:block;clear:left;"></span>
+                        </ul>
+                      </div>
+                      <div class="duration_course">
+                        <img src="${static.url('images/duree.svg')}" class='svg timer_svg_color' />
+                        <span>${duration}</span>
+                      </div>
+                      <ul class="more_about_courses">
+                        <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/about" target="_blank">${_('About the training module')}</a></li>
+                        <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/stat_dashboard" target="_blank">${_('Statistics')}</a></li>
+                        % if request.user.is_staff:
+                        <li><a class="course-link" href="${course_info['url']}">${_('Course administration')}</a></li>
+                        % endif
+                      </ul>
+                    </div>
+                    <span style="clear:left;display:block;"></span>
+                  </li>
               %endfor
+              <!-- new script -->
             </ul>
             <!-- end courses end courses -->
             <!-- end courses end courses -->
@@ -697,62 +675,64 @@ user_email = request.user.email
           <p>${_('You have at your disposal a library of training modules made available by Amundi. Select the module of your choice and launch the associated training campaign.')}</p>
         </div>
         <ul class="list-courses">
-          %for course_info in sorted(courses, key=lambda s: s['display_name'].lower() if s['display_name'] is not None else ''):
+          <!-- new script -->
+          %for q in amundi_template:
               <%
-              course_key_id = CourseKey.from_string(course_info['course_key'])
-              courses_overviews = CourseOverview.get_from_id(course_key_id)
-              courses_stats = get_course_by_id(course_key_id)
-              categories = courses_stats.categ
-              course_img = courses_overviews.image_urls
-              course_start = courses_overviews.start.strftime('%d-%m-%Y')
-              course_end = ''
-              if courses_overviews.end:
-                  course_end = courses_overviews.end.strftime('%d-%m-%Y')
-              duration = CourseDetails.fetch(course_key_id).effort
+              course_info = q['course_info']
+              course_key_id = q['course_key_id']
+              is_true = q['is_true']
+              courses_overviews = q['courses_overviews']
+              courses_stats = q['courses_stats']
+              categories = q['categories']
+              course_img = q['course_img']
+              course_start = q['course_start']
+              course_end = q['course_end']
+              course_end_compare = q['course_end_compare']
+              course_start_compare = q['course_start_compare']
+              duration = q['duration']
               %>
-              % if 'AMUNDI-GENERIC-TEMPLATE' in course_info['display_name']:
-                <li class="course-item" data-course-key="${course_info['course_key']}" data-status="template">
-                  <div class="content_img">
-                    <img src="${course_img['raw']}" class="img_course"/>
-                    <span class="course_module_categ">${_(categories)}</span>
-                  </div>
-                  <div class="content_info">
+              <li class="course-item" data-course-key="${course_info['course_key']}" data-status="template">
+                <div class="content_img">
+                  <img src="${course_img['raw']}" class="img_course"/>
+                  <span class="course_module_categ">${_(categories)}</span>
+                </div>
+                <div class="content_info">
                   % if request.user.is_staff:
                     <a class="course-link" href="${course_info['url']}">
                   % else:
                     <a class="course-link" href="#">
                   % endif
-                      <h3 class="course-title">${course_info['display_name']}</h3>
-                    </a>
-                    <div class="all_dates">
-                      <ul>
-                        <li><span>${_('Starting date')} :</span> <span>${course_start}</span></li>
-                        <li><span>${_('Ending date')} :</span> <span>${course_end}</span></li>
-                        <span style="display:block;clear:left;"></span>
-                      </ul>
-                    </div>
-                    <div class="all_dates">
-                      <ul>
-                        <li><span>${course_info['org']}</span></li>
-                        <span style="display:block;clear:left;"></span>
-                      </ul>
-                    </div>
-                    <div class="duration_course">
-                      <img src="${static.url('images/duree.svg')}" class="svg timer_svg_color" />
-                      <span>${duration}</span>
-                    </div>
-                    <ul class="more_about_courses">
-                      <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/about" target="_blank">${_('About the training module')}</a></li>
-                      <li><a href="/settings/create/${course_info['course_key']}">${_("Launch my campaign")}</a></li>
-                      % if request.user.is_staff:
-                      <li><a class="course-link" href="${course_info['url']}">${_('Course administration')}</a></li>
-                      % endif
+                    <h3 class="course-title">${course_info['display_name']}</h3>
+                  </a>
+                  <div class="all_dates">
+                    <ul>
+                      <li><span>${_('Starting date')} :</span> <span>${course_start}</span></li>
+                      <li><span>${_('Ending date')} :</span> <span>${course_end}</span></li>
+                      <span style="display:block;clear:left;"></span>
                     </ul>
                   </div>
-                  <span style="clear:left;display:block;"></span>
-                </li>
-            % endif
+                  <div class="all_dates">
+                    <ul>
+                      <li><span>${course_info['org']}</span></li>
+                      <span style="display:block;clear:left;"></span>
+                    </ul>
+                  </div>
+                  <div class="duration_course">
+                    <img src="${static.url('images/duree.svg')}" class='svg timer_svg_color' />
+                    <span>${duration}</span>
+                  </div>
+                  <ul class="more_about_courses">
+                    <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/about" target="_blank">${_('About the training module')}</a></li>
+                    <li><a href="/settings/create/${course_info['course_key']}">${_("Launch my campaign")}</a></li>
+                    % if request.user.is_staff:
+                    <li><a class="course-link" href="${course_info['url']}">${_('Course administration')}</a></li>
+                    % endif
+                  </ul>
+                </div>
+                <span style="clear:left;display:block;"></span>
+              </li>
           %endfor
+          <!-- new script -->
         </ul>
       </div>
       <!-- fin de ici les cours -->
