@@ -52,6 +52,9 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
               if(data.delete) {
                 This.parent().remove();
               }
+              if($('.microsite_admin_del').length == 0) {
+                $('#NoRegistred').removeClass('hide_message');
+              }
             }
           }
         }
@@ -80,6 +83,9 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
           if(data) {
             var check = data.microsite_admin;
             if(check) {
+              if($('.microsite_admin_del').length == 0) {
+                $('#NoRegistred').addClass('hide_message');
+              }
               var email = data.user_email;
               var user_id = data.user_id;
               var insert = $('#admin_management');

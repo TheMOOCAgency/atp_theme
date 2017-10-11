@@ -48,12 +48,26 @@ from openedx.core.djangolib.markup import HTML, Text
       #pre_email {
         margin-top: 30px;
       }
+      .hide_message {
+        display:none;
+      }
     </style>
+    <div>
+      <span id="NoRegistred"
+% if len(microsite_admin['users_admin']) != 0:
+      class="hide_message"
+% endif
+      >${_("No registered admin")}</span>
+    </div>
+
 % for n in microsite_admin['users_admin']:
       <div>
         <span>${n['email']}</span><button data-type="DELETE" data-key="${key}" data-user_id="${n['user_id']}" class="microsite_admin_del">${_('delete')}</button>
       </div>
 % endfor
+
+
+
   </div>
     <div id="form">
       <div id="pre_email" class="form_update">

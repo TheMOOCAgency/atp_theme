@@ -1,13 +1,9 @@
-$font_url_woff2:'';
-$font_url_woff:'';
 $font_url_otf:'../fonts/arial.otf';
 $font_url_ttf:'../fonts/arial.ttf';
 /* primary font call */
 @font-face {
   font-family: 'mywebfont';
-  src: url($font_url_woff2) format('woff2'),
-       url($font_url_woff) format('woff'),
-       url($font_url_otf) format('otf'),
+  src: url($font_url_otf) format('otf'),
        url($font_url_ttf)  format('truetype');
 }
 /* primary color */
