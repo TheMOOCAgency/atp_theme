@@ -166,7 +166,10 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
     }
     /* init tinymce */
     tinymce.init({
-      selector: '#mytextarea'
+      selector: '#mytextarea',
+      plugin: "link",
+      menubar: "insert",
+      toolbar: "link",
     });
 
     /* action on submit form */

@@ -66,6 +66,9 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
             var date = $('#'+id).val().split('/');
             date = date[2]+'-'+date[0]+'-'+date[1];
             var time = 'T'+$('#'+time_id).val()+':00Z';
+            if(time == 'T:00Z') {
+	        time = 'T00:00:00Z'
+            }
             date = date+time;
             if(date.indexOf('undefined') == -1) {
               this[status] = date;

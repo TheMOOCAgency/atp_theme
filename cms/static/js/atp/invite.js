@@ -167,8 +167,9 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
     /* init tinymce */
     tinymce.init({
       selector: '#mytextarea',
-      plugins: "textcolor colorpicker",
-      toolbar: "forecolor backcolor",
+      plugins: "textcolor colorpicker link",
+      toolbar: "forecolor backcolor link",
+      target_list: false,
       init_instance_callback: insert_contents,
     });
     function insert_contents(inst) {

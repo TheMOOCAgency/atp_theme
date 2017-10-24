@@ -44,6 +44,9 @@ from student.roles import CourseInstructorRole,CourseStaffRole
 .content_img {
   position: relative;
 }
+.img_course {
+  height: 153px ! important;
+}
 </style>
 <div class="wrapper-mast wrapper">
   <header class="mast has-actions">
@@ -408,12 +411,19 @@ from student.roles import CourseInstructorRole,CourseStaffRole
           top: 0 !important;
           z-index: 1000000;
         }
+        .message_atp_no_course {
+	  width: 100%;
+	  text-align: center;
+          font-style: italic;
+	  font-weight: bold;
+        }
         </style>
         <div class="courses courses-tab active">
           <div id="no_course">
             <p>${_("No training campaign has been set")}.</p>
             <p>${_("To launch a training campaign")}, ${_("select a training module in")} <span>${_("My Modules")}</span></button>, ${_("then click on")} <span>${_("Launch my campaign")}</span>.</p>
-          </div>
+            <p class="message_atp_no_course">${_("No training campaign has been launched yet.")}</p>
+	  </div>
         %else:
         <span id="courses_listing_all">
             <!-- cours a venir -->
@@ -723,7 +733,9 @@ from student.roles import CourseInstructorRole,CourseStaffRole
                   </div>
                   <ul class="more_about_courses">
                     <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/about" target="_blank">${_('About the training module')}</a></li>
+	            % if request.user.is_staff or check_admin_microsite:
                     <li><a href="/settings/create/${course_info['course_key']}">${_("Launch my campaign")}</a></li>
+		    % endif
                     % if request.user.is_staff:
                     <li><a class="course-link" href="${course_info['url']}">${_('Course administration')}</a></li>
                     % endif
