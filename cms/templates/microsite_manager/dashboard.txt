@@ -1,6 +1,3 @@
-/* import variable */
-@import "variable";
-
 /* section de base */
 #dashboard_tma {
  width: 100%;
@@ -684,4 +681,54 @@
   width: 100%;
   height: 5px;
   background-color: #c8c8c8;
+}
+
+/* pop up */
+#pop_up {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000000000000000000;
+  width: 500px;
+  padding: 15px;
+  background-color: #fff;
+  border: 1px solid #c6c6c6;
+}
+#pop_up p {
+  color: #05144d;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: "mywebfont";
+}
+.is_hidden_tma {
+  display: none;
+}
+#close_pop_up,#close_pop_up:hover,#close_pop_up:focus,#close_pop_up:visited {
+  display: block;
+  width: 200px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  margin-bottom: auto;
+  text-decoration: none;
+  background-color: ${atp_primary_color};
+  color: #fff;
+  text-shadow: none;
+  border-radius: 30px;
+  font-weight: bold;
+  line-height: 30px;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 14px;
+  font-family: ${font_family};
+}
+@media(max-width:550px) {
+  #pop_up {
+    width: 300px;
+  }
 }

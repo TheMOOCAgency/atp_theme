@@ -488,6 +488,7 @@ from student.roles import CourseInstructorRole,CourseStaffRole
                         <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/about" target="_blank">${_('About the training module')}</a></li>
                         <li><a href="/settings/manage/${course_info['course_key']}">${_('Manage my campaign')}</a></li>
                         <li><a href="/settings/invite/${course_info['course_key']}">${_('Invite participants')}</a></li>
+                        <li><a href="/settings/email_dashboard/${course_info['course_key']}">${_('Send email to participants')}</a></li>
                         <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/stat_dashboard" target="_blank">${_('Statistics')}</a></li>
                         % if request.user.is_staff:
                         <li><a class="course-link" href="${course_info['url']}">${_('Course administration')}</a></li>
@@ -560,6 +561,7 @@ from student.roles import CourseInstructorRole,CourseStaffRole
                         <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/about" target="_blank">${_('About the training module')}</a></li>
                         <li><a href="/settings/manage/${course_info['course_key']}">${_('Manage my campaign')}</a></li>
                         <li><a href="/settings/invite/${course_info['course_key']}">${_('Invite participants')}</a></li>
+                        <li><a href="/settings/email_dashboard/${course_info['course_key']}">${_('Send email to participants')}</a></li>
                         <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/stat_dashboard" target="_blank">${_('Statistics')}</a></li>
                         % if request.user.is_staff:
                         <li><a class="course-link" href="${course_info['url']}">${_('Course administration')}</a></li>

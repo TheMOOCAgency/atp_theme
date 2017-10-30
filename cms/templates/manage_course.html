@@ -14,11 +14,42 @@ from openedx.core.djangolib.markup import HTML, Text
   require(["js/factories/index"], function (IndexFactory) {
       IndexFactory();
   });
-  require(['${static.url("js/manage.js")}']);
+  require(['${static.url("js/atp/manage.js")}']);
+  //require(['https://demo-atp.themoocagency.com/media/js/atp/manage.js'])
 </%block>
 <%namespace name='static' file='static_content.html'/>
 <%block name="content">
-
+<style>
+.all_dates {
+  width: 100%;
+  height: auto;
+}
+.all_dates ul {
+  width: 100%;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  list-style-type : none;
+}
+.all_dates ul li {
+  width: 25%;
+  height: auto;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+.all_dates ul li span {
+  font-size: 13px;
+  font-style: italic;
+  /* font family */
+  font-family: "mywebfont";
+  /* primary color */
+  color: #05144d;
+}
+.all_dates ul li span:first-child {
+  font-weight: bold;
+}
+</style>
 <link rel="stylesheet" type="text/css" href="${static.url("js/vendor/timepicker/jquery.timepicker.css")}">
 <link rel="stylesheet" type="text/css" href="${static.url("css/cms-style-vendor.css")}">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
@@ -39,6 +70,19 @@ from openedx.core.djangolib.markup import HTML, Text
         </div>
         <div class="content_info">
           <h3 class="course-title">${course.display_name_with_default_escaped}</h3>
+          <div class="all_dates">
+            <ul>
+              <li><span>${_('Starting date')} :</span> <span id="add_course_start">${start_date}</span></li>
+              <li><span>${_('Ending date')} :</span> <span id="add_course_end">${end_date}</span></li>
+              <span style="display:block;clear:left;"></span>
+            </ul>
+          </div>
+          <div class="all_dates">
+            <ul>
+              <li><span id="add_course_org">${course.org}</span></li>
+              <span style="display:block;clear:left;"></span>
+            </ul>
+          </div>
           <div class="duration_course">
             <object oa-reusable-svg
                     data="${static.url('images/duree.svg')}"

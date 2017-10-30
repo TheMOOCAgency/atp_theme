@@ -1,6 +1,3 @@
-/* import variable */
-@import "variable";
-
 body.view-in-course .container {
   margin-top: 30px;
 }

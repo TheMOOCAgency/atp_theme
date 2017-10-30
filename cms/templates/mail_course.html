@@ -15,7 +15,7 @@ from openedx.core.djangolib.markup import HTML, Text
       IndexFactory();
   });
   //require(['${static.url("js/invite.js")}']);
-  require(['https://demo-atp.themoocagency.com/media/studio/js/invite.js']);
+  require(['https://demo-atp.themoocagency.com/media/studio/js/mail.js']);
   //require(['${static.url("js/atp/invite.js")}']);
 </%block>
 <%namespace name='static' file='static_content.html'/>
@@ -29,9 +29,6 @@ from openedx.core.djangolib.markup import HTML, Text
   min-width: 100px;
   min-height: 30px;
 }
-#main {
-  min-height: calc(100vh - 188px);
-}
 </style>
 <section id="content">
   <section id="primary">
@@ -39,7 +36,7 @@ from openedx.core.djangolib.markup import HTML, Text
     <div id="title">
       <h1>${_('Manage my campaign')}</h1>
       <p>
-        ${_('Invite participants to your training campaign')}
+        ${_('Add participants to your training campaign and customize the invitation email')}
       </p>
     </div>
     <ul class="list-courses">
@@ -64,78 +61,79 @@ from openedx.core.djangolib.markup import HTML, Text
         <span style="clear:left;display:block;"></span>
       </li>
     </ul>
-    <!-- cell 1/2 -->
-    <!-- cell 1/2 -->
-    <!-- cell 1/2 -->
-    <!-- cell 1/2 -->
-    <!-- cell 1/2 -->
-    <style>
-    .sub_particularity {
-      position: relative;
-      height: auto;
-      min-height: 50px;
-      margin-top: 15px;
-      margin-bottom: 15px;
-    }
-    .svg_bis {
-      height: 40px !important;
-      width: 40px !important;
-      position: absolute;
-      top: 50%;
-      left: 0;
-      margin-top: -20px;
-    }
-    .sub_particularity p {
-      color: #06144D;
-      font-family: "mywebfont";
-      width: calc(100% - 55px) !important;
-      margin-left: 54px !important;
-      float: none !important;
-      text-align: left !important;
-      font-size: 14px !important;
-    }
-    </style>
+    <!-- end cell 1/2 -->
+    <!-- end cell 1/2 -->
+    <!-- end cell 1/2 -->
+    <!-- end cell 1/2 -->
+    <!-- end cell 1/2 -->
+    <!-- cell 2/2 -->
+    <!-- cell 2/2 -->
+    <!-- cell 2/2 -->
+    <!-- cell 2/2 -->
+    <!-- cell 2/2 -->
+
     <div class="cell_title">
-      <h3 id="h3_5"><div class="num" id="num_5">1/1</div><span>${_('participants')}</span></h3>
+      <h3 id="h3_6"><div class="num" id="num_6">1/1</div><span>${_("INVITATION EMAIL")}</span></h3>
     </div>
-    <div class="cell_content" id="cell_5">
+    <div class="cell_content" id="cell_6">
       <div class="date_title particulary">
-        <h5>${_('Invite participants to your training campaign')}</h5>
+        <h5>${_('Edit and send the invitation email to participants of your choice.')}</h5>
         <span style="clear:both;display:block;"></span>
-        <div class="sub_particularity">
-          <object oa-reusable-svg
-                  data="${static.url('images/exclamation-triangle.svg')}"
-                  type="image/svg+xml"
-                  class="svg_bis"
-                  data-class="timer_svg_color"
-                  >
-          </object>
-          <p>${_("In order to invite participants to your training campaign, it is imperative that starting date of the training session is set before the current date.")}</p>
+      </div>
+      <div id="send_it">
+        <h6>${_('Send the invitation email to :')}</h6>
+        <!-- checkbox 1 -->
+        <div class="check_box_field">
+          <input type="checkbox" class="checkbox_mail_field" name="checkbox_mail_field" id="checkbox_myself" value="myself">
+          <label>${_('Myself')}</label>
+        </div>
+        <!-- checkbox 2 -->
+        <div class="check_box_field">
+          <input type="checkbox" class="checkbox_mail_field" name="checkbox_mail_field" id="checkbox_staff" value="staff">
+          <label>${_('Admin Team')}</label>
+        </div>
+        <!-- checkbox 4 -->
+        <div class="check_box_field">
+          <input type="checkbox" class="checkbox_mail_field" name="checkbox_mail_field" id="checkbox_all" value="all">
+          <label>${_('Every participants')}</label>
+        </div>
+        <!-- checkbox 5 -->
+        <div class="check_box_field">
+          <input type="checkbox" class="checkbox_mail_field" name="checkbox_mail_field" id="checkbox_custom" value="custom">
+          <label>${_('Customized list of participants')}</label>
         </div>
       </div>
-      <div class="field participants">
-        <form id="upload_form_participant" enctype="multipart/form-data">
-          <input type="file" name="file" id="invite_participant">
-        </form>
-        <div id="choise_from_file">
-          <button class="buton_from_file" id="register_from_csv">${_("Upload participants list")}</button>
-          <span style="clear:left;display:block;"></span>
-        </div>
+      <div class="field input_text" id="custom_mail_box">
+        <!--
+        <input type="text" id="email_1" name="email_1" value="">
+        -->
+        <textarea id="email_1"></textarea>
+      </div>
+      <div class="sub_input last_sub_input last_block">
+        ${_('If you want to send the invitation email to the training campaign to a customized list of participants, please copy/paste the email recipients above. Remember that invitation emails can be sent only to the participants who have been invited to participate to the training campaign in the section 1/2 PARTICIPANTS.')}
+      </div>
+      <h6>${_('Object')} :</h6>
+      <div class="field input_text">
+        <input type="text" id="email_2" name="email_2" value="">
+      </div>
+      <div class="sub_input last_sub_input last_block_compteur">
+       128 characters maximum
+      </div>
+      <h6>${_('Body')} :</h6>
+      <div class="field textarea">
+        <textarea id="mytextarea"></textarea>
+      </div>
+      <div class="sub_input last_sub_input last_block">
+        We recommend sending only one message per week to learners. Before sending your e-mail, read your text carefully and send it to your email address. You will be able to verify that all the links work and that the content is good.
+      </div>
+      <div class="sub_input last_sub_input last_block ending_page">
+        <span>${_('WARNING')} : </span>${_("Don't hesitate to validate the email invitation by sending a test invitation to yourself. It will allow you to validate content and links included in the email invitation.")}
+      </div>
+      <div class="field email_send">
+        <button id="send_email">${_('CTA : Send')}</button>
       </div>
       <span style="display:block;clear:left;"></span>
     </div>
-
-    <!-- end cell 1/2 -->
-    <!-- end cell 1/2 -->
-    <!-- end cell 1/2 -->
-    <!-- end cell 1/2 -->
-    <!-- end cell 1/2 -->
-    <!-- cell 2/2 -->
-    <!-- cell 2/2 -->
-    <!-- cell 2/2 -->
-    <!-- cell 2/2 -->
-    <!-- cell 2/2 -->
-
 
   </section>
   <section id="secondary">
