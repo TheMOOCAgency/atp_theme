@@ -40,12 +40,42 @@ from student.roles import CourseInstructorRole,CourseStaffRole
   font-size: 10px;
   font-weight: bold;
   text-transform: uppercase;
+  z-index: 3;
 }
 .content_img {
   position: relative;
 }
 .img_course {
   height: 153px ! important;
+}
+.course-item .img_regulatory,.course-item .img_fundamental,.course-item .img_oursolutions,.course-item .img_salesapproach {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 75%;
+  height: 127px;
+  z-index: 2;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  outline: none;
+  border: none !important;
+  border-left-color: transparent !important;
+}
+.course-item .img_fundamental {
+  background-image: url("${static.url('images/fondamentaux.png')}");
+}
+.course-item .img_oursolutions {
+  background-image: url("${static.url('images/nos_solutions.png')}");
+}
+.course-item .img_salesapproach {
+  background-image: url("${static.url('images/zdemarche_comm.png')}");
+}
+.course-item .img_regulatory {
+  background-image: url("${static.url('images/reglementaire.png')}");
+}
+.content_img {
+  position: relative;
 }
 </style>
 <div class="wrapper-mast wrapper">
@@ -456,6 +486,7 @@ from student.roles import CourseInstructorRole,CourseStaffRole
                   %>
                   <li class="course-item" data-course-key="${course_info['course_key']}" data-status="all">
                     <div class="content_img">
+                      <span class="img_${categories.lower().replace(' ','')}" /></span>
                       <img src="${course_img['raw']}" class="img_course"/>
                       <span class="course_module_categ">${_(categories)}</span>
                     </div>
@@ -529,6 +560,7 @@ from student.roles import CourseInstructorRole,CourseStaffRole
                   %>
                   <li class="course-item" data-course-key="${course_info['course_key']}" data-status="all">
                     <div class="content_img">
+                      <span class="img_${categories.lower().replace(' ','')}" /></span>
                       <img src="${course_img['raw']}" class="img_course"/>
                       <span class="course_module_categ">${_(categories)}</span>
                     </div>
@@ -634,6 +666,7 @@ from student.roles import CourseInstructorRole,CourseStaffRole
                   %>
                   <li class="course-item" data-course-key="${course_info['course_key']}" data-status="all">
                     <div class="content_img">
+                      <span class="img_${categories.lower().replace(' ','')}" /></span>
                       <img src="${course_img['raw']}" class="img_course"/>
                       <span class="course_module_categ">${_(categories)}</span>
                     </div>
@@ -705,6 +738,7 @@ from student.roles import CourseInstructorRole,CourseStaffRole
               %>
               <li class="course-item" data-course-key="${course_info['course_key']}" data-status="template">
                 <div class="content_img">
+                  <span class="img_${categories.lower().replace(' ','')}" /></span>
                   <img src="${course_img['raw']}" class="img_course"/>
                   <span class="course_module_categ">${_(categories)}</span>
                 </div>
