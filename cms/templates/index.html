@@ -516,11 +516,11 @@ from student.roles import CourseInstructorRole,CourseStaffRole
                         <span>${duration}</span>
                       </div>
                       <ul class="more_about_courses">
-                        <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/about" target="_blank">${_('About the training module')}</a></li>
+                        <li><a href="${settings.LMS_ROOT_URL.replace('https://','https://'+course_info['org']+'.')}/courses/${course_info['course_key']}/about" target="_blank">${_('About the training module')}</a></li>
                         <li><a href="/settings/manage/${course_info['course_key']}">${_('Manage my campaign')}</a></li>
                         <li><a href="/settings/invite/${course_info['course_key']}">${_('Invite participants')}</a></li>
                         <li><a href="/settings/email_dashboard/${course_info['course_key']}">${_('Send email to participants')}</a></li>
-                        <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/stat_dashboard" target="_blank">${_('Statistics')}</a></li>
+                        <li><a href="${settings.LMS_ROOT_URL.replace('https://','https://'+course_info['org']+'.')}/courses/${course_info['course_key']}/stat_dashboard" target="_blank">${_('Statistics')}</a></li>
                         % if request.user.is_staff:
                         <li><a class="course-link" href="${course_info['url']}">${_('Course administration')}</a></li>
                         % endif
@@ -590,11 +590,11 @@ from student.roles import CourseInstructorRole,CourseStaffRole
                         <span>${duration}</span>
                       </div>
                       <ul class="more_about_courses">
-                        <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/about" target="_blank">${_('About the training module')}</a></li>
+                        <li><a href="${settings.LMS_ROOT_URL.replace('https://','https://'+course_info['org']+'.')}/courses/${course_info['course_key']}/about" target="_blank">${_('About the training module')}</a></li>
                         <li><a href="/settings/manage/${course_info['course_key']}">${_('Manage my campaign')}</a></li>
                         <li><a href="/settings/invite/${course_info['course_key']}">${_('Invite participants')}</a></li>
                         <li><a href="/settings/email_dashboard/${course_info['course_key']}">${_('Send email to participants')}</a></li>
-                        <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/stat_dashboard" target="_blank">${_('Statistics')}</a></li>
+                        <li><a href="${settings.LMS_ROOT_URL.replace('https://','https://'+course_info['org']+'.')}/courses/${course_info['course_key']}/stat_dashboard" target="_blank">${_('Statistics')}</a></li>
                         % if request.user.is_staff:
                         <li><a class="course-link" href="${course_info['url']}">${_('Course administration')}</a></li>
                         % endif
@@ -610,7 +610,7 @@ from student.roles import CourseInstructorRole,CourseStaffRole
                   <li class="course-item" data-status="microsites" style="display:none;">
                   <div class="content_img">
                     <a href="/update-microsite/${microsite_info.id}">
-                      <img src="${settings.LMS_ROOT_URL}/media/microsite/${microsite_info.name}/images/${microsite_info.logo}" class="img_course"/>
+                      <img src="${settings.LMS_ROOT_URL.replace('https://','https://'+course_info['org']+'.')}/media/microsite/${microsite_info.name}/images/${microsite_info.logo}" class="img_course"/>
                     </a>
                   </div>
                   <div class="content_info">
@@ -696,8 +696,8 @@ from student.roles import CourseInstructorRole,CourseStaffRole
                         <span>${duration}</span>
                       </div>
                       <ul class="more_about_courses">
-                        <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/about" target="_blank">${_('About the training module')}</a></li>
-                        <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/stat_dashboard" target="_blank">${_('Statistics')}</a></li>
+                        <li><a href="${settings.LMS_ROOT_URL.replace('https://','https://'+course_info['org']+'.')}/courses/${course_info['course_key']}/about" target="_blank">${_('About the training module')}</a></li>
+                        <li><a href="${settings.LMS_ROOT_URL.replace('https://','https://'+course_info['org']+'.')}/courses/${course_info['course_key']}/stat_dashboard" target="_blank">${_('Statistics')}</a></li>
                         % if request.user.is_staff:
                         <li><a class="course-link" href="${course_info['url']}">${_('Course administration')}</a></li>
                         % endif
@@ -750,6 +750,7 @@ from student.roles import CourseInstructorRole,CourseStaffRole
                   % endif
                     <h3 class="course-title">${course_info['display_name']}</h3>
                   </a>
+                  <!--
                   <div class="all_dates">
                     <ul>
                       <li><span>${_('Starting date')} :</span> <span>${course_start}</span></li>
@@ -763,13 +764,14 @@ from student.roles import CourseInstructorRole,CourseStaffRole
                       <span style="display:block;clear:left;"></span>
                     </ul>
                   </div>
+                  -->
                   <div class="duration_course">
                     <img src="${static.url('images/duree.svg')}" class='svg timer_svg_color' />
                     <span>${duration}</span>
                   </div>
                   <ul class="more_about_courses">
-                    <li><a href="${settings.LMS_ROOT_URL}/courses/${course_info['course_key']}/about" target="_blank">${_('About the training module')}</a></li>
-	            % if request.user.is_staff or check_admin_microsite:
+                    <li><a href="${settings.LMS_ROOT_URL.replace('https://','https://'+course_info['org']+'.')}/courses/${course_info['course_key']}/about" target="_blank">${_('About the training module')}</a></li>
+	            % if not request.user.is_staff and check_admin_microsite:
                     <li><a href="/settings/create/${course_info['course_key']}">${_("Launch my campaign")}</a></li>
 		    % endif
                     % if request.user.is_staff:

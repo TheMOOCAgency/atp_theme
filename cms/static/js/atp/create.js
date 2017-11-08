@@ -7,19 +7,19 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
         /* call ajax en get d'initialisation */
         /* get de depart */
         /* classe data de donnée reçu et envoyé sur le cours */
-        class createCLass {
+        function createCLass() {
           /* set data with obj key entries */
-          constructor(display_name,number,org,run,source_course_key,start_date,end_date,course_key){
+          this.constructor = function(display_name,number,org,run,source_course_key,start_date,end_date,course_key){
             this.display_name = display_name;
             this.number = number;
             this.org = org;
             this.run = run;
             this.source_course_key = source_course_key;
             this.course_key = course_key;
-          }
+          },
 
           /* update run & number */
-          update_run_number_display_name_ids_orgs(id1,id2,id3) {
+          this.update_run_number_display_name_ids_orgs = function(id1,id2,id3) {
             var This1 = $('#'+id1);
             var This2 = $('#'+id2);
             var This3 = $('#'+id3);
@@ -34,7 +34,7 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
               this.display_name = This1.data('display_name').replace('AMUNDI-GENERIC-TEMPLATE - ','');
             }
           }
-        }
+        };
 
         /* initialisation de data */
         var create_data = new createCLass();

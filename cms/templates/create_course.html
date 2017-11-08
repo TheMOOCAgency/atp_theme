@@ -23,11 +23,11 @@ from openedx.core.djangolib.markup import HTML, Text
 <link rel="stylesheet" type="text/css" href="${static.url("js/vendor/timepicker/jquery.timepicker.css")}">
 <section id="content">
   <section id="primary">
-    <div id="fil_ariane"><span>${_('My campaigns')} ></span></div>
+    <div id="fil_ariane"><a href="/">${_('My campaigns')} ></a></div>
     <div id="title">
-      <h1>${_('Manage my campaign')}</h1>
+      <h1>${_('LAUNCH MY CAMPAIGN')}</h1>
       <p>
-        ${_('Provide all the information you need to launch your training campaign: start / end date, loading of learners, invitation mail, etc.')}
+        ${_('To launch your training campaign, you have to specify an unique ID and the target of your training campaign. Please, note that the target wording will be indicated in the statistics of this training campaign.')}
       </p>
     </div>
     <ul class="list-courses">
@@ -68,16 +68,16 @@ from openedx.core.djangolib.markup import HTML, Text
         <span style="clear:both;display:block;"></span>
       </div>
       <div class="field date">
-        <label>${_('Course Number')}</label>
+        <label>${_('Unique ID')}</label>
         <input type="text" id="course_number" placeholder="${_('')}" value="" data-course_key="${course.id}" data-org="${course.org}" data-display_name="${course.display_name_with_default_escaped}"/>
       </div>
       <div class="field date">
-        <label>${_('Course Run')}</label>
+        <label>${_('Target')}</label>
         <input type="text" id="course_run" placeholder="${_('')}" value="" data-course_key="${course.id}" data-org="${course.org}" data-display_name="${course.display_name_with_default_escaped}"/>
         <input type="hidden" id="user_org" name="user_org" value="${user_org}" />
       </div>
       <div class="sub_input last_sub_input">
-        ${_('Rules to respect the choice of the identifier of the campaign: no space, no punctuation')}
+        ${_('Rules for unique ID and target')} : ${_('no space, no punctuation, no special characters')}
       </div>
     </div>
 

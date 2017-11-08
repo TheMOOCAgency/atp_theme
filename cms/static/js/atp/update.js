@@ -1,9 +1,9 @@
 define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce'],function(domReady, $, _) {
-  class update_microsite {
-    constructor(data) {
+  function update_microsite() {
+    this.constructor = function(data) {
       this.data = data;
-    }
-    get_value(id,Class) {
+    },
+    this.get_value = function(id,Class) {
       var This = $('#'+id);
       var data = new FormData($('#'+id).get(0));
       var That = $('.'+Class);
@@ -14,16 +14,16 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
       })
       this.data = data;
       return this.data;
-    }
-    save_action(update,cancel) {
+    },
+    this.save_action = function(update,cancel) {
       $('#new-microsite-logo,.'+update).on('change paste keyup',function(){
         $('#notification-warning').addClass('is-shown');
       })
       $('.'+cancel).click(function(){
         $('#notification-warning').removeClass('is-shown');
       })
-    }
-    success_ajax() {
+    },
+    this.success_ajax = function() {
       $('#notification-warning').removeClass('is-shown');
       var div = '<div class="wrapper wrapper-alert wrapper-alert-confirmation" id="alert-confirmation" aria-hidden="false" aria-labelledby="alert-confirmation-title" tabindex="-1"><div class="alert confirmation "><span class="feedback-symbol fa fa-check" aria-hidden="true"></span><div class="copy"><h2 class="title title-3" id="alert-confirmation-title">Your changes have been saved.</h2></div></div></div>';
       $('#page-alert').html(div);
@@ -31,7 +31,7 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
         $('#page-alert').find('#alert-confirmation').slideDown(1000).delay(4000).slideUp(1000);
       })
     }
-  }
+  };
   var onReady = function() {
     var updateMicrosite = new update_microsite();
     updateMicrosite.save_action('form_update','action-cancel');

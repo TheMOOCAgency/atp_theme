@@ -20,8 +20,17 @@ from openedx.core.djangolib.markup import HTML, Text
 </%block>
 <%namespace name='static' file='static_content.html'/>
 <%block name="content">
+<style>
+#logo_preview img {
+  max-height: 250px;
+  height: auto;
+  width: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+</style>
   <section id="primary">
-    <div id="fil_ariane"><span>${_('Microsites')} ></span></div>
+    <div id="fil_ariane"><a href="/">${_('My campaigns')} ></a></div>
     <div id="title">
       <h1>${_('Manage my microsite')}</h1>
     </div>
@@ -30,8 +39,10 @@ from openedx.core.djangolib.markup import HTML, Text
         <label data-value="${key}">${key}</label>
         <input type="text" value="" name="key" id="micro_key" placeholder="microsite title" class="input_update">
       </div>
-      <div id="pre_picture" class="form_update_logo">
+      <div id="logo_preview">
         <img src="https://${settings.SITE_NAME+logo_site}" />
+      </div>
+      <div id="pre_picture" class="form_update_logo">
         <form id="upload_microsite_logo">
           <input class="new-microsite-logo" id="new-microsite-logo" type="file" name="logo" required="" aria-describedby="tip-new-microsite-logo tip-error-new-microsite-logo">
         </form>

@@ -29,20 +29,20 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
         });
         /* get de depart */
         /* classe data de donnée reçu et envoyé sur le cours */
-        class manageCLass {
-          constructor(current_grade) {
+        function manageCLass() {
+          this.constructor = function(current_grade) {
             this.current_grade = current_grade;
-          }
+          },
           /* set data with obj key entries */
-          hydrate(data) {
+          this.hydrate = function(data) {
             var keys = Object.keys(data);
             for(var i=0; i<keys.length;i++) {
               this[keys[i]] = data[keys[i]];
             }
             return this;
-          }
+          },
           /* set all input values */
-          init_date(id) {
+          this.init_date = function(id) {
             var This = $('#'+id);
             var status = id.replace('course-','').replace('-','_');
             var time_id = id.replace('date','time');
@@ -56,18 +56,18 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
               This.attr('value',date);
               time_id.attr('value',time);
             }
-          }
+          },
           /* update course_card */
-          update_date_return(id,time) {
+          this.update_date_return = function(id,time) {
             var This = $(id);
             if(time != null) {
               var Time = time.split('T')[0].split('-');
               var datetime = Time[1]+'-'+Time[2]+'-'+Time[0];
               This.text(datetime);
             };
-          };
+          },
           /* update date */
-          update_date(id) {
+          this.update_date = function(id) {
             var This = id;
             var status = id.replace('course-','').replace('-','_');
             var time_id = id.replace('date','time');
@@ -81,60 +81,62 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
             if(date.indexOf('undefined') == -1) {
               this[status] = date;
             }
-          }
+          },
           /* update input course_id */
-          update_course_id(id,course_id,run) {
-            var This = $('#'+id);
-            var val = course_id+','+run;
-            This.attr('value',val);
-          }
-          /*  function datepicker */
-           datePicker(dom) {
-            var This = $("#"+dom);
-            var key = This.data('key');
-            This.datepicker({
-              onClose: function(dateText,datePickerInstance) {
-                  var oldValue = $(this).data('oldValue') || "";
-                  if (dateText !== oldValue) {
-                      $(this).data('oldValue',dateText);
-                      $(this).trigger('dateupdated');
-                      $('#notification-warning').addClass('is-shown');
-                  }
-              }
-            });
-          }
-          /*  function timepicker */
-           timePicker(dom) {
-            var This = $("#"+dom);
-            var key = This.data('key');
-            This.timepicker({
-              timeFormat: "H:i"
-            });
-            This.on('changeTime', function() {
-              $('#notification-warning').addClass('is-shown');
-            });
-          }
-          /* action return ajax call is successful */
-          success_ajax() {
-            $('#notification-warning').removeClass('is-shown');
-            var div = '<div class="wrapper wrapper-alert wrapper-alert-confirmation" id="alert-confirmation" aria-hidden="false" aria-labelledby="alert-confirmation-title" tabindex="-1"><div class="alert confirmation "><span class="feedback-symbol fa fa-check" aria-hidden="true"></span><div class="copy"><h2 class="title title-3" id="alert-confirmation-title">Your changes have been saved.</h2></div></div></div>';
-            $('#page-alert').html(div);
-            $.when($("html, body").animate({ scrollTop: 0 }, "slow")).done(function(){
-              $('#page-alert').find('#alert-confirmation').slideDown(1000).delay(4000).slideUp(1000);
-            })
-          }
+          this.update_course_id = function(id_1,id_2,course_id,run) {
+            var This1 = $('#'+id_1);
+            var This2 = $('#'+id_2);
+            //var val = course_id+','+run;
+            This1.attr('value',course_id);
+            This2.attr('value',run);
+          },
+        /*  function datepicker */
+         this.datePicker = function(dom) {
+          var This = $("#"+dom);
+          var key = This.data('key');
+          This.datepicker({
+            onClose: function(dateText,datePickerInstance) {
+                var oldValue = $(this).data('oldValue') || "";
+                if (dateText !== oldValue) {
+                    $(this).data('oldValue',dateText);
+                    $(this).trigger('dateupdated');
+                    $('#notification-warning').addClass('is-shown');
+                }
+            }
+          });
+        },
+        /*  function timepicker */
+         this.timePicker = function(dom) {
+          var This = $("#"+dom);
+          var key = This.data('key');
+          This.timepicker({
+            timeFormat: "H:i"
+          });
+          This.on('changeTime', function() {
+            $('#notification-warning').addClass('is-shown');
+          });
+        },
+        /* action return ajax call is successful */
+        this.success_ajax = function() {
+          $('#notification-warning').removeClass('is-shown');
+          var div = '<div class="wrapper wrapper-alert wrapper-alert-confirmation" id="alert-confirmation" aria-hidden="false" aria-labelledby="alert-confirmation-title" tabindex="-1"><div class="alert confirmation "><span class="feedback-symbol fa fa-check" aria-hidden="true"></span><div class="copy"><h2 class="title title-3" id="alert-confirmation-title">Your changes have been saved.</h2></div></div></div>';
+          $('#page-alert').html(div);
+          $.when($("html, body").animate({ scrollTop: 0 }, "slow")).done(function(){
+            $('#page-alert').find('#alert-confirmation').slideDown(1000).delay(4000).slideUp(1000);
+          })
         }
+      };
         /* advanced class */
-        class advancedClass {
+        function advancedClass() {
           /* set data with obj key entries */
-          hydrate(data) {
+          this.hydrate = function(data) {
             var keys = Object.keys(data);
             for(var i=0; i<keys.length;i++) {
               this[keys[i]] = data[keys[i]];
             }
             return this;
-          }
-          update_current_acvanced(Class) {
+          },
+          this.update_current_acvanced = function(Class) {
             var q = false;
             $('.'+Class).each(function(){
               var This = $(this);
@@ -146,19 +148,19 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
             })
             this.is_required_atp.value = q;
           }
-        }
+        };
         /* grading class */
-        class gradingClass {
+        function gradingClass() {
           /* set data with obj key entries */
-          hydrate(data) {
+          this.hydrate = function(data) {
             var keys = Object.keys(data);
             for(var i=0; i<keys.length;i++) {
               this[keys[i]] = data[keys[i]];
             }
             return this;
-          }
+          },
           /* grade_change method */
-          addResizable(id,id_content) {
+          this.addResizable = function(id,id_content) {
             // resizable
             var start_grade = $('#'+id_content).data('grade');
             this.current_grade = parseFloat(start_grade);
@@ -189,12 +191,12 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
                 $('#passed_grade').find('span').text(current_grade);
               }
             });
-          }
+          },
           /* update grading value */
-          update_current_grade(id_content) {
+          this.update_current_grade = function(id_content) {
             this.grade_cutoffs.Pass = parseInt(parseFloat($('#'+id_content).attr('data-grade')) * 100) / 100;
           }
-        }
+        };
         /* initialisation de data */
         var data = new manageCLass();
         var grade_data = new gradingClass();
@@ -215,7 +217,7 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
           /* init forms values */
           data.init_date('course-start-date');
           data.init_date('course-end-date');
-          data.update_course_id('course_identity',data.course_id,data.run);
+          data.update_course_id('course_identity','course_session_top',data.course_id,data.run);
           /* action on campaign click */
           $('.campaign_type_check').click(function(){
             $('#notification-warning').addClass('is-shown');

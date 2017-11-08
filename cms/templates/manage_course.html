@@ -32,7 +32,7 @@ from openedx.core.djangolib.markup import HTML, Text
   list-style-type : none;
 }
 .all_dates ul li {
-  width: 25%;
+  width: 35%;
   height: auto;
   float: left;
   margin: 0;
@@ -55,7 +55,7 @@ from openedx.core.djangolib.markup import HTML, Text
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 <section id="content">
   <section id="primary">
-    <div id="fil_ariane"><span>${_('My campaigns')} ></span></div>
+    <div id="fil_ariane"><a href="/">${_('My campaigns')} ></a></div>
     <div id="title">
       <h1>${_('Manage my campaign')}</h1>
       <p>
@@ -113,9 +113,46 @@ from openedx.core.djangolib.markup import HTML, Text
         <span style="clear:both;display:block;"></span>
       </div>
       <div class="field date">
+        <style>
+         .img_course {
+           height: 153px !important;
+         }
+          #course_identity_voile {
+            top: 52px !important;
+          }
+          #course_identity_voile_bis {
+            position: absolute;
+            height: 40px;
+            width: 40%;
+            top: 52px;
+            left: calc(45% + 4px);
+            z-index: 1;
+            background-color: rgba(0,0,0,0.1);
+          }
+          #course_identity_voile {
+            width: 40% !important;
+          }
+          .field input {
+            display: inline-block !important;
+            width: 40% !important;
+            margin-right: 5%;
+          }
+          .field {
+            float: none !important;
+            width: 100% !important;
+          }
+          .field label {
+            width: 40% !important;
+            display: inline-block !important;
+            margin-right: 5%;
+          }
+        </style>
         <div id="course_identity_voile"></div>
-        <label>${_('Your id')}</label>
+        <div id="course_identity_voile_bis"></div>
+        <label>${_('Course Number')}</label>
+        <label>${_('Course Run')}</label>
         <input type="text" id="course_identity" placeholder="${_('')}" value="" disabled="true" value="555"/>
+        <input type="text" id="course_session_top" placeholder="${_('')}" value="" disabled="true" value="555"/>
       </div>
       <div class="sub_input last_sub_input">
         ${_('Rules to create your campaign id: no space, no  punctuation mark')}

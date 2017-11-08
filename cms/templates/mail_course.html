@@ -9,14 +9,17 @@ from openedx.core.djangolib.markup import HTML, Text
 <%def name="online_help_token()"><% return "home" %></%def>
 <%block name="title">${_("{studio_name} Home").format(studio_name=settings.STUDIO_SHORT_NAME)}</%block>
 <%block name="bodyclass">is-signedin index view-dashboard</%block>
-
+<%!
+mail_corp = "WARNING : Before clicking on 'Send', please read your text carefully and send an email to yourself. This will allow you to validate text and links are correct."
+%>
 <%block name="requirejs">
+  var corp_email = '${_(mail_corp)}';
   require(["js/factories/index"], function (IndexFactory) {
       IndexFactory();
   });
   //require(['${static.url("js/invite.js")}']);
-  require(['https://demo-atp.themoocagency.com/media/studio/js/mail.js']);
-  //require(['${static.url("js/atp/invite.js")}']);
+  //require(['https://demo-atp.themoocagency.com/media/studio/js/mail.js']);
+  require(['${static.url("js/atp/mail.js")}']);
 </%block>
 <%namespace name='static' file='static_content.html'/>
 <%block name="content">
@@ -29,15 +32,40 @@ from openedx.core.djangolib.markup import HTML, Text
   min-width: 100px;
   min-height: 30px;
 }
+.pop_up_mail {
+  width: calc(100% - 40px);
+  height: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.pop_up_mail p {
+  font-size: 17px;
+  font-weight: bold;
+  font-family: "mywebfont";
+  color: #05144d;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  width: 100%;
+}
+.is_show {
+  display:block !important;
+}
+.not_margin_bottom {
+  margin-top: 5px !important;
+}
 </style>
 <section id="content">
   <section id="primary">
-    <div id="fil_ariane"><span>${_('My campaigns')} ></span></div>
+    <div id="fil_ariane"><a href="/">${_('My campaigns')} ></a></div>
     <div id="title">
-      <h1>${_('Manage my campaign')}</h1>
-      <p>
-        ${_('Add participants to your training campaign and customize the invitation email')}
+      <h1>${_('SEND EMAIL TO PARTICIPANTS')}</h1>
+      <p style="padding-bottom:0;">
+        ${_('During the training campaign, you can send a personalized e-mail to your participants or to targeted receivers.')}
       </p>
+      <p style="padding-top:0;">${_("It can be an email to remind them the training campaign will end soon, the training campaign is mandatory, etc")}</p>
     </div>
     <ul class="list-courses">
       <!-- suite -->
@@ -71,7 +99,10 @@ from openedx.core.djangolib.markup import HTML, Text
     <!-- cell 2/2 -->
     <!-- cell 2/2 -->
     <!-- cell 2/2 -->
-
+    <div class="pop_up_mail">
+      <p>${_("Your email was sent")}.</p>
+      <p>${_("You can send a new email or go back to the page MY CAMPAIGNS")}.</p>
+    </div>
     <div class="cell_title">
       <h3 id="h3_6"><div class="num" id="num_6">1/1</div><span>${_("INVITATION EMAIL")}</span></h3>
     </div>
@@ -81,7 +112,7 @@ from openedx.core.djangolib.markup import HTML, Text
         <span style="clear:both;display:block;"></span>
       </div>
       <div id="send_it">
-        <h6>${_('Send the invitation email to :')}</h6>
+        <h6>${_('Send email to:')}</h6>
         <!-- checkbox 1 -->
         <div class="check_box_field">
           <input type="checkbox" class="checkbox_mail_field" name="checkbox_mail_field" id="checkbox_myself" value="myself">
@@ -90,17 +121,17 @@ from openedx.core.djangolib.markup import HTML, Text
         <!-- checkbox 2 -->
         <div class="check_box_field">
           <input type="checkbox" class="checkbox_mail_field" name="checkbox_mail_field" id="checkbox_staff" value="staff">
-          <label>${_('Admin Team')}</label>
+          <label>${_('Team and administrator')}</label>
         </div>
         <!-- checkbox 4 -->
         <div class="check_box_field">
           <input type="checkbox" class="checkbox_mail_field" name="checkbox_mail_field" id="checkbox_all" value="all">
-          <label>${_('Every participants')}</label>
+          <label>${_('All participants (invited and accepted)')}</label>
         </div>
         <!-- checkbox 5 -->
         <div class="check_box_field">
           <input type="checkbox" class="checkbox_mail_field" name="checkbox_mail_field" id="checkbox_custom" value="custom">
-          <label>${_('Customized list of participants')}</label>
+          <label>${_('Customized mailing list')}</label>
         </div>
       </div>
       <div class="field input_text" id="custom_mail_box">
@@ -110,27 +141,30 @@ from openedx.core.djangolib.markup import HTML, Text
         <textarea id="email_1"></textarea>
       </div>
       <div class="sub_input last_sub_input last_block">
-        ${_('If you want to send the invitation email to the training campaign to a customized list of participants, please copy/paste the email recipients above. Remember that invitation emails can be sent only to the participants who have been invited to participate to the training campaign in the section 1/2 PARTICIPANTS.')}
+        ${_("If you want to send an email to a customized mailing list, please copy/paste email addresses above. Emails will only be sent to receivers that have been invited to participate to the training campaign in the section 'Invite participants'.")}
       </div>
-      <h6>${_('Object')} :</h6>
+      <h6>${_('Object of the email')} :</h6>
       <div class="field input_text">
         <input type="text" id="email_2" name="email_2" value="">
       </div>
       <div class="sub_input last_sub_input last_block_compteur">
-       128 characters maximum
+       ${_("128 characters maximum")}
       </div>
-      <h6>${_('Body')} :</h6>
+      <h6>${_('Body of the email')} :</h6>
       <div class="field textarea">
         <textarea id="mytextarea"></textarea>
       </div>
       <div class="sub_input last_sub_input last_block">
-        We recommend sending only one message per week to learners. Before sending your e-mail, read your text carefully and send it to your email address. You will be able to verify that all the links work and that the content is good.
+        <!--
+        ${_("We recommend sending only one message per week to learners. Before sending your e-mail, read your text carefully and send it to your email address. You will be able to verify that all the links work and that the content is good.")}
+      -->
       </div>
+
       <div class="sub_input last_sub_input last_block ending_page">
         <span>${_('WARNING')} : </span>${_("Don't hesitate to validate the email invitation by sending a test invitation to yourself. It will allow you to validate content and links included in the email invitation.")}
       </div>
       <div class="field email_send">
-        <button id="send_email">${_('CTA : Send')}</button>
+        <button id="send_email">${_('Send')}</button>
       </div>
       <span style="display:block;clear:left;"></span>
     </div>

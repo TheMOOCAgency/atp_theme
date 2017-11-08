@@ -1,3 +1,4 @@
+<%page args="course_org" />
 <%page expression_filter="h"/>
 <%namespace name='static' file='../static_content.html'/>
 <%!
@@ -5,8 +6,18 @@
   from django.core.urlresolvers import reverse
   from django.utils.translation import ugettext as _
   from student.roles import GlobalStaff
+  from microsite_manager.models import MicrositeAdminManager
+  from microsite_configuration.models import Microsite
 %>
-
+<%!
+  course_org = ''
+  try:
+      microsite_key = MicrositeAdminManager.objects.get(user=user).microsite_id
+      course_org = microsite = Microsite.objects.get(pk=microsite_key).key+'.'
+  except:
+      course_org = ''
+      pass
+%>
 % if uses_pattern_library:
   <div class="wrapper-user-menu dropdown-menu-container logged-in js-header-user-menu">
       <h3 class="title menu-title">
@@ -51,6 +62,9 @@
           <a href="${reverse('maintenance:maintenance_index')}">${_("Maintenance")}</a>
         </li>
         % endif
+        <li class="nav-item">
+          <a href="${settings.LMS_ROOT_URL.replace('https://','https://'+course_org)}">${_("Access Trainee Interface")}</a>
+        </li>
         <li class="nav-item nav-account-signout">
           <a class="action action-signout" href="${reverse('logout')}">${_("Sign Out")}</a>
         </li>

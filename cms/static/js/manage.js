@@ -75,10 +75,12 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
             }
           }
           /* update input course_id */
-          update_course_id(id,course_id,run) {
-            var This = $('#'+id);
-            var val = course_id+','+run;
-            This.attr('value',val);
+          update_course_id(id_1,id_2,course_id,run) {
+            var This1 = $('#'+id_1);
+            var This2 = $('#'+id_2);
+            //var val = course_id+','+run;
+            This1.attr('value',course_id);
+            This2.attr('value',run);
           }
           /*  function datepicker */
            datePicker(dom) {
@@ -207,7 +209,7 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
           /* init forms values */
           data.init_date('course-start-date');
           data.init_date('course-end-date');
-          data.update_course_id('course_identity',data.course_id,data.run);
+          data.update_course_id('course_identity','course_session_top',data.course_id,data.run);
           /* action on campaign click */
           $('.campaign_type_check').click(function(){
             $('#notification-warning').addClass('is-shown');

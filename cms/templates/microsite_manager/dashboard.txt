@@ -95,16 +95,16 @@
   background-size: cover;
 }
 #dashboard_tma section a .img_fundamental {
-  background-image: url('../images/fondamentaux.png');
+  background-image: url('/static/images/fondamentaux.png');
 }
 #dashboard_tma section a .img_oursolutions {
-  background-image: url('../images/nos_solutions.png');
+  background-image: url('/static/images/nos_solutions.png');
 }
 #dashboard_tma section a .img_salesapproach {
-  background-image: url('../images/zdemarche_comm.png');
+  background-image: url('/static/images/zdemarche_comm.png');
 }
 #dashboard_tma section a .img_regulatory {
-  background-image: url('../images/reglementaire.png');
+  background-image: url('/static/images/reglementaire.png');
 }
 /* section header */
 #dashboard_header_atp {
