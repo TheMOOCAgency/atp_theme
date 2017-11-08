@@ -3,10 +3,131 @@ from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
 %>
 
+<!--- legal notice -->
+<div id="pop_up_legal_notice" class="pop_up_atp">
+  % if LANGUAGE_CODE == "fr":
+  <p class="legal-notice-text">
+    Ce site est fourni à titre d’information uniquement. Les informations qu’il contient ne constituent en aucun cas une offre ou une sollicitation par un membre quelconque du groupe Amundi de fournir un conseil ou un service d’investissement ou pour acheter ou vendre des instruments financiers.
+Ce site est destiné exclusivement aux investisseurs institutionnels, professionnels, qualifiés ou sophistiqués et aux distributeurs. Les modules de formation qu’il contient ne doivent en particulier pas être remis au grand public, à la clientèle privée et aux particuliers au sens de toute juridiction, ni aux «US Persons ». Il n’est pas destiné à l’usage des résidents ou citoyens des Etats Unis d’Amérique et des « U.S. Persons », telle que cette expression est définie par la «Regulation S» de la Securities and Exchange Commission en vertu du U.S. Securities Act de 1933 et reprise dans le prospectus des produits financiers décrits dans ce site. Les investisseurs visés sont, en ce qui concerne l’Union Européenne, les investisseurs « Professionnels » au sens de la Directive 2004/39/CE du 21 avril 2004 « MIF» ou, le cas échéant au sens de chaque réglementation locale et, dans la mesure où l’offre en Suisse est concernée, les « investisseurs qualifiés » au sens des dispositions de la Loi fédérale sur les placements collectifs (LPCC), de l’Ordonnance sur les placements collectifs du 22 Novembre 2006 (OPCC). Ce site ne doit en aucun cas être remis dans l’Union Européenne à des investisseurs non « Professionnels » au sens de la MIF ou au sens de chaque réglementation locale, ou en Suisse à des investisseurs qui ne répondent pas à la définition d’« investisseurs qualifiés » au sens de la législation et de la réglementation applicable.<br>
+  <br>
+  Ce site ne peut être reproduit, en totalité ou en partie sans notre autorisation. Les informations figurant dans ce site ne visent pas à être distribuées ni utilisées par toute personne ou entité dans un pays ou une juridiction où cette distribution ou utilisation serait contraire aux dispositions légales ou réglementaires, ou qui imposerait à Amundi ou ses sociétés affiliées de se conformer aux obligations d’enregistrement de ces pays.
+
+  <br>
+  <br>
+Cet outil est géré par Amundi Asset Management (“Amundi AM”), société anonyme au capital social de 746 262 615 euros, ayant son siège social 90, boulevard Pasteur, 75015 PARIS, immatriculée sous le n° Siren 437 574 452 RCS Paris. Amundi est agréée en tant que société de gestion de portefeuille par l'AMF sous le numéro GP 04000036.
+  <br>
+  Le directeur de la publication est M. Fathi Jerfel, member du Conseil d’administration et Directeur general délégué.<br>
+  La société hébergeant ce site est PROGICA S.A.S. - 12 place des États-Unis, 92120 Montrouge - FRANCE. Tél. + 33 (0)1 43 23 44 98.<br>
+  <br>
+  Les informations reprises dans ce site sont réputées exactes à juin 2017.
+  </p>
+  % elif LANGUAGE_CODE == "en":
+  <p class="legal-notice-text">
+    This website is provided for information purposes only. This website neither constitutes an offer to buy nor a solicitation to sell a product, and shall not be considered as an unlawful solicitation or an investment advice. Amundi accepts no liability whatsoever, whether direct or indirect, that may arise from the use of information contained in this website. Amundi can in no way be held responsible for any decision or investment made on the basis of information contained in this website. This website is solely for the attention of institutional, professional, qualified or sophisticated investors and distributors. It is not to be distributed to the general public, private customers or retail investors in any jurisdiction whatsoever nor to “US Persons”. It is not intended for citizens or residents of the United States of America or to any «U.S. Person» , as this term is defined in SEC Regulation S under the U.S. Securities Act of 1933 and in the prospectus of the Fund. Moreover, any such investor should be, in the European Union, a “Professional” investor as defined in Directive 2004/39/EC dated 21 April 2004 on markets in financial instruments (“MIFID”) or as the case may be in each local regulations and, as far as the offering in Switzerland is concerned, a “Qualified Investor” within the meaning of the provisions of the Swiss Collective Investment Schemes Act of 23 June 2006 (CISA) and the Swiss Collective Investment Schemes Ordinance of 22 November 2006 (CISO). In no event may this material be distributed in the European Union to non “Professional” investors as defined in the MIFID or in each local regulation, or in Switzerland to investors who do not comply with the definition of “qualified investors” as defined in the applicable legislation and regulation. 
+
+  <br>
+This website may not be reproduced, in whole or in part without our permission. The information on this website is not intended to be distributed or used by any person or entity in any jurisdiction or jurisdiction in which such distribution or use would be contrary to any legal or regulatory provision or that would require Amundi or its affiliates to comply with the registration requirements of those countries.
+
+  <br>
+  <br>
+This website is handled by Amundi Asset Management, French joint stock company (“Société Anonyme”) with a registered capital of € 746 262 615 and approved by the French Securities Regulator (Autorité des Marchés Financiers-AMF) under number GP 04000036 as a portfolio management company - 90 boulevard Pasteur -75015 ParisFrance - 437 574 452 RCS Paris. - www.amundi.com 
+  <br>
+  The director of publication is Mr. Fathi Jerfel, member of the Board of Directors and Chief Operating Officer.<br>
+  The company hosting this website is PROGICA S.A.S. - 12 place des États-Unis, 92120 Montrouge - FRANCE. Telephone : + 33 (0)1 43 23 44 98.<br>
+  <br>
+  The information contained in this website is deemed accurate as of June 2017.
+  </p>
+  % endif
+  <div class="modal-close">
+    <a  class="btn btn-success btn-no-green" id="close_legal">
+      % if LANGUAGE_CODE == "en":
+        Close
+      % elif LANGUAGE_CODE == "fr":
+        Fermer
+      % endif
+    </a>
+  </div>
+</div>
+<!--- legal notice -->
+<!-- contact -->
+<!--
+<div id="pop_up_contact" class="pop_up_atp">
+
+</div>
+-->
+<!-- contact -->
 <div class="wrapper-footer wrapper">
   <footer class="primary" role="contentinfo">
-
+    <style>
+      .modal-close {
+        text-align: center;
+        height: auto;
+        min-height: 80px;
+        line-height: 80px;
+        vertical-align: middle;
+      }
+      .btn,.btn:hover,.btn:focus,.btn:visited {
+        background-color: #dc9f0d;
+        border: none;
+        padding: 10px 30px;
+        width: 150px;
+        font-weight: 600;
+        color: #fff;
+        border-radius: 15px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .pop_up_atp p{
+        text-align: justify;
+        text-justify: inter-word;
+        color: #000;
+        font-size: 12px;
+        line-height: 12px;
+      }
+      .pop_up_atp {
+          display: none;
+          position: fixed;
+          top: 40%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: #fff;
+          background-clip: padding-box;
+          border: 1px solid #999;
+          border: 1px solid rgba(0,0,0,.2);
+          border-radius: 6px;
+          outline: 0;
+          box-shadow: 0 3px 9px rgba(0,0,0,.5);
+          z-index: 10000000000000;
+          padding: 10px 60px 30px;
+      }
+      #atp_footer_nav {
+        float: right;
+      }
+      #atp_footer_nav button,#atp_footer_nav button:hover,#atp_footer_nav button:focus,#atp_footer_nav button:visited,#atp_footer_nav a,#atp_footer_nav a:hover,#atp_footer_nav a:focus,#atp_footer_nav button:visited{
+        color: #fff !important;
+        background-color: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        text-shadow: !important;
+        text-transform: uppercase;
+        outline: none;
+      }
+      .legal_is_display {
+        display: block !important;
+      }
+    </style>
     <div class="footer-content-primary">
+      <div id="atp_footer_nav">
+        <button id="legal_notice">${_("legal notices")}</button>
+        <a href="
+          % if settings.FEATURES['VM_STATUS'] == 'preprod':
+            mailto:amundiacademy-ppr@amundi.com
+          % elif settings.FEATURES['VM_STATUS'] == 'prod':
+            mailto:amundiacademy@amundi.com
+          % endif
+        " id="contact">${_("contact")}</button>
+      </div>
+      <span style="display:block;clear:right;"></span>
       <div class="colophon">
         <p>&copy; ${settings.COPYRIGHT_YEAR} <a data-rel="edx.org" href="${marketing_link('ROOT')}" rel="external">${settings.PLATFORM_NAME}</a>.</p>
       </div>
@@ -49,4 +170,3 @@ from django.core.urlresolvers import reverse
     </div>
   </footer>
 </div>
-

@@ -25,41 +25,9 @@ mail_corp = "WARNING : Before clicking on 'Send', please read your text carefull
 <%block name="content">
 <link rel="stylesheet" type="text/css" href="${static.url('js/vendor/timepicker/jquery.timepicker.css')}">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-<style>
-.participants .buton_from_file {
-  width: auto !important;
-  height: auto !important;
-  min-width: 100px;
-  min-height: 30px;
-}
-.pop_up_mail {
-  width: calc(100% - 40px);
-  height: auto;
-  padding-left: 20px;
-  padding-right: 20px;
-  display: none;
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-.pop_up_mail p {
-  font-size: 17px;
-  font-weight: bold;
-  font-family: "mywebfont";
-  color: #05144d;
-  margin-top: 2px;
-  margin-bottom: 2px;
-  width: 100%;
-}
-.is_show {
-  display:block !important;
-}
-.not_margin_bottom {
-  margin-top: 5px !important;
-}
-</style>
 <section id="content">
   <section id="primary">
-    <div id="fil_ariane"><a href="/">${_('My campaigns')} ></a></div>
+    <div id="fil_ariane" data-lang="${LANGUAGE_CODE}"><a href="/">${_('My campaigns')} ></a></div>
     <div id="title">
       <h1>${_('SEND EMAIL TO PARTICIPANTS')}</h1>
       <p style="padding-bottom:0;">
@@ -192,5 +160,5 @@ mail_corp = "WARNING : Before clicking on 'Send', please read your text carefull
     </nav>
   </div>
 </div>
-<link rel="stylesheet" type="text/css" href="${static.url('css/invite_course.css')}">
+<link rel="stylesheet" type="text/css" href="${static.url('css/mail_course.css')}">
 </%block>

@@ -316,3 +316,79 @@ h3 .svg path {
 .duration_course .svg path{
   fill: #dc9e29;
 }
+
+.course_module_categ {
+  display:block;
+  position: absolute;
+  bottom: 0;
+  right: 1px;;
+  color: #fff;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  z-index: 3;
+}
+.content_img {
+  position: relative;
+}
+.img_course {
+  height: 153px ! important;
+}
+.course-item .img_regulatory,.course-item .img_fundamental,.course-item .img_oursolutions,.course-item .img_salesapproach {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 75%;
+  height: 127px;
+  z-index: 2;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  outline: none;
+  border: none !important;
+  border-left-color: transparent !important;
+}
+.course-item .img_fundamental {
+  background-image: url("${static.url('images/fondamentaux.png')}");
+}
+.course-item .img_oursolutions {
+  background-image: url("${static.url('images/nos_solutions.png')}");
+}
+.course-item .img_salesapproach {
+  background-image: url("${static.url('images/zdemarche_comm.png')}");
+}
+.course-item .img_regulatory {
+  background-image: url("${static.url('images/reglementaire.png')}");
+}
+.content_img {
+  position: relative;
+}
+#info_my_module {
+  display: none;
+}
+#info_my_module p {
+  font-size: 16px;
+}
+.list {
+  width: 96%;
+  margin: 0;
+  margin-left: 4%;
+  margin-bottom: 10px;
+}
+.list li {
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+.bit p {
+  margin-bottom: 6px;
+  margin-top: 15px;
+}
+#main {
+  min-height: calc(100vh - 207px);
+}
+.content,.wrapper-header header.primary,.wrapper-mast .mast, .wrapper-mast .metadata {
+  max-width: 1500px;
+}
+.view-dashboard .content-supplementary {
+  right: 8%;
+}

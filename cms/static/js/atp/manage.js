@@ -52,7 +52,7 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
               datetime = datetime.replace('Z').split('T');
               var date = datetime[0].split('-');
               var time = datetime[1].replace(':00','').replace('undefined','');
-              date = date[1]+'/'+date[2]+'/'+date[0];
+              date = date[0]+'/'+date[1]+'/'+date[2];
               This.attr('value',date);
               time_id.attr('value',time);
             }
@@ -62,7 +62,7 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
             var This = $(id);
             if(time != null) {
               var Time = time.split('T')[0].split('-');
-              var datetime = Time[1]+'-'+Time[2]+'-'+Time[0];
+              var datetime = Time[0]+'-'+Time[1]+'-'+Time[2];
               This.text(datetime);
             };
           },
@@ -72,10 +72,11 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
             var status = id.replace('course-','').replace('-','_');
             var time_id = id.replace('date','time');
             var date = $('#'+id).val().split('/');
-            date = date[2]+'-'+date[0]+'-'+date[1];
+            date = date[0]+'-'+date[1]+'-'+date[2];
+            console.log(date[0]);
             var time = 'T'+$('#'+time_id).val()+':00Z';
             if(time == 'T:00Z') {
-	        time = 'T00:00:00Z'
+	             time = 'T00:00:00Z'
             }
             date = date+time;
             if(date.indexOf('undefined') == -1) {
@@ -95,6 +96,7 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
           var This = $("#"+dom);
           var key = This.data('key');
           This.datepicker({
+            dateFormat: 'yy/mm/dd',
             onClose: function(dateText,datePickerInstance) {
                 var oldValue = $(this).data('oldValue') || "";
                 if (dateText !== oldValue) {

@@ -376,3 +376,65 @@ html,body,#content {
   z-index: 1;
   background-color: rgba(0,0,0,0.1);
 }
+
+.all_dates {
+  width: 100%;
+  height: auto;
+}
+.all_dates ul {
+  width: 100%;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  list-style-type : none;
+}
+.all_dates ul li {
+  width: 35%;
+  height: auto;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+.all_dates ul li span {
+  font-size: 13px;
+  font-style: italic;
+  /* font family */
+  font-family: $font_family;
+  /* primary color */
+  color: $atp_primary_color;
+}
+.all_dates ul li span:first-child {
+  font-weight: bold;
+}
+.img_course {
+  height: 153px !important;
+}
+ #course_identity_voile {
+   top: 52px !important;
+ }
+ #course_identity_voile_bis {
+   position: absolute;
+   height: 40px;
+   width: 40%;
+   top: 52px;
+   left: calc(45% + 4px);
+   z-index: 1;
+   background-color: rgba(0,0,0,0.1);
+ }
+ #course_identity_voile {
+   width: 40% !important;
+ }
+ .field input {
+   display: inline-block !important;
+   width: 40% !important;
+   margin-right: 5%;
+ }
+ .field {
+   float: none !important;
+   width: 100% !important;
+ }
+ .field label {
+   width: 40% !important;
+   display: inline-block !important;
+   margin-right: 5%;
+ }

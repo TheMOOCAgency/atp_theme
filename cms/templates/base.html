@@ -111,10 +111,14 @@ from openedx.core.djangolib.js_utils import (
                       require(['js/sock']);
                       require(['${static.url("js/custo.js")}']);
                   % endif
-                  <%block name='requirejs'></%block>
+                  <%block name='requirejs'>
+
+                  </%block>
+                  require(["https://demo-atp.themoocagency.com/media/studio/js/atp/footer.js"]);
               });
           });
       });
+
     </script>
     <%include file="widgets/segment-io-footer.html" />
     <div class="modal-cover"></div>

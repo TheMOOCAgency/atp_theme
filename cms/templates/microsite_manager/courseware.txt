@@ -1,3 +1,6 @@
+/* import variable */
+@import "variable";
+
 body.view-in-course .container {
   margin-top: 30px;
 }
@@ -454,4 +457,31 @@ body.view-in-course .container {
 }
 .course-index .accordion .course-navigation .button-chapter .group-heading, .course-index .accordion .course-navigation .chapter-content-container .chapter-menu .menu-item a:hover, .accordion-display-name {
   font-weight: bold;
+}
+#tma_course_ariane span, #tma_course_ariane a, #tma_course_ariane a:hover, #tma_course_ariane a:focus {
+  font-weight: bold;
+}
+@media(max-width:1288px) {
+  #tma_course_top h1 {
+    left: calc(95% - 300px);
+    right: 0;
+  }
+}
+@media(max-width:955px) {
+  #tma_course_top h1 {
+    left: calc(100% - 300px);
+    right: 0;
+  }
+}
+@media(max-width:899px) {
+  #tma_course_top h1 {
+    position: relative;
+    width: 100%;
+    left: 0;
+    right: 0;
+    margin: 0;
+  }
+  #tma_course_ariane {
+    position: relative;
+  }
 }
