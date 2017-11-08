@@ -21,7 +21,7 @@ Cet outil est géré par Amundi Asset Management (“Amundi AM”), société an
   <br>
   Les informations reprises dans ce site sont réputées exactes à juin 2017.
   </p>
-  % elif LANGUAGE_CODE == "en":
+  % else:
   <p class="legal-notice-text">
     This website is provided for information purposes only. This website neither constitutes an offer to buy nor a solicitation to sell a product, and shall not be considered as an unlawful solicitation or an investment advice. Amundi accepts no liability whatsoever, whether direct or indirect, that may arise from the use of information contained in this website. Amundi can in no way be held responsible for any decision or investment made on the basis of information contained in this website. This website is solely for the attention of institutional, professional, qualified or sophisticated investors and distributors. It is not to be distributed to the general public, private customers or retail investors in any jurisdiction whatsoever nor to “US Persons”. It is not intended for citizens or residents of the United States of America or to any «U.S. Person» , as this term is defined in SEC Regulation S under the U.S. Securities Act of 1933 and in the prospectus of the Fund. Moreover, any such investor should be, in the European Union, a “Professional” investor as defined in Directive 2004/39/EC dated 21 April 2004 on markets in financial instruments (“MIFID”) or as the case may be in each local regulations and, as far as the offering in Switzerland is concerned, a “Qualified Investor” within the meaning of the provisions of the Swiss Collective Investment Schemes Act of 23 June 2006 (CISA) and the Swiss Collective Investment Schemes Ordinance of 22 November 2006 (CISO). In no event may this material be distributed in the European Union to non “Professional” investors as defined in the MIFID or in each local regulation, or in Switzerland to investors who do not comply with the definition of “qualified investors” as defined in the applicable legislation and regulation. 
 
@@ -40,7 +40,7 @@ This website is handled by Amundi Asset Management, French joint stock company (
   % endif
   <div class="modal-close">
     <a  class="btn btn-success btn-no-green" id="close_legal">
-      % if LANGUAGE_CODE == "en":
+      % if LANGUAGE_CODE == "en" or LANGUAGE_CODE == "de-de":
         Close
       % elif LANGUAGE_CODE == "fr":
         Fermer

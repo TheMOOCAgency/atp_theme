@@ -1,5 +1,34 @@
 define(['domReady', 'jquery', 'underscore','jquery.ui'],function(domReady, $, _) {
   var onReady = function() {
+    // method preview csv file
+    function csv_preview(input,output) {
+      var reader = new FileReader();
+      var fileinput = document.getElementById(input);
+      reader.onload = function(){
+        var lines = this.result.split('\n');
+        var out = $('#'+output);
+        var limit = 0;
+        out.html();
+        for(var line = 0; line < lines.length; line++){
+          if(limit < 6) {
+            out.append('<p><span>'+lines[line].split(',').join('</span><span>')+'</span><p>');
+          }else{
+            line = lines.length - 1;
+          }
+        };
+        out.find('p').each(function(){
+          var This = $(this);
+          var text = This.text();
+          if(text == '') {
+            console.log('html : '+text);
+            This.remove();
+          }
+        })
+        out.find('span').attr('style','');
+        $('#output_section').show();
+      }
+      reader.readAsText(fileinput.files[0]);
+    };
     function invite() {
       this.constructor = function(body,action,data,checkbox) {
         this.body = body;
@@ -41,6 +70,7 @@ define(['domReady', 'jquery', 'underscore','jquery.ui'],function(domReady, $, _)
           if(check.indexOf('csv') == -1) {
             alert('fichier au format incorect');
           }else{
+            csv_preview('invite_participant','output');
             $('#'+next).show();
           }
         })

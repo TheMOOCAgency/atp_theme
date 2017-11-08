@@ -459,3 +459,40 @@ html,body,#content {
 #main {
   min-height: calc(100vh - 188px);
 }
+#output_section h5{
+  height: 40px;
+  line-height: 40px;
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #05144d;
+}
+#output,#output_section {
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+#output_section {
+  width: 70%;
+}
+#output_section {
+  display: none;
+}
+#output p:first-child {
+  color: #06144D;
+  font-weight: bold;
+}
+#output {
+  display: table;
+}
+#output p {
+  display: table-row;
+}
+#output p span {
+  width: calc(100% / 7 - 2px);
+  display: table-cell;
+  text-align:center;
+  word-break: break-all;
+  border: 1px solid #c6c6c6;
+}
