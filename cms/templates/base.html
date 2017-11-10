@@ -114,7 +114,8 @@ from openedx.core.djangolib.js_utils import (
                   <%block name='requirejs'>
 
                   </%block>
-                  require(["https://demo-atp.themoocagency.com/media/studio/js/atp/footer.js"]);
+                  //require(["https://preprod.amundiacademy.com/media/studio/footer.js"]);
+                  require(['${static.url("js/atp/footer.js")}']);
               });
           });
       });
