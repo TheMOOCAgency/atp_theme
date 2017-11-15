@@ -1,10 +1,13 @@
 $font_url_otf:'../fonts/arial.otf';
 $font_url_ttf:'../fonts/arial.ttf';
+$font_url_eot:'../fonts/arial.eot';
 /* primary font call */
 @font-face {
   font-family: 'mywebfont';
-  src: url($font_url_otf) format('otf'),
-       url($font_url_ttf)  format('truetype');
+  src: url("../fonts/arial.eot");
+  src: url("../fonts/arial.eot?#iefix")
+       format('otf'),url($font_url_otf)
+       format('ttf'),url($font_url_ttf)  format('truetype');
 }
 /* primary color */
 $atp_primary_color: #05144d;

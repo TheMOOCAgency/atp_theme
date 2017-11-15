@@ -69,20 +69,22 @@
 <!--TEXTE-->
     <table width="600" border="0" cellspacing="30" cellpadding="0" align="center" style="font-family:arial; color:#040b31;; font-size:14px;;">
 	<tr>
-		<td style="font-weight:bold; color:#040b31;">Laureline PASCAL,</td>
+		<td style="font-weight:bold; color:#040b31;">$first_name $last_name,</td>
 		</tr>
 		<tr>
 		<td style="color:#040b31;">Vous êtes invité à participer au module de formation <strong>${course_title}.</strong></td>
 		</tr>
 		<tr>
 		<td style="color:#040b31;"><strong>Vous avez jusqu’au ${end_date}</strong> pour compléter le module de formation. <br>
-		  Ce module de formation est <strong>obligatoire.</strong></td>
+		  Ce module de formation est <strong>${mode}.</strong></td>
 		</tr>
 			<tr>
-				<td style="color:#040b31;">Un score de <span style="font-weight:bold;">80%</span> minimum est requis pour valider le module de formation.</td>
+				<td style="color:#040b31;">Un score de <span style="font-weight:bold;">${grade_cutoff}</span> minimum est requis pour valider le module de formation.</td>
 		</tr>
 		<tr>
-		${content}
+		<td style="color:#040b31;">${content}</td>
+		</tr>
+		<tr>
 		<td style="padding:0 0 10px; color:#040b31;">
 Pour accédez au module de formation <span style="font-weight:bold;">${course_title}</span>, veuillez cliquer sur le lien suivant :<a href="${link}">${link}</a></td>
 		</tr>
@@ -97,4 +99,3 @@ Pour accédez au module de formation <span style="font-weight:bold;">${course_ti
 
 </body>
 </html>
-

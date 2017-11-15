@@ -111,21 +111,28 @@ This website is handled by Amundi Asset Management, French joint stock company (
         text-shadow: !important;
         text-transform: uppercase;
         outline: none;
+        font-weight: 600;
       }
       .legal_is_display {
         display: block !important;
       }
+#atp_footer_nav button:hover, #atp_footer_nav a:hover {
+    color: #dda000 !important;
+    text-decoration: none !important;
+    font-weight: 600;
+}
     </style>
     <div class="footer-content-primary">
       <div id="atp_footer_nav">
         <button id="legal_notice">${_("legal notices")}</button>
-        <a href="
-          % if settings.FEATURES['VM_STATUS'] == 'preprod':
-            mailto:amundiacademy-ppr@amundi.com
-          % elif settings.FEATURES['VM_STATUS'] == 'prod':
-            mailto:amundiacademy@amundi.com
-          % endif
-        " id="contact">${_("contact")}</button>
+<%
+  mailto = ''
+  if settings.FEATURES['VM_STATUS'] == 'preprod':
+      mailto = "mailto:amundiacademy-ppr@amundi.com"
+  elif settings.FEATURES['VM_STATUS'] == 'prod':
+      mailto = "mailto:amundiacademy@amundi.com"
+%>
+        <a href="${mailto}" id="contact">${_("contact")}</button>
       </div>
       <span style="display:block;clear:right;"></span>
       <div class="colophon">

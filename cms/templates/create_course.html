@@ -19,7 +19,18 @@ from openedx.core.djangolib.markup import HTML, Text
 </%block>
 <%namespace name='static' file='static_content.html'/>
 <%block name="content">
-
+<style>
+.img_fundamentals {
+  background-image: url('/static/images/fondamentaux.png');
+}
+* {
+  font-family: "mywebfont" !important;
+}
+#logo_cms {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+</style>
 <link rel="stylesheet" type="text/css" href="${static.url("js/vendor/timepicker/jquery.timepicker.css")}">
 <section id="content">
   <section id="primary">
@@ -34,6 +45,8 @@ from openedx.core.djangolib.markup import HTML, Text
       <!-- suite -->
       <li class="course-item">
         <div class="content_img">
+          <span class="img_${course.categ.lower().replace(' ','')}" /></span>
+          <span class="course_module_categ">${_(course.categ)}</span>
           <img src="${overview.image_urls['raw']}" class="img_course"/>
         </div>
         <div class="content_info">
@@ -46,7 +59,7 @@ from openedx.core.djangolib.markup import HTML, Text
                     data-class="timer_svg_color"
                     >
             </object>
-            <span>${details.duration}</span>
+            <span style="margin-left: 24px;">${details.effort}</span>
           </div>
         </div>
         <span style="clear:left;display:block;"></span>
@@ -62,9 +75,11 @@ from openedx.core.djangolib.markup import HTML, Text
     </div>
     <div class="cell_content" id="cell_2">
       <div class="date_title">
-        <h5 style="padding-top: 25px;">${_('Create an identifier')}</h5>
+        <h5 style="padding-top: 25px;">${_('Specify unique ID and target')}</h5>
+        <!--
         <p>${_('This identifier is reflected in the statistical dashboards')}</P>
         <p>${_('This allows you to specify the target and / or training period')}</P>
+        -->
         <span style="clear:both;display:block;"></span>
       </div>
       <div class="field date">
@@ -110,4 +125,24 @@ from openedx.core.djangolib.markup import HTML, Text
   </div>
 </div>
 <link rel="stylesheet" type="text/css" href="${static.url('css/create_course.css')}">
+<!-- title font-size scale -->
+<script>
+var _h3 = document.getElementsByClassName('course-title');
+var elem;
+for(var i=0;i<_h3.length;i++) {
+  if(i == 0) {
+    elem = _h3[i]
+  }
+}
+var height = 0;
+var default_font = 2.2;
+var incredent = 0.1;
+var lim = 42;
+var actual = elem.clientHeight;
+while(actual > lim) {
+  default_font = default_font - incredent;
+  elem.style.fontSize = default_font+'em';
+  actual = elem.clientHeight;
+}
+</script>
 </%block>

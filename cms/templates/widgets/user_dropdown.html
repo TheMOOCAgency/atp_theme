@@ -1,22 +1,10 @@
-<%page args="course_org" />
-<%page expression_filter="h"/>
+<%page args="course_org" expression_filter="h"/>
 <%namespace name='static' file='../static_content.html'/>
 <%!
   from django.conf import settings
   from django.core.urlresolvers import reverse
   from django.utils.translation import ugettext as _
   from student.roles import GlobalStaff
-  from microsite_manager.models import MicrositeAdminManager
-  from microsite_configuration.models import Microsite
-%>
-<%!
-  course_org = ''
-  try:
-      microsite_key = MicrositeAdminManager.objects.get(user=user).microsite_id
-      course_org = microsite = Microsite.objects.get(pk=microsite_key).key+'.'
-  except:
-      course_org = ''
-      pass
 %>
 % if uses_pattern_library:
   <div class="wrapper-user-menu dropdown-menu-container logged-in js-header-user-menu">

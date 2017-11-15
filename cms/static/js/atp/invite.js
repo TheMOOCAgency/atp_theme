@@ -84,6 +84,7 @@ define(['domReady', 'jquery', 'underscore','jquery.ui'],function(domReady, $, _)
     mail_invite.file_up_input('invite_participant','choise_from_file');
     // register users from csv
     $('#register_from_csv').click(function(){
+      $('#pop_up_invite').removeClass('is_show');
       mail_invite.load_csv(submit,'register_only');
       var path = window.location.path;
       var data = mail_invite.getData();
@@ -96,6 +97,7 @@ define(['domReady', 'jquery', 'underscore','jquery.ui'],function(domReady, $, _)
         type: 'POST',
         success: function(data){
           var retour = data.message;
+          $('#pop_up_invite').addClass('is_show');
         }
       })
     })

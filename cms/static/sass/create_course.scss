@@ -286,3 +286,46 @@ html,body,#content {
   font-size: 13px;
   line-height: 13px;
 }
+.img_fundamentals,.img_regulatory,.img_fundamental,.img_oursolutions, .img_salesapproach {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 75%;
+    height: 127px;
+    z-index: 2;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    outline: none;
+    border: none !important;
+    border-left-color: transparent !important;
+}
+.img_fundamental {
+  background-image: url('../images/fondamentaux.png');
+}
+.img_fundamentals {
+  background-image: url('../images/fondamentaux.png');
+}
+.img_oursolutions {
+  background-image: url('../images/nos_solutions.png');
+}
+.img_salesapproach {
+  background-image: url('../images/zdemarche_comm.png');
+}
+.img_regulatory {
+  background-image: url('../images/reglementaire.png');
+}
+.content_img {
+  position: relative;
+}
+.course_module_categ {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 1px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    z-index: 3;
+}
