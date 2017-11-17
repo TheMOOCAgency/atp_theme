@@ -404,7 +404,7 @@ from student.roles import CourseInstructorRole,CourseStaffRole
         <div class="courses courses-tab active">
           <div id="no_course">
             <p>${_("No training campaign has been set")}.</p>
-            <p>${_("To launch a training campaign")}, ${_("select a training module in")} <span>${_("My Modules")}</span></button>, ${_("then click on")} <span>${_("Launch my campaign")}</span>.</p>
+            <p>${_("To launch a training campaign")}, ${_("select a training module in")} <span>${_("My Modules")}</span></button>, ${_("then click on")} <span>${_("Create my campaign")}</span>.</p>
             <p class="message_atp_no_course">${_("No training campaign has been launched yet.")}</p>
 	  </div>
         %else:
@@ -416,7 +416,7 @@ from student.roles import CourseInstructorRole,CourseStaffRole
             <div class="up_list_courses">
               <h3>
                 <img src="${static.url('images/campagne_prgrammee.svg')}" class='svg svg-class-title' />
-                <span>${_('SCHEDULED TRAINING CAMPAIGNS')}</span>
+                <span style="text-transform:uppercase;">${_('created training campaigns')}</span>
               </h3>
 
               <p>${_("The following training campaigns have not been launched yet (starting date not exceeded).To modify starting/ending date, please click on")} « ${_("Manage my campaign")} ».${_("To add new participants, please click on")} « ${_("Invite participants")} » .</p>
@@ -471,9 +471,11 @@ from student.roles import CourseInstructorRole,CourseStaffRole
                       <ul class="more_about_courses">
                         <li><a href="${settings.LMS_ROOT_URL.replace('https://','https://'+course_info['org']+'.')}/courses/${course_info['course_key']}/about" target="_blank">${_('About the training module')}</a></li>
                         <li><a href="/settings/manage/${course_info['course_key']}">${_('Manage my campaign')}</a></li>
+                        <!--
                         <li><a href="/settings/invite/${course_info['course_key']}">${_('Invite participants')}</a></li>
                         <li><a href="/settings/email_dashboard/${course_info['course_key']}">${_('Send email to participants')}</a></li>
                         <li><a href="${settings.LMS_ROOT_URL.replace('https://','https://'+course_info['org']+'.')}/courses/${course_info['course_key']}/stat_dashboard" target="_blank">${_('Statistics')}</a></li>
+                        -->
                         % if request.user.is_staff:
                         <li><a class="course-link" href="${course_info['url']}">${_('Course administration')}</a></li>
                         % endif
@@ -725,10 +727,11 @@ from student.roles import CourseInstructorRole,CourseStaffRole
                   <ul class="more_about_courses">
                     <li><a href="${settings.LMS_ROOT_URL.replace('https://','https://'+course_info['org']+'.')}/courses/${course_info['course_key']}/about" target="_blank">${_('About the training module')}</a></li>
 	            % if not request.user.is_staff and check_admin_microsite:
-                    <li><a href="/settings/create/${course_info['course_key']}">${_("Launch my campaign")}</a></li>
+                    <li><a href="/settings/create/${course_info['course_key']}">${_("Create my campaign")}</a></li>
 		    % endif
                     % if request.user.is_staff:
                     <li><a class="course-link" href="${course_info['url']}">${_('Course administration')}</a></li>
+                    <li><a class="course-link" href="/course_rerun/${course_info['course_key']}">${_('Re-run Course')}</a></li>
                     % endif
                   </ul>
                 </div>
@@ -766,7 +769,7 @@ from student.roles import CourseInstructorRole,CourseStaffRole
     -->
       <div id="no_course">
         <p>${_("No training campaign has been set")}.</p>
-        <p>${_("To launch a training campaign")}, ${_("select a training module in")} <span>${_("My Modules")}</span></button>, ${_("then click on")} <span>${_("Launch my campaign")}</span>.</p>
+        <p>${_("To Create a training campaign")}, ${_("select a training module in")} <span>${_("My Modules")}</span></button>, ${_("then click on")} <span>${_("Create my campaign")}</span>.</p>
       </div>
       % endif
 
@@ -1086,5 +1089,32 @@ from student.roles import CourseInstructorRole,CourseStaffRole
 .view-dashboard .content-supplementary {
   right: 8%;
 }
+.wrapper-mast {
+  padding-top: 60px;
+}
+.wrapper-mast .mast.has-actions .page-header {
+  font-size: 28px;
+}
+.page-sub-header {
+  font-size: 24px;
+}
+.wrapper-mast .mast {
+  margin-bottom: 60px;
+}
+.view-dashboard .content-supplementary {
+  top: 294px;
+}
+.up_list_courses p {
+  font-style:normal;
+}
+.wrapper-content {
+  min-height: 490px;
+  height: auto;
+}
 </style>
+<!--
+<p>
+${settings.FEATURES.get('SEM_ENDPOINTS')}
+</p>
+-->
 </%block>

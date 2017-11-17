@@ -33,6 +33,9 @@ from openedx.core.djangolib.markup import HTML, Text
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
+#title p {
+  text-transform: inherit !important;
+}
 </style>
 <section id="content">
   <section id="primary">
@@ -90,7 +93,7 @@ from openedx.core.djangolib.markup import HTML, Text
     </div>
     <div class="cell_content" id="cell_2">
       <div class="date_title">
-        <h5 style="padding-top: 25px;">${_('Create your campagne id')}</h5>
+        <h5>${_('Create your campagne id')}</h5>
         <!--
         <p>${_('This id is indicated in statistic reports.')}</P>
         <p>${_('Precise your target and/or campaign period.')}</P>

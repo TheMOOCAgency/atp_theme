@@ -17,7 +17,24 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
             this.source_course_key = source_course_key;
             this.course_key = course_key;
           },
-
+          /* regex inputs */
+          this.regex_inputs = function(id1,id2,id3) {
+            var array = [id1,id2,id3];
+            var regex = /^[a-z0-9_+-]*$/;
+            var retour = []
+            ensure = true;
+            for(var i = 0;i<array.length;i++) {
+              if(!regex.test($("#"+array[i]).val())){
+                ensure = regex.test($("#"+array[i]).val());
+                retour.push(array[i]);
+              }
+            }
+            var obj = {
+              status:ensure,
+              retour:retour
+            };
+            return obj;
+          }
           /* update run & number */
           this.update_run_number_display_name_ids_orgs = function(id1,id2,id3) {
             var This1 = $('#'+id1);
@@ -42,19 +59,31 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
         /* action au click create */
         $('#create').click(function(){
           /* hydrate data */
-          create_data.update_run_number_display_name_ids_orgs('course_number','course_run','user_org');
-          $.ajax({
-            url:'/course/',
-            type:'POST',
-            dataType:'json',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify(create_data),
-            success: function(retour) {
-              create_data.course_key = retour.destination_course_key;
-              var manage_url = '/settings/manage/'+create_data.course_key;
-              window.open(manage_url,'_self');
+          $('#course_number,#course_run').removeClass('error_input');
+          $('.last_sub_input').removeClass('text_color_red');
+          var ensure = create_data.regex_inputs('course_number','course_run','user_org');
+          if(ensure.status) {
+            create_data.update_run_number_display_name_ids_orgs('course_number','course_run','user_org');
+
+            $.ajax({
+              url:'/course/',
+              type:'POST',
+              dataType:'json',
+              contentType: "application/json; charset=utf-8",
+              data: JSON.stringify(create_data),
+              success: function(retour) {
+                create_data.course_key = retour.destination_course_key;
+                var manage_url = '/settings/manage/'+create_data.course_key;
+                window.open(manage_url,'_self');
+              }
+            })
+
+          }else{
+            for(var i=0;i<ensure.retour.length;i++) {
+              $('#'+ensure.retour[i]).addClass('error_input');
             }
-          })
+            $('.last_sub_input').addClass('text_color_red');
+          }
         })
       };
       domReady(onReady);
@@ -63,3 +92,4 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
           onReady: onReady
       };
     })
+
