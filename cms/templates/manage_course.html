@@ -36,6 +36,9 @@ from openedx.core.djangolib.markup import HTML, Text
 #title p {
   text-transform: inherit !important;
 }
+.date_title h5 {
+ width: 100% !important;
+}
 </style>
 <section id="content">
   <section id="primary">
@@ -97,7 +100,7 @@ from openedx.core.djangolib.markup import HTML, Text
         <!--
         <p>${_('This id is indicated in statistic reports.')}</P>
         <p>${_('Precise your target and/or campaign period.')}</P>
-        -->
+	-->
         <span style="clear:both;display:block;"></span>
       </div>
       <div class="field date">
@@ -123,7 +126,9 @@ from openedx.core.djangolib.markup import HTML, Text
     <div class="cell_content" id="cell_1">
       <div class="date_title">
         <h5>${_('Schedule your training campaign')}</h5>
+        <!--
         <p>${_('Starting and ending dates of the training campaign')}</P>
+        -->
         <span style="clear:both;display:block;"></span>
       </div>
       <div class="field date" id="field-course-start-date">
@@ -131,11 +136,14 @@ from openedx.core.djangolib.markup import HTML, Text
         <input type="text" id="course-start-date" placeholder="YYYY/MM/DD" data-key="start_date">
       </div>
       <div class="field date" id="field-course-start-date">
-        <label>${_('Time for email invitation dispatch UTC')}</label>
+        <label>${_('Starting time UTC')}</label>
         <input type="text" id="course-start-time" placeholder="HH:MM" data-key="start_time">
       </div>
       <div class="sub_input">
+	<!--
         ${_('The day the first invitations are dispatched when launching the training campaign')}
+	-->
+	&nbsp;
       </div>
       <div class="field date" id="field-course-start-date">
         <label>${_('Ending date')}</label>
@@ -146,7 +154,10 @@ from openedx.core.djangolib.markup import HTML, Text
         <input type="text" id="course-end-time" placeholder="HH:MM" data-key="end_time">
       </div>
       <div class="sub_input last_sub_input">
+	<!--
         ${_('Closing day of the training campaign')}
+	-->
+	&nbsp;
       </div>
     </div>
     <!-- end cell 2/4 -->
@@ -163,8 +174,8 @@ from openedx.core.djangolib.markup import HTML, Text
     </div>
     <div class="cell_content" id="cell_3">
       <div class="date_title">
-        <h5>${_('Define the minimum score required to validate the training module')}</h5>
-        <p>${_('Minimum score required to validate the training module and receive the certificate of achievement')}</P>
+        <h5>${_('Define the minimum score required to validate the training module and receive the certificate of achievement')}</h5>
+        <!-- <p>${_('Minimum score required to validate the training module and receive the certificate of achievement')}</P> -->
         <span style="clear:both;display:block;"></span>
       </div>
     <div id="content_resize" data-grade="${module_store.grade_cutoffs['Pass']}">

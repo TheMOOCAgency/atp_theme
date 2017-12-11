@@ -53,6 +53,20 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
           }
         };
 
+        function ensure_course(url) {
+          $.ajax({
+             type:"get",
+             url:url,
+             dataType:"text",
+             success:function(data){
+               window.open(url,'_self');
+             },
+             error: function(data) {
+               ensure_course(url);
+             }
+          })
+        }
+
         /* initialisation de data */
         var create_data = new createCLass();
 
@@ -74,7 +88,9 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
               success: function(retour) {
                 create_data.course_key = retour.destination_course_key;
                 var manage_url = '/settings/manage/'+create_data.course_key;
-                window.open(manage_url,'_self');
+                //waiting course_creation
+                //window.open(manage_url,'_self');
+                ensure_course(manage_url);
               }
             })
 
@@ -92,4 +108,3 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
           onReady: onReady
       };
     })
-

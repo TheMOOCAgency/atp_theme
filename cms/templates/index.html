@@ -963,33 +963,79 @@ from student.roles import CourseInstructorRole,CourseStaffRole
     </article>
     <aside class="content-supplementary" role="complementary">
       <div class="bit">
-        <span id="info_my_campaign">
-          <h3 class="title title-3">${_('WHAT YOU CAN DO')}…</h3>
-          <p>${_('Schedules training campaigns:')}</p>
-          <ul class="list">
-            <li>- ${_('Update your settings: starting/ending dates, minimum percentage of success')}</li>
-            <li>- ${_('Add new participants')}</li>
-            <li>- ${_('Update the text of the email invitation and test your email invitation')}</li>
-          </ul>
-          <p>${_('In progress training campaigns:')}</p>
-          <ul class="list">
-            <li>- ${_('Update ending date')}</li>
-            <li>- ${_('Add new participants')}</li>
-            <li>- ${_('Access statistics: participation rate, success by participant, etc.')}</li>
-          </ul>
-          <p>${_('Completed training campaigns:')}</p>
-          <ul class="list">
-            <li>- ${_('Access statistics: participation rate, success by participant, etc.')}</li>
-          </ul>
-        </span>
-        <span id="info_my_module">
-          <h3 class="title title-3">${_('WHAT YOU CAN DO')}…</h3>
-          <p>${_('My modules:')}</p>
-          <ul class="list">
-            <li>- ${_('Access a training modules library provided by Amundi')}</li>
-            <li>- ${_('Launch a training campaign')}</li>
-          </ul>
-        </span>
+% if LANGUAGE_CODE == 'fr':
+<span id="info_my_campaign">
+  <h3 class="title title-3">${_('WHAT YOU CAN DO')}…</h3>
+  <p>Etape 1 : Administrer ma campagne</p>
+  <h5>Dans mes campagnes créées, vous administrez la campagne de formation :</h5>
+  <ul class="list">
+    <li>- Date de début / date de fin</li>
+    <li>- Pourcentage de réussite minimum requis</li>
+    <li>- Campagne obligatoire ou facultative</li>
+  </ul>
+  <h5>Ces paramètres peuvent être modifiés tout au long de votre campagne de formation.</h5>
+  <p>Etape 2 : Inviter des participants</p>
+  <h5>Dans mes campagnes en cours, vous invitez des participants à la campagne de formation :</h5>
+  <ul class="list">
+    <li>- Il faut impérativement que la date de début de la campagne de formation paramétrée soit antérieure à la date de chargement du fichier des participants</li>
+    <li>- Vous pouvez inviter des participants tout au long de la campagne de formation</li>
+  </ul>
+  <p>Etape 3 : Envoyer un email aux participants</p>
+  <h5>Dans mes campagnes en cours, vous pouvez envoyer un email avec un contenu personnalisé aux participants :</h5>
+  <ul class="list">
+    <li>- Ce peut être un email de relance pour rappeler aux participants que la campagne de formation touche bientôt à sa fin, pour formuler que la campagne de formation est obligatoire, etc.</li>
+    <li>- Cet email peut être envoyé à tous les participants ou à une liste de destinataires personnalisée</li>
+  </ul>
+  <p>Etape 4 : Statistiques</p>
+  <h5>Dans mes campagnes en cours, vous pouvez accéder aux statistiques de la campagne de formation en cours : taux de participation, résultats par participant, etc.</h5>
+  <h5>Dans mes campagnes terminées, vous pouvez accéder aux statistiques de la campagne de formation après la fin de celle-ci : taux de participation, résultats par participant, etc.</h5>
+  </ul>
+</span>
+<span id="info_my_module">
+  <h3 class="title title-3">CE QUE VOUS POUVEZ FAIRE…</h3>
+  <p>Dans mes modules:</p>
+  <ul class="list">
+    <li>- Accédez à la bibliothèque des modules de formation mise à disposition par Amundi</li>
+    <li>- Créer une campagne de formation</li>
+  </ul>
+</span>
+% else:
+<span id="info_my_campaign">
+  <h3 class="title title-3">${_('WHAT YOU CAN DO')}…</h3>
+  <p>Step 1 : Manage my campaign</p>
+  <h5>In created training campaigns , you can manage your training campaign:</h5>
+  <ul class="list">
+    <li>- Starting / Ending date</li>
+    <li>- Minimum percentage of success required</li>
+    <li>- Mandatory or optional training campaign</li>
+  </ul>
+  <h5>These parameters can be modified all along the training campaign.</h5>
+  <p>Step 2 : Invite participants</p>
+  <h5>In in progress training campaigns, your can invite participants to your training campaign:</h5>
+  <ul class="list">
+    <li>- Starting date has to be exceeded to invite participants </li>
+    <li>- You can invite participants all along the training campaign</li>
+  </ul>
+  <p>Step 3 : Send email to participants</p>
+  <h5>In in progress training campaigns, you can send a personalized email to participants:</h5>
+  <ul class="list">
+    <li>- It can be an email to remind participants the training campaign will end soon, the training campaign is mandatory, etc. </li>
+    <li>- Email can be sent to all participants or to a customized mailing list</li>
+  </ul>
+  <p>Step 4 : Statistics</p>
+  <h5>In in progress training campaigns, you can access statistics of the in progress training campaign: participation rate, success rate, score by participant, etc. </h5>
+  <h5>In completed training campaigns, you can access statistics of the training campaign after it ended: vous pouvez accéder aux statistiques de la campagne de formation après la fin de celle-ci : participation rate, success rate, score by participant, etc.</h5>
+  </ul>
+</span>
+<span id="info_my_module">
+  <h3 class="title title-3">${_('WHAT YOU CAN DO')}…</h3>
+  <p>${_('My modules:')}</p>
+  <ul class="list">
+    <li>- ${_('Access a training modules library provided by Amundi')}</li>
+    <li>- ${_('Create a training campaign')}</li>
+  </ul>
+</span>
+% endif
       </div>
 
     </aside>
@@ -1081,7 +1127,7 @@ from student.roles import CourseInstructorRole,CourseStaffRole
   margin-top: 15px;
 }
 #main {
-  min-height: calc(100vh - 145px);
+  min-height: 1000x;
 }
 .content,.wrapper-header header.primary,.wrapper-mast .mast, .wrapper-mast .metadata {
   max-width: 1500px;
@@ -1106,6 +1152,9 @@ from student.roles import CourseInstructorRole,CourseStaffRole
 }
 .up_list_courses p {
   font-style:normal;
+}
+#content {
+  min-height: 100vh !important;
 }
 </style>
 <!--
