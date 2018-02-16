@@ -20,7 +20,7 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
           /* regex inputs */
           this.regex_inputs = function(id1,id2,id3) {
             var array = [id1,id2,id3];
-            var regex = /^[a-z0-9_+-]*$/;
+            var regex = /^[a-zA-Z0-9_+-]*$/;
             var retour = []
             ensure = true;
             for(var i = 0;i<array.length;i++) {

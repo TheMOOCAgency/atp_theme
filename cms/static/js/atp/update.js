@@ -3,9 +3,10 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
     this.constructor = function(data) {
       this.data = data;
     },
-    this.get_value = function(id,Class) {
+    this.get_value = function(id,idcolor,Class) {
       var This = $('#'+id);
       var data = new FormData($('#'+id).get(0));
+      data.append(new FormData($('#'+idcolor).get(0));)
       var That = $('.'+Class);
       $('.'+Class).each(function(){
         var val = $(this).attr('value');
@@ -36,7 +37,7 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
     var updateMicrosite = new update_microsite();
     updateMicrosite.save_action('form_update','action-cancel');
     $('.action-save').click(function(){
-      var values = updateMicrosite.get_value('upload_microsite_logo','input_update');
+      var values = updateMicrosite.get_value('upload_microsite_logo','upload_microsite_logo_couleur','input_update');
       var path = window.location.path;
       $.ajax({
         url:path,

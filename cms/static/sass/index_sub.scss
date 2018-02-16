@@ -1,0 +1,157 @@
+.is_hide_atp {
+  display: none !important;
+}
+.is_show_atp {
+  display: block !important;
+}
+/* couleur */
+#category_block button,#category_block button:hover,#category_block button:focus {
+  border-radius: 5px;
+  background-color: transparent;
+  outline: none;
+  height: 38px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-left: 3px;
+  margin-right: 3px;
+  font-size: 13px;
+  font-weight: bold;
+  width: calc(25% - 6px);
+  display: block;
+  float: left;
+  text-shadow: none;
+}
+#fundamental_search {
+  border: 3px solid rgb(0,84,131);
+  color: rgb(0,84,131);
+}
+#oursolutions_search {
+  border: 3px solid rgb(160,120,40);
+  color: rgb(0,84,131);
+}
+#salesapproach_search {
+  border: 3px solid rgb(200,50,80);
+  color: rgb(0,84,131);
+}
+#regulatory_search {
+  border: 3px solid rgb(57,178,182);
+  color: rgb(0,84,131);
+}
+.active_s_atp {
+  color: #fff !important;
+}
+.active_s_atp#fundamental_search {
+  background-color: rgb(0,84,131) !important;
+}
+.active_s_atp#oursolutions_search {
+  background-color: rgb(160,120,40) !important;
+}
+.active_s_atp#salesapproach_search {
+  background-color: rgb(200,50,80) !important;
+}
+.active_s_atp#regulatory_search {
+  background-color: rgb(57,178,182) !important;
+}
+#module_search {
+  width: 30%;
+  float: left;
+}
+#category_block {
+  text-align: center;
+}
+#search_block {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.is_block_clear {
+  display: block;
+  clear: both;
+}
+.content_img {
+  position: relative;
+}
+#info_my_module {
+  display: none;
+}
+#info_my_module p {
+  font-size: 16px;
+}
+.list {
+  width: 96%;
+  margin: 0;
+  margin-left: 4%;
+  margin-bottom: 10px;
+}
+.list li {
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+.bit p {
+  margin-bottom: 6px;
+  margin-top: 15px;
+}
+#main {
+  min-height: 1000x;
+}
+.content,.wrapper-header header.primary,.wrapper-mast .mast, .wrapper-mast .metadata {
+  max-width: 1500px;
+}
+.view-dashboard .content-supplementary {
+  right: 8%;
+}
+.wrapper-mast {
+  padding-top: 60px;
+}
+.wrapper-mast .mast.has-actions .page-header {
+  font-size: 28px;
+}
+.page-sub-header {
+  font-size: 24px;
+}
+.wrapper-mast .mast {
+  margin-bottom: 60px;
+}
+.view-dashboard .content-supplementary {
+  top: 294px;
+}
+.up_list_courses p {
+  font-style:normal;
+}
+#content {
+  min-height: 100vh !important;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+/* Modif LO affichage aside */
+#content{
+  padding: 0px 40px 0px 40px
+}
+.wrapper-content{
+  width: 70%;
+  float: left;
+  padding: 0px 40px 0px 0px;
+  min-height: 360px;
+  height: auto;
+}
+.content{
+  min-width: auto;
+}
+.view-dashboard .content-supplementary {
+  margin-left: 0px;
+  width: 30%;
+  position: static;
+  top:auto;
+  right:auto;
+  float: left;
+}
+.view-dashboard .content-primary{
+  width: 100%;
+}
+.wrapper-mast{
+  padding-left: 0px;
+  padding-right: 0px;
+}
+#show_library_button {
+  display: block;
+}

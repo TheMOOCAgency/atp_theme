@@ -6,6 +6,11 @@
   from django.utils.translation import ugettext as _
   from student.roles import GlobalStaff
 %>
+<style>
+#show_library_button {
+ display: none;
+}
+</style>
 % if uses_pattern_library:
   <div class="wrapper-user-menu dropdown-menu-container logged-in js-header-user-menu">
       <h3 class="title menu-title">
