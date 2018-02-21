@@ -10,53 +10,363 @@
   from microsite_configuration.models import Microsite
   from student.models import User
 %>
-<div class="wrapper-header wrapper" id="view-top">
-  <header class="primary" role="banner">
 
-    <div class="wrapper wrapper-l">
-      <h1 class="branding" id="logo_cms">
-        <a class="brand-link" href="/">
-          <img class="brand-image" src="${static.url('images/studio-logo.png')}" alt="${settings.STUDIO_NAME}" />
+
+
+<%
+#Microsite-logo
+  microsite_key = MicrositeAdminManager.objects.get(user=user).microsite_id
+  microsite_data=Microsite.objects.get(pk=microsite_key).values
+
+  if microsite_data.get('logo_couleur') is not None:
+    logo=microsite_data.get('logo_couleur')
+  else :
+    logo=microsite_data.get('logo')
+
+  if microsite_data.get('amundi_brand') is not None:
+    amundi_brand=microsite_data.get('amundi_brand')
+  else :
+    amundi_brand=''
+
+  if microsite_data.get('primary_color') is not None:
+    primary_color=microsite_data.get('primary_color')
+  else :
+    primary_color="#0C1C49"
+
+  if microsite_data.get('secondary_color') is not None:
+    secondary_color=microsite_data.get('secondary_color')
+  else :
+    secondary_color="#00B6ED"
+%>
+<%
+  course_org = ''
+  try:
+      microsite_key = MicrositeAdminManager.objects.get(user=user).microsite_id
+      course_org = microsite = Microsite.objects.get(pk=microsite_key).key+'.'
+  except:
+      course_org = ''
+      pass
+%>
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<style>
+#fil_ariane a,#fil_ariane a:hover,#fil_ariane a:focus,#fil_ariane a:visited {
+    color: #31aeee;
+    text-shadow: none;
+    text-decoration: none;
+}
+#img_amundi_academy {
+  height: 30px;
+  width: 278.1px;
+  background-image: url("${static.url('images/logo-amundiacademy.png')}");
+  background-size: cover;
+  float: left;
+  margin-top: 20px;
+}
+#logo_cms {
+  float: left;
+}
+.nav-account-help {
+  display: none !important;
+}
+.fa-caret-down {
+  font-family: FontAwesome !important;
+}
+.nav-account-dashboard {
+  display: none !important;
+}
+.wrapper-header {
+  height: 90px;
+}
+.wrapper-l,.wrapper-r {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.bouton-nav-admin{
+  min-width: 143px;
+}
+#amundi-brand-container img{
+  height: 22px;
+  margin-left: 30px;
+}
+#amundi-brand-container{
+  margin-left: 10px;
+  height: 60px;
+  float: left;
+  display: flex;
+  align-items: center;
+  border-left: 1px solid white;
+}
+.trait-separation {
+    height: 100%;
+    border-left: 1px solid white;
+    opacity: 0.5;
+}
+.wrapper-header.wrapper{
+  height: 70px;
+  padding-top: 5px;
+}
+.wrapper-header .branding{
+  padding: 0px;
+}
+header.primary{
+  display: flex;
+  align-items: center;
+}
+.wrapper-header .nav-account{
+  position: static;
+  padding: 0;
+}
+.brand-image{
+  height: 60px;
+}
+.wrapper-header, .wrapper-header .wrapper-l, .wrapper-header .wrapper-r{
+  background-color:  ${primary_color}!important;
+}
+#user-icone svg{
+  font-size: 20px;
+  padding: 10px;
+  border: 1px solid ${secondary_color};
+  background-color: ${secondary_color};
+  border-radius: 50%;
+}
+#user-icone{
+  height: 100%;
+  color: white;
+  margin-left: 10px;
+  display: inline;
+}
+#main-menu-back{
+  background-color: ${primary_color};
+  position: absolute;
+  left:0;
+  top:70px;
+  width: 100%;
+  text-align: center;
+  z-index:10;
+  display:none;
+}
+#main-menu-back li a{
+  color: white;
+  background-color:transparent;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-family: "mywebfont", "Open Sans";
+}
+#main-menu-back li{
+  padding: 10px;
+}
+nav{
+  width: 100%;
+}
+.wrapper-header .info-course{
+  padding: 0;
+}
+#atp_menu_mobile{
+  margin: 5px;
+}
+
+/* Menu du profil */
+#profile-submenu{
+  background-color: white;
+  border: 1px solid lightgray;
+  position: absolute;
+  top: 55px;
+  width: 250px;
+  height: auto;
+  z-index: 10;
+  font-weight: 600;
+  right:0;
+  display: none;
+}
+#profile-submenu a{
+  line-height: 25.6px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  display: block;
+  text-align: left;
+  font-weight: 600;
+  border-top: 1px solid gray;
+}
+.name-atp-user {
+    font-size: 14px;
+    text-transform: capitalize;
+    border-top: 0px;
+}
+.email-atp-user {
+    margin-top: 0px;
+    text-transform: lowercase;
+    font-weight: 400;
+    font-size: 12px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+.access-back-atp {
+    padding: 0px 10px;
+}
+.user-account-atp {
+    text-transform: lowercase;
+    font-family: 'mywebfont';
+    color: rgb(74, 74, 74);
+    font-weight: 600;
+    padding: 0px 10px;
+}
+#profile-submenu a {
+  color:inherit;
+}
+.profile-name-atp{
+  border-top: 0px!important;
+}
+.boutton-deconnexion {
+    padding: 10px;
+    padding-top: 0px;
+}
+.boutton-deconnexion a {
+    color: gray!important;
+    background-color: lightgray;
+    border: 0px solid !important;
+    text-align: center!important;
+    text-transform: uppercase;
+}
+.block{
+  display: block;
+}
+
+/* Animatione menu hover */
+#profile_menu:hover  #profile-submenu{
+  display: block!important;
+}
+#main_menu:hover  #main-menu-back{
+  display: block!important;
+}
+#logo-back-atp, #bouttons-back-atp{
+  width: 50%;
+}
+#bouttons-back-atp{
+  text-align: right;
+}
+#profile_menu{
+  width: auto!important;
+    position: absolute!important;
+    right: 10px!important;
+    top: 15px!important;
+    background-color: transparent!important;
+    height: 100%;
+}
+#atp_menu_mobile {
+    margin: 5px;
+    margin-left: 0;
+    position: absolute;
+    top: 60%;
+    right: 60px;
+    height: 32px;
+    margin-top: -23px;
+    cursor: pointer;
+    padding-bottom: 30px;
+    padding-left: 60px;
+}
+#atp_menu_mobile:hover body{
+  background-color: pink;
+}
+.brand-image{
+  margin-right: 10px;
+  float: left;
+}
+</style>
+
+
+
+<div class="wrapper-header wrapper" id="view-top">
+  <header>
+    <nav>
+      <div id="logo-back-atp">
+        <a href="\">
+          <img class="brand-image" src="${settings.LMS_ROOT_URL}${logo}" alt="${settings.STUDIO_NAME}" />
         </a>
-      </h1>
-      <style>
-      #fil_ariane a,#fil_ariane a:hover,#fil_ariane a:focus,#fil_ariane a:visited {
-          color: #31aeee;
-          text-shadow: none;
-          text-decoration: none;
-      }
-      #img_amundi_academy {
-        height: 30px;
-        width: 278.1px;
-        background-image: url("${static.url('images/logo-amundiacademy.png')}");
-        background-size: cover;
-        float: left;
-        margin-top: 20px;
-      }
-      #logo_cms {
-        float: left;
-      }
-      .nav-account-help {
-        display: none !important;
-      }
-      .fa-caret-down {
-        font-family: FontAwesome !important;
-      }
-      .nav-account-dashboard {
-        display: none !important;
-      }
-      .wrapper-header {
-        height: 90px;
-      }
-      .wrapper-l,.wrapper-r {
-        margin-top: 10px;
-        margin-bottom: 10px;
-      }
-      .bouton-nav-admin{
-        min-width: 143px;
-      }
-      </style>
-      <div id="img_amundi_academy"></div>
+
+        %if amundi_brand!='' and amundi_brand=="true":
+        <div id="amundi-brand-container">
+            <img src="${settings.LMS_ROOT_URL}/media/logo-amundiacademy_blanc.png" alt="amundi_academy" class="logo-amundi-academy">
+        </div>
+        %endif
+
+      </div>
+
+      % if not context_course:
+      <div id="main_menu">
+        <img id="atp_menu_mobile" src="${settings.LMS_ROOT_URL}/media/menu_mobile.png" class="sub_picto" id="sub_mobile_img"/>
+        <div id="main-menu-back">
+          <ul>
+            <li><a href='#' class="button new-button new-library-button">${_('New Library')}</a></li>
+            <li><a href='#' class="button new-button new-course-button">${_('New module')}</a></li>
+            <li><a href='#' class="button new-button new-microsite-button">${_('New microsite')}</a></li>
+          </ul>
+        </div>
+      </div>
+      %endif
+
+        % if user.is_authenticated():
+        <div id="profile_menu">
+          <div id="user-icone">
+            <i class="far fa-user"></i>
+          </div>
+          <div id="profile-submenu">
+          <div class="user-account-atp">
+            <a class="class-submenu profile-name-atp" href="/u/${request.user.username}">
+              <p class="name-atp-user">${request.user.first_name} ${request.user.last_name}</p>
+              <p class="email-atp-user">${user.email}</p>
+            </a>
+          </div>
+            <div class="access-back-atp">
+              <a href="${settings.LMS_ROOT_URL.replace('https://','https://'+course_org)}">${_("Access Trainee Interface")}</a>
+            </div>
+          <div class="boutton-deconnexion">
+            <a class="" href="/logout">
+              <i class="fas fa-power-off"></i>
+              ${_('logout')}
+            </a>
+          </div>
+        </div>
+        </div>
+
+          <!--
+          <nav class="nav-account nav-is-signedin nav-dd ui-right" aria-label="${_('Account')}">
+            <h2 class="sr-only">${_("Account Navigation")}</h2>
+            <ol>
+              <li class="nav-item nav-account-help">
+                <h3 class="title"><span class="label"><a href="${get_online_help_info(online_help_token)['doc_url']}" title="${_('Contextual Online Help')}" target="_blank">${_("Help")}</a></span></h3>
+              </li>
+              <li class="nav-item nav-account-user">
+                <%include file="user_dropdown.html" args="online_help_token=online_help_token,course_org=course_org" />
+              </li>
+            </ol>
+          </nav>
+        -->
+
+        % else:
+          <nav class="nav-not-signedin nav-pitch" aria-label="${_('Account')}">
+            <h2 class="sr-only">${_("Account Navigation")}</h2>
+            <ol>
+              <li class="nav-item nav-not-signedin-help">
+                <a href="${get_online_help_info(online_help_token)['doc_url']}" title="${_('Contextual Online Help')}" target="_blank">${_("Help")}</a>
+              </li>
+              <li class="nav-item nav-not-signedin-signup">
+                <a class="action action-signup" href="${reverse('signup')}">${_("Sign Up")}</a>
+              </li>
+              <li class="nav-item nav-not-signedin-signin">
+                <a class="action action-signin" href="${reverse('login')}">${_("Sign In")}</a>
+              </li>
+            </ol>
+          </nav>
+        % endif
+
+    </nav>
+
+
+
+
+
+
+
       <span style="display:block;clear:left"></span>
       % if context_course:
       <%
@@ -228,7 +538,7 @@
         <span class="course-title">${_("Program Administration")}</span>
       </h2>
       % endif
-    </div>
+
 
     <div class="wrapper wrapper-r">
       % if static.show_language_selector():
@@ -257,73 +567,11 @@
         </nav>
       % endif
       % endif
-      % if user.is_authenticated():
-      <nav class="nav-account nav-is-signedin nav-dd ui-right" aria-label="${_('Account')}">
-        <h2 class="sr-only">${_("Account Navigation")}</h2>
-        <ol>
-          % if request.path == '/home/' and request.user.is_staff:
-          <style>
-          .is-signedin .wrapper-r {
-            width: 40%;
-          }
-          .is-signedin .wrapper-l {
-            width: 60%;
-          }
-          </style>
-          <li class="nav-item nav-account-user">
-            <h3 class="title bouton-nav-admin"><span class="label">
-            <a href='#' class="button new-button new-microsite-button">${_('New microsite')}</a>
-            </span></h3>
-          </li>
-          <li class="nav-item nav-account-user">
-            <h3 class="title bouton-nav-admin"><span class="label">
-            <a href='#' class="button new-button new-course-button">${_('New module')}</a>
-            </span></h3>
-          </li>
-          <li class="nav-item nav-account-user">
-            <h3 class="title bouton-nav-admin"><span class="label">
-            <a href='#' class="button new-button new-library-button">${_('New Library')}</a>
-            </span></h3>
-          </li>
-          % endif
-          <li class="nav-item nav-account-help">
-            <h3 class="title"><span class="label"><a href="${get_online_help_info(online_help_token)['doc_url']}" title="${_('Contextual Online Help')}" target="_blank">${_("Help")}</a></span></h3>
-          </li>
-          <li class="nav-item nav-account-user">
-            <script>
-            console.log('${user}');
-            </script>
-            <%
-              course_org = ''
-              try:
-                  microsite_key = MicrositeAdminManager.objects.get(user=user).microsite_id
-                  course_org = microsite = Microsite.objects.get(pk=microsite_key).key+'.'
-              except:
-                  course_org = ''
-                  pass
-            %>
-            <%include file="user_dropdown.html" args="online_help_token=online_help_token,course_org=course_org" />
-          </li>
-        </ol>
-      </nav>
 
-    % else:
-      <nav class="nav-not-signedin nav-pitch" aria-label="${_('Account')}">
-        <h2 class="sr-only">${_("Account Navigation")}</h2>
-        <ol>
-          <li class="nav-item nav-not-signedin-help">
-            <a href="${get_online_help_info(online_help_token)['doc_url']}" title="${_('Contextual Online Help')}" target="_blank">${_("Help")}</a>
-          </li>
-          <li class="nav-item nav-not-signedin-signup">
-            <a class="action action-signup" href="${reverse('signup')}">${_("Sign Up")}</a>
-          </li>
-          <li class="nav-item nav-not-signedin-signin">
-            <a class="action action-signin" href="${reverse('login')}">${_("Sign In")}</a>
-          </li>
-        </ol>
-      </nav>
-    % endif
     </div>
+
+
+
   </header>
 </div>
 <style>

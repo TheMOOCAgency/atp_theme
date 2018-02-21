@@ -14,9 +14,6 @@ from openedx.core.djangolib.markup import HTML, Text
   require(["js/factories/index"], function (IndexFactory) {
       IndexFactory();
   });
-  //require(['${static.url("js/invite.js")}']);
-  require(['https://demo-atp.themoocagency.com/media/studio/update.js']);
-  //require(['${static.url("js/atp/update.js")}']);
 </%block>
 <%namespace name='static' file='static_content.html'/>
 <%block name="content">
@@ -36,11 +33,9 @@ from openedx.core.djangolib.markup import HTML, Text
   border-top: 0px;
   position: static;
 }
-textarea{
-  width: 50%;
-}
 </style>
   <section id="primary">
+    <h4>DISCLAIMER</h4>
     <div id="fil_ariane"><a href="/">${_('My campaigns')} ></a></div>
     <div id="title">
       <h1>${_('Manage my microsite')}</h1>
@@ -91,26 +86,7 @@ textarea{
         %endif
         <input type="text" value="" name="contact_address" id="micro_contact_address" placeholder="microsite contact address" class="input_update">
       </div>
-      <!-- Disclaimer -->
-      <div class="form_update">
-        <label> Disclaimer </label>
-        <textarea name="disclaimer" rows="15" id="micro_disclaimer" placeholder="site disclaimer" class="input_update">
-          %if disclaimer is UNDEFINED :
-            <p>No text</p>
-          %else:
-            ${disclaimer|n}
-          %endif
-        </textarea>
-      </div>
-      <!--Trademark -->
-      <div id="pre_trademark" class="form_update">
-        %if trademark is UNDEFINED :
-          <label> Trademark</label>
-        %else:
-          <label>Trademark : ${trademark}</label>
-        %endif
-        <input type="text" value="" name="trademark" id="micro_trademark" placeholder="microsite trademark" class="input_update">
-      </div>
+
       <!-- AmundiAcademy Brand -->
       <div id="pre_amundibrand" class="form_update">
         % if amundi_brand:

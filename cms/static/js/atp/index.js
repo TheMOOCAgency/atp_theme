@@ -16,9 +16,12 @@ define(["domReady", "jquery", "underscore"],
           var formData = new FormData();
           formData.append('display_name',$('#new-microsite-name').val());
           formData.append('logo',$('#new-microsite-logo').prop("files")[0]);
+          formData.append('logo_couleur',$('#new-microsite-logo-couleur').prop("files")[0]);
           formData.append('primary_color',$('#new-microsite-primary_color').val());
           formData.append('secondary_color',$('#new-microsite-secondary_color').val());
+          formData.append('contact_address',$('#new-microsite-contact').val());
           formData.append('language',$('#language-value').val());
+          formData.append('amundi_brand',$('#amundi-brand').val());
           $.ajax({
             url:url,
             data:formData,
@@ -35,6 +38,13 @@ define(["domReady", "jquery", "underscore"],
         // message aucune campagne
         var campaign_info = function(e) {
           $('#course-index-tabs').find('li').find('button').click(function(){
+            $('.modules_items').removeClass('is_hide_atp').removeClass('is_show_atp');
+            $('.campaign_items').removeClass('is_hide_atp').removeClass('is_show_atp');
+            $('.action_search').removeClass('active_s_atp');
+            $('#search_block').find("input").attr('value',"");
+            $('.search_result').find('p').addClass('is_hidden_atp');
+            $('.search_result').addClass('is_hide_atp');
+            $('#search_block_campaign').find("input").attr('value',"");
             var This = $(this);
             var data = This.data('sub');
             if(data == 'all') {
@@ -42,6 +52,9 @@ define(["domReady", "jquery", "underscore"],
               $('.content-supplementary').css('border','1px solid #c8c8c8');
               $('#info_my_campaign').show();
               $('#info_my_module').hide();
+              $('#module_search').removeClass('is_show_atp').addClass('is_hide_atp');
+              $('#campaign_search').removeClass('is_hide_atp').addClass('is_show_atp');
+              $('.libraries').removeClass("active");
             }else{
               $('#no_course').hide();
             }
@@ -49,17 +62,251 @@ define(["domReady", "jquery", "underscore"],
               $('.content-supplementary').css('border','1px solid transparent');
               $('#info_my_campaign').hide();
               $('#info_my_module').hide();
+              $('#module_search').removeClass('is_show_atp').addClass('is_hide_atp');
+              $('#campaign_search').removeClass('is_show_atp').addClass('is_hide_atp');
+              $('.libraries').removeClass("active");
+            }
+            if(data == 'libraries-tab') {
+              $('.content-supplementary').css('border','1px solid transparent');
+              $('#info_my_campaign').hide();
+              $('#info_my_module').hide();
+              $('#module_search').removeClass('is_show_atp').addClass('is_hide_atp');
+              $('.libraries').addClass("active");
             }
             if(data == 'template') {
               $('#generic_title').show();
               $('.content-supplementary').css('border','1px solid #c8c8c8');
               $('#info_my_campaign').hide();
               $('#info_my_module').show();
+              $('#module_search').removeClass('is_hide_atp').addClass('is_show_atp');
+              $('#campaign_search').removeClass('is_show_atp').addClass('is_hide_atp');
+              $('.libraries').removeClass("active");
             }else{
               $('#generic_title').attr('style','');
             }
           })
         }
+        // search
+        var search_module = function(e) {
+          // variable globales
+          var categ_search = '';
+          var input_s = '';
+          // click picto loupe
+          function do_search(cat,inp) {
+            // si init
+            var rows = 0;
+            var no_result = true;
+            if(cat == "" && input_s == "") {
+
+              $('.modules_items').removeClass('is_hide_atp');
+              no_result = false;
+              rows = $('.modules_items').length;
+            }else if(cat != "" && inp == "") {
+
+              $('.modules_items').each(function(){
+                var That = $(this);
+                var that_data = That.data("search");
+                if(that_data.indexOf("fundamental") != -1) {
+                  that_data = that_data.replace("s","");
+                }
+                if(cat.indexOf(that_data) != -1) {
+                  That.removeClass('is_hide_atp');
+                  no_result = false;
+                  rows = rows + 1;
+                }else{
+                  That.addClass('is_hide_atp');
+                }
+              });
+
+            }else if(cat == "" && inp != "") {
+
+              $('.modules_items').each(function(){
+                var That = $(this);
+                var that_data = That.find('.course-title').text().toLowerCase();
+                if(that_data.indexOf(inp) != -1) {
+                  That.removeClass('is_hide_atp');
+                  no_result = false;
+                  rows = rows + 1;
+                }else{
+                  That.addClass('is_hide_atp');
+                }
+              });
+
+            }else if(cat != "" && inp != "") {
+
+              $('.modules_items').each(function(){
+                var That = $(this);
+                var that_data = That.find('.course-title').text().toLowerCase();
+                var data = That.data("search");
+                if(data.indexOf("fundamental") != -1) {
+                  data = data.replace("s","");
+                }
+                if(that_data.indexOf(inp) != -1 && cat.indexOf(data) != -1) {
+                  That.removeClass('is_hide_atp');
+                  no_result = false;
+                  rows = rows + 1;
+                }else{
+                  That.addClass('is_hide_atp');
+                }
+              });
+
+            }
+            if(no_result) {
+              $('.search_result').find('.p_1').removeClass('is_hidden_atp');
+            }else{
+              $('.search_result').find('.p_2').removeClass('is_hidden_atp');
+              $('.search_result').find('.p_2').find('span').text(rows);
+            }
+          };
+          $('#search_block').find('button').click(function(){
+            $('.search_result').removeClass('is_hide_atp');
+            $('.search_result').find('p').addClass('is_hidden_atp');
+            input_s = $('#search_block').find('input').attr("value");
+            do_search(categ_search,input_s);
+          })
+          //click bouton categorie
+          $('#category_block').find("button").click(function(){
+            $('.search_result').removeClass('is_hide_atp');
+            $('.search_result').find('p').addClass('is_hidden_atp');
+            var This = $(this);
+            var is_active = false;
+            if(This.hasClass('active_s_atp')) {
+              is_active = true;
+            }
+            //$('#category_block').find("button").removeClass('active_s_atp');
+            if(!is_active) {
+              This.addClass('active_s_atp');
+              categ_search = categ_search+This.data("categ");
+            }else{
+              This.removeClass('active_s_atp');
+              categ_search = categ_search.replace(This.data("categ"),"");
+            }
+            do_search(categ_search,input_s);
+          })
+          $('.search_result').find('button').click(function(){
+            categ_search = '';
+            input_s = '';
+            $('.search_result').find('p').addClass('is_hidden_atp');
+            $('.search_result').addClass('is_hide_atp');
+            $('.active_s_atp').removeClass('active_s_atp');
+            $('#search_block').find('input').attr('value',"");
+            do_search(categ_search,input_s);
+          })
+        }
+        // search campaign
+        var search_campaign = function(e) {
+          // variable globales
+          var categ_search = '';
+          var input_s = '';
+          // click picto loupe
+          function do_search(cat,inp) {
+            // si init
+            var rows = 0;
+            var no_result = true;
+            if(cat == "" && input_s == "") {
+
+              $('.campaign_items').removeClass('is_hide_atp');
+              no_result = false;
+              rows = $('.campaign_items').length;
+            }else if(cat != "" && inp == "") {
+
+              $('.campaign_items').each(function(){
+                var That = $(this);
+                var that_data = That.data("search");
+                if(that_data.indexOf("fundamental") != -1) {
+                  that_data = that_data.replace("s","");
+                }
+                if(cat.indexOf(that_data) != -1) {
+                  That.removeClass('is_hide_atp');
+                  no_result = false;
+                  rows = rows + 1;
+                }else{
+                  That.addClass('is_hide_atp');
+                }
+              });
+
+            }else if(cat == "" && inp != "") {
+
+              $('.campaign_items').each(function(){
+                var That = $(this);
+                var that_data = That.find('.course-title').text().toLowerCase();
+                if(that_data.indexOf(inp) != -1) {
+                  That.removeClass('is_hide_atp');
+                  no_result = false;
+                  rows = rows + 1;
+                }else{
+                  That.addClass('is_hide_atp');
+                }
+              });
+
+            }else if(cat != "" && inp != "") {
+
+              $('.campaign_items').each(function(){
+                var That = $(this);
+                var that_data = That.find('.course-title').text().toLowerCase();
+                var data = That.data("search");
+                if(data.indexOf("fundamental") != -1) {
+                  data = data.replace("s","");
+                }
+                if(that_data.indexOf(inp) != -1 && cat.indexOf(data) != -1) {
+                  That.removeClass('is_hide_atp');
+                  no_result = false;
+                  rows = rows + 1;
+                }else{
+                  That.addClass('is_hide_atp');
+                }
+              });
+
+            }
+            if(no_result) {
+              $('.search_result').find('.p_1').removeClass('is_hidden_atp');
+            }else{
+              $('.search_result').find('.p_2').removeClass('is_hidden_atp');
+              $('.search_result').find('.p_2').find('span').text(rows);
+            }
+          };
+          $('#search_block_campaign').find('button').click(function(){
+            input_s = $('#search_block_campaign').find('input').attr("value");
+            $('.search_result').find('p').addClass('is_hidden_atp');
+            do_search(categ_search,input_s);
+            $('.search_result').removeClass('is_hide_atp');
+          })
+          //click bouton categorie
+          $('#category_block_campaign').find("button").click(function(){
+            var This = $(this);
+            var is_active = false;
+            $('.search_result').find('p').addClass('is_hidden_atp');
+            $('.search_result').removeClass('is_hide_atp');
+            if(This.hasClass('active_s_atp')) {
+              is_active = true;
+            }
+            //$('#category_block').find("button").removeClass('active_s_atp');
+            if(!is_active) {
+              This.addClass('active_s_atp');
+              categ_search = categ_search+This.data("categ");
+            }else{
+              This.removeClass('active_s_atp');
+              categ_search = categ_search.replace(This.data("categ"),"");
+            }
+            do_search(categ_search,input_s);
+          })
+
+          $('.search_result').find('button').click(function(){
+            categ_search = '';
+            input_s = '';
+            $('.search_result').find('p').addClass('is_hidden_atp');
+            $('.search_result').addClass('is_hide_atp');
+            $('.active_s_atp').removeClass('active_s_atp');
+            $('#search_block_campaign').find('input').attr('value',"");
+            do_search(categ_search,input_s);
+          })
+
+        }
+        // search message
+        var new_search = function() {
+
+        }
+        // svg loading
         var svg_load = function(){
           jQuery('img.svg').each(function(){
               var $img = jQuery(this);
@@ -92,6 +339,8 @@ define(["domReady", "jquery", "underscore"],
             $('.new-microsite-cancel').bind('click',ajax_cancel_microsite);
             campaign_info();
             svg_load();
+            search_module();
+            search_campaign();
             //$('#course-index-tabs .microsite-tab').bind('click', showTab('microsite'));
         };
 

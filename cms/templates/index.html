@@ -24,8 +24,8 @@ from student.roles import CourseInstructorRole,CourseStaffRole
   require(["js/factories/index"], function (IndexFactory) {
       IndexFactory();
   });
-  require(["https://demo-atp.themoocagency.com/media/studio/index.js"]);
-  //require(['${static.url("js/atp/index.js")}']);
+  //require(["https://demo-atp.themoocagency.com/media/studio/index.js"]);
+  require(['${static.url("js/atp/index.js")}']);
 </%block>
 <%namespace name='static' file='static_content.html'/>
 <%block name="content">
@@ -67,15 +67,19 @@ from student.roles import CourseInstructorRole,CourseStaffRole
   display: block;
   clear: both;
 }
-#search_block input, #search_block button {
+#search_block input, #search_block button,#search_block_campaign input, #search_block_campaign button {
   float: left;
   display: block;
+}
+#search_block_campaign button {
+  width: 38px;
+  height: 38px;
 }
 #search_block button {
   width: 38px;
   height: 38px;
 }
-#search_block button,#search_block button:focus,#search_block button:hover {
+#search_block_campaign button,#search_block_campaign button:focus,#search_block_campaign button:hover,#search_block button,#search_block button:focus,#search_block button:hover {
   color: #fff !important;
   background-color: #31aeee !important;
   border: none !important;
@@ -85,7 +89,7 @@ from student.roles import CourseInstructorRole,CourseStaffRole
   background-position: center;
   background-repeat: no-repeat;
 }
-#search_block input {
+#search_block_campaign input,#search_block input {
   width: calc(100% - 38px);
   height: 38px;
   border-radius: 0px;
@@ -313,6 +317,16 @@ from student.roles import CourseInstructorRole,CourseStaffRole
                   <input type="text" class="new-microsite-contact" id="new-microsite-contact" name="contact" required="" aria-describedby="tip-new-microsite-contact tip-error-new-microsite-contact" placeholder="ex support@company.com">
                   <span class="tip tip-error is-hiding" id="tip-error-new-microsite-contact"></span>
                 </li>
+                <li class="field color required" id="field-microsite-trademark">
+                  <label for="new-microsite-trademark">Microsite trademark</label>
+                  <input type="text" class="new-microsite-trademark" id="new-microsite-trademark" name="trademark" required="" aria-describedby="tip-new-microsite-trademark tip-error-new-microsite-trademark" placeholder="ex © Amundi 2018">
+                  <span class="tip tip-error is-hiding" id="tip-error-new-microsite-trademark"></span>
+                </li>
+                <li class="field color required" id="field-microsite-trademark">
+                  <label for="new-microsite-trademark">Microsite Disclaimer</label>
+                  <textarea name="disclaimer" rows="10" class="new-microsite-disclaimer" id="new-microsite-disclaimer" name="disclaimer" required="" aria-describedby="tip-new-microsite-disclaimer tip-error-new-microsite-disclaimer"></textarea>
+                  <span class="tip tip-error is-hiding" id="tip-error-new-microsite-trademark"></span>
+                </li>
                 <li class="field select required" id="field-microsite-amundibrand">
                   <label for="new-microsite-amundibrand">AmundiAcademy Brand</label>
                   <select class="input new-microsite-amundibrand select language-selector" id="amundi-brand" name="amundi_brand">
@@ -524,7 +538,7 @@ from student.roles import CourseInstructorRole,CourseStaffRole
                     course_start_compare = q['course_start_compare']
                     duration = q['duration']
                     %>
-                    <li class="course-item" data-course-key="${course_info['course_key']}" data-status="all">
+                    <li class="course-item campaign_items" data-course-key="${course_info['course_key']}" data-search="${categories.lower().replace(' ','')}" data-status="all">
                       <div class="content_img">
                         <span class="img_${categories.lower().replace(' ','')}" /></span>
                         <img src="${course_img['raw']}" class="img_course"/>
@@ -597,7 +611,7 @@ from student.roles import CourseInstructorRole,CourseStaffRole
                     course_start_compare = q['course_start_compare']
                     duration = q['duration']
                     %>
-                    <li class="course-item" data-course-key="${course_info['course_key']}" data-status="all">
+                    <li class="course-item campaign_items" data-course-key="${course_info['course_key']}" data-search="${categories.lower().replace(' ','')}" data-status="all">
                       <div class="content_img">
                         <span class="img_${categories.lower().replace(' ','')}" /></span>
                         <img src="${course_img['raw']}" class="img_course"/>
@@ -700,7 +714,7 @@ from student.roles import CourseInstructorRole,CourseStaffRole
                     course_start_compare = q['course_start_compare']
                     duration = q['duration']
                     %>
-                    <li class="course-item" data-course-key="${course_info['course_key']}" data-status="all">
+                    <li class="course-item campaign_items" data-course-key="${course_info['course_key']}" data-search="${categories.lower().replace(' ','')}" data-status="all">
                       <div class="content_img">
                         <span class="img_${categories.lower().replace(' ','')}" /></span>
                         <img src="${course_img['raw']}" class="img_course"/>
@@ -1049,7 +1063,109 @@ from student.roles import CourseInstructorRole,CourseStaffRole
 
     </article>
   </section>
-
+  <style>
+  .active_s_atp {
+    color: #fff !important;
+  }
+  .active_s_atp#fundamental_search {
+    background-color: rgb(0,84,131) !important;
+  }
+  .active_s_atp#oursolutions_search {
+    background-color: rgb(160,120,40) !important;
+  }
+  .active_s_atp#salesapproach_search {
+    background-color: rgb(200,50,80) !important;
+  }
+  .active_s_atp#regulatory_search {
+    background-color: rgb(57,178,182) !important;
+  }
+  #campaign_search {
+    width: 30%;
+    float: left;
+  }
+  #category_block_campaign {
+    text-align: center;
+  }
+  #search_block_campaign {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  #category_block_campaign button,#category_block_campaign button:hover,#category_block_campaign button:focus {
+    border-radius: 5px;
+    background-color: transparent;
+    outline: none;
+    height: 38px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 3px;
+    margin-right: 3px;
+    font-size: 13px;
+    font-weight: bold;
+    width: calc(25% - 6px);
+    display: block;
+    float: left;
+    text-shadow: none;
+  }
+  #campaign_search h2,#module_search h2 {
+    color: #31aeee;
+  }
+  .search_result p{
+    color: #b2b2b2;
+    margin-top: 10px !important;
+  }
+  .search_result button,.search_result button:hover,.search_result button:focus{
+    color: #fff !important;
+    border: none !important;
+    background-image: none !important;
+    border-radius: 0px !important;
+    background-color: #31aeee !important;
+  }
+  .is_hidden_atp {
+    visibility: hidden;
+  }
+  </style>
+  <!-- block recherche campagne -->
+  <div id="campaign_search" class="is_show_atp">
+    <h2>${_("SEARCH IN MY CAMPAIGNS")}:</h2>
+    <div id="search_block_campaign">
+      <input type="text" name="text" value="" placeholder='${_("Search for a campaign")}'/>
+      <button class="action_search_campaign"></button>
+      <span class="is_block_clear"></span>
+    </div>
+    <div id="category_block_campaign">
+      <button class="action_search" id="fundamental_search" data-categ="fundamental">${_("Fundamentals")}</button>
+      <button class="action_search" id="oursolutions_search" data-categ="oursolutions">${_("Our solutions")}</button>
+      <button class="action_search" id="salesapproach_search" data-categ="salesapproach">${_("Sales approach")}</button>
+      <button class="action_search" id="regulatory_search" data-categ="regulatory">${_("Regulatory")}</button>
+      <span class="is_block_clear"></span>
+    </div>
+    <div class="search_result is_hide_atp">
+      <p class="is_hidden_atp p_1">${_("No match! Please, try a new search")}.</p>
+      <p class="is_hidden_atp p_2"><span></span> ${_("results found in your campaigns")}.</p>
+      <button>${_("New search")}</button>
+    </div>
+  </div>
+  <!-- block recherche module -->
+    <div id="module_search" class="is_hide_atp">
+      <h2>${_("SEARCH IN MY MODULES")}:</h2>
+      <div id="search_block">
+        <input type="text" name="text" value="" placeholder='${_("Search in a module")}'/>
+        <button class="action_search"></button>
+        <span class="is_block_clear"></span>
+      </div>
+      <div id="category_block">
+        <button class="action_search" id="fundamental_search" data-categ="fundamental">${_("Fundamentals")}</button>
+        <button class="action_search" id="oursolutions_search" data-categ="oursolutions">${_("Our solutions")}</button>
+        <button class="action_search" id="salesapproach_search" data-categ="salesapproach">${_("Sales approach")}</button>
+        <button class="action_search" id="regulatory_search" data-categ="regulatory">${_("Regulatory")}</button>
+        <span class="is_block_clear"></span>
+      </div>
+      <div class="search_result is_hide_atp">
+        <p class="is_hidden_atp p_1">${_("No match! Please, try a new search")}.</p>
+        <p class="is_hidden_atp p_2"><span></span> ${_("results found in your modules")}.</p>
+        <button>${_("New search")}</button>
+      </div>
+    </div>
     <aside class="content-supplementary" role="complementary">
       <div class="bit">
         % if LANGUAGE_CODE == 'fr':
@@ -1129,21 +1245,6 @@ from student.roles import CourseInstructorRole,CourseStaffRole
       </div>
 
     </aside>
-    <div id="module_search" class="is_hide_atp">
-      <div id="search_block">
-        <input type="text" name="text" value="" />
-        <button class="action_search"></button>
-        <span class="is_block_clear"></span>
-      </div>
-      <div id="category_block">
-        <button class="action_search" id="fundamental_search" data-categ="fundamental">${_("Fundamentals")}</button>
-        <button class="action_search" id="oursolutions_search" data-categ="oursolutions">${_("Our solutions")}</button>
-        <button class="action_search" id="salesapproach_search" data-categ="salesapproach">${_("Sales approach")}</button>
-        <button class="action_search" id="regulatory_search" data-categ="regulatory">${_("Regulatory")}</button>
-        <span class="is_block_clear"></span>
-      </div>
-    </div>
-
   % else:
   <section class="content">
     <article class="content-primary" role="main">
