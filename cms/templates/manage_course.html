@@ -39,7 +39,47 @@ from openedx.core.djangolib.markup import HTML, Text
 .date_title h5 {
  width: 100% !important;
 }
+#title h1 {
+ margin-bottom: 0;
+ text-transform: initial!important;
+ margin-top: 0px!important;
+}
+.separation-trait{
+  padding: 0!important;
+  margin: 0!important;
+  margin-bottom: 15px!important;
+  padding-bottom: 15px!important;
+}
+.last_sub_input{
+  padding: 0!important;
+  margin:0!important;
+}
+.cell_content{
+  padding-bottom: 0px!important;
+}
+.language_display{
+  font-size: 13px;
+  font-style: italic;
+  font-family: "mywebfont";
+  color: #05144d;
+  font-weight: 600;
+}
 </style>
+<%
+    if course.language=="fr":
+        if LANGUAGE_CODE == 'fr':
+          language_display="Français"
+        else :
+          language_display="French"
+    elif course.language=="en" :
+        if LANGUAGE_CODE == 'fr':
+          language_display="Anglais"
+        else :
+          language_display="English"
+    else :
+       language_display="Not defined"
+%>
+
 <section id="content">
   <section id="primary">
     <div id="fil_ariane"><a href="/">${_('My campaigns')} ></a></div>
@@ -69,6 +109,11 @@ from openedx.core.djangolib.markup import HTML, Text
           <div class="all_dates">
             <ul>
               <li><span id="add_course_org">${course.org}</span></li>
+              %if LANGUAGE_CODE == 'fr':
+                <span class="language_display">Langue : ${language_display} </span>
+              %else :
+                <span class="language_display">Language : ${language_display} </span>
+              %endif
               <span style="display:block;clear:left;"></span>
             </ul>
           </div>
@@ -139,11 +184,10 @@ from openedx.core.djangolib.markup import HTML, Text
         <label>${_('Starting time UTC')}</label>
         <input type="text" id="course-start-time" placeholder="HH:MM" data-key="start_time">
       </div>
-      <div class="sub_input">
+      <div class="sub_input separation-trait">
 	<!--
         ${_('The day the first invitations are dispatched when launching the training campaign')}
 	-->
-	&nbsp;
       </div>
       <div class="field date" id="field-course-start-date">
         <label>${_('Ending date')}</label>

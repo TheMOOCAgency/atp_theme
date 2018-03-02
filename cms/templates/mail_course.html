@@ -3,6 +3,9 @@
 from django.utils.translation import ugettext as _
 
 from openedx.core.djangolib.markup import HTML, Text
+from microsite_manager.models import MicrositeAdminManager
+from microsite_configuration.models import Microsite
+from student.models import User
 %>
 <%inherit file="base.html" />
 
@@ -23,6 +26,21 @@ mail_corp = "WARNING : Before clicking on 'Send', please read your text carefull
 </%block>
 <%namespace name='static' file='static_content.html'/>
 <%block name="content">
+
+<%
+try:
+  microsite_key = MicrositeAdminManager.objects.get(user=user).microsite_id
+  microsite_data=Microsite.objects.get(pk=microsite_key).values
+  if microsite_data.get('primary_color') is not None:
+    primary_color=microsite_data.get('primary_color')
+  else :
+    primary_color="#0C1C49"
+except:
+  primary_color="#0C1C49"
+
+%>
+
+
 <link rel="stylesheet" type="text/css" href="${static.url('js/vendor/timepicker/jquery.timepicker.css')}">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 <style>
@@ -94,12 +112,30 @@ mail_corp = "WARNING : Before clicking on 'Send', please read your text carefull
 #title p {
   text-transform: inherit !important;
 }
+.email_send button{
+  display: block!important;
+  height: auto!important;
+  margin-top: 15px!important;
+  margin-bottom: auto!important;
+  text-decoration: none!important;
+  color: #fff!important;
+  border-radius: 30px!important;
+  font-weight: bold!important;
+  line-height: 60px!important;
+  vertical-align: middle!important;
+  text-align: center!important;
+  font-size: 20px!important;
+  background-color: ${primary_color}!important;
+}
+#title h1{
+  text-transform: inherit!important;
+}
 </style>
 <section id="content">
   <section id="primary">
     <div id="fil_ariane" data-lang="${LANGUAGE_CODE}"><a href="/">${_('My campaigns')} ></a></div>
     <div id="title">
-      <h1>${_('SEND EMAIL TO PARTICIPANTS')}</h1>
+      <h1>${_('Send email to participants')}</h1>
       <p style="padding-bottom:0;">
         ${_('During the training campaign, you can send a personalized e-mail to your participants or to targeted receivers.')}
       </p>

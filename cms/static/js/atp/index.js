@@ -164,6 +164,17 @@ define(["domReady", "jquery", "underscore"],
             input_s = $('#search_block').find('input').attr("value");
             do_search(categ_search,input_s);
           })
+          // enter input
+          // enter input
+          $('#search_block').find('input').on('keydown', function(e) {
+              if (e.which == 13) {
+                  e.preventDefault();
+                  input_s = $(this).attr("value");
+                  $('.search_result').find('p').addClass('is_hidden_atp');
+                  do_search(categ_search,input_s);
+                  $('.search_result').removeClass('is_hide_atp');
+              }
+          });
           //click bouton categorie
           $('#category_block').find("button").click(function(){
             $('.search_result').removeClass('is_hide_atp');
@@ -271,6 +282,16 @@ define(["domReady", "jquery", "underscore"],
             do_search(categ_search,input_s);
             $('.search_result').removeClass('is_hide_atp');
           })
+          // enter input
+          $('#search_block_campaign').find('input').on('keydown', function(e) {
+              if (e.which == 13) {
+                  e.preventDefault();
+                  input_s = $(this).attr("value");
+                  $('.search_result').find('p').addClass('is_hidden_atp');
+                  do_search(categ_search,input_s);
+                  $('.search_result').removeClass('is_hide_atp');
+              }
+          });
           //click bouton categorie
           $('#category_block_campaign').find("button").click(function(){
             var This = $(this);

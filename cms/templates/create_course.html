@@ -3,6 +3,9 @@
 from django.utils.translation import ugettext as _
 
 from openedx.core.djangolib.markup import HTML, Text
+from microsite_manager.models import MicrositeAdminManager
+from microsite_configuration.models import Microsite
+from student.models import User
 %>
 <%inherit file="base.html" />
 
@@ -19,6 +22,19 @@ from openedx.core.djangolib.markup import HTML, Text
 </%block>
 <%namespace name='static' file='static_content.html'/>
 <%block name="content">
+
+<%
+try:
+  microsite_key = MicrositeAdminManager.objects.get(user=user).microsite_id
+  microsite_data=Microsite.objects.get(pk=microsite_key).values
+  if microsite_data.get('primary_color') is not None:
+    primary_color=microsite_data.get('primary_color')
+  else :
+    primary_color="#0C1C49"
+except:
+  primary_color="#0C1C49"
+
+%>
 <style>
 .img_fundamentals {
   background-image: url('/static/images/fondamentaux.png');
@@ -36,6 +52,22 @@ from openedx.core.djangolib.markup import HTML, Text
 .text_color_red{
   color: red !important;
 }
+
+#create{
+  display: block!important;
+  height: auto!important;
+  margin-top: 15px!important;
+  margin-bottom: auto!important;
+  text-decoration: none!important;
+  color: #fff!important;
+  border-radius: 30px!important;
+  font-weight: bold!important;
+  line-height: 60px!important;
+  vertical-align: middle!important;
+  text-align: center!important;
+  font-size: 20px!important;
+  background-color: ${primary_color}!important;
+}
 #title p {
   text-transform: inherit !important;
 }
@@ -45,9 +77,11 @@ from openedx.core.djangolib.markup import HTML, Text
   <section id="primary">
     <div id="fil_ariane"><a href="/">${_('My campaigns')} ></a></div>
     <div id="title">
-      <h1 style="text-transform:uppercase;">${_('create my campaign')}</h1>
+      <h1 style="text-transform:initial!important;">${_('Create my campaign')}</h1>
       <p>
-        ${_('To create your training campaign, you have to specify an unique ID and the target of your training campaign. Please, note that the target wording will be indicated in the statistics of this training campaign.')}
+        ${_('To create your training campaign, you have to specify an unique campaign title as long as a target for your training campaign.')}
+        <br>
+        ${_('Please, note that these will be indicated in the statistics dashboard of this training campaign.')}
       </p>
     </div>
     <ul class="list-courses">
@@ -84,7 +118,7 @@ from openedx.core.djangolib.markup import HTML, Text
     </div>
     <div class="cell_content" id="cell_2">
       <div class="date_title">
-        <h5 style="padding-top: 25px;">${_('Specify unique ID and target')}</h5>
+        <h5 style="padding-top: 25px;width:100%;">${_('Specify an unique campaign title as long as a target for your training campaign')}:</h5>
         <!--
         <p>${_('This identifier is reflected in the statistical dashboards')}</P>
         <p>${_('This allows you to specify the target and / or training period')}</P>
@@ -92,7 +126,7 @@ from openedx.core.djangolib.markup import HTML, Text
         <span style="clear:both;display:block;"></span>
       </div>
       <div class="field date">
-        <label>${_('Unique ID')}</label>
+        <label>${_('Campaign title (unique id)')}</label>
         <input type="text" id="course_number" placeholder="${_('')}" value="" data-course_key="${course.id}" data-org="${course.org}" data-display_name="${course.display_name_with_default_escaped}"/>
       </div>
       <div class="field date">

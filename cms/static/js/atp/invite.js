@@ -1,7 +1,9 @@
 define(['domReady', 'jquery', 'underscore','jquery.ui'],function(domReady, $, _) {
   var onReady = function() {
     // method preview csv file
-    function csv_preview(input,output) {
+    var ok_csv = true;
+
+    function csv_preview(input,output,next) {
       var reader = new FileReader();
       var fileinput = document.getElementById(input);
       reader.onload = function(){
@@ -11,7 +13,24 @@ define(['domReady', 'jquery', 'underscore','jquery.ui'],function(domReady, $, _)
         out.html();
         for(var line = 0; line < lines.length; line++){
           if(limit < 6) {
-            out.append('<p><span>'+lines[line].split(',').join('</span><span>')+'</span><p>');
+            columns = lines[line].split(',');
+            var row_id = 'csv_row_'+line;
+            var paragraphe = "<p id='"+row_id+"'></p>";
+            out.append(paragraphe);
+            var cur_row = $('#'+row_id);
+            var email_column;
+            if(line > 0) {
+              email_column = "<span class='email_row'>"+columns[0]+"</span>";
+              cur_row.append(email_column);
+            }else{
+              email_column = "<span>"+columns[0]+"</span>";
+              cur_row.append(email_column);
+            }
+            for(var i = 1;i<columns.length;i++) {
+              var span = "<span>"+columns[i]+"</span>";
+              cur_row.append(span);
+            }
+            //out.append('<p><span>'+lines[line].split(',').join('</span><span>')+'</span><p>');
           }else{
             line = lines.length - 1;
           }
@@ -20,14 +39,28 @@ define(['domReady', 'jquery', 'underscore','jquery.ui'],function(domReady, $, _)
           var This = $(this);
           var text = This.text();
           if(text == '') {
-            console.log('html : '+text);
             This.remove();
+          }
+        })
+        $('.email_row').each(function(){
+          var This = $(this);
+          var text = This.text();
+          var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          if(!re.test(text)) {
+            ok_csv = false;
+            This.addClass("is_error");
           }
         })
         out.find('span').attr('style','');
         $('#output_section').show();
+        if(ok_csv) {
+            $('#'+next).show();
+        }else{
+          console.log("csv file contains invalids email addresses");
+        }
       }
       reader.readAsText(fileinput.files[0]);
+      return "canard";
     };
     function invite() {
       this.constructor = function(body,action,data,checkbox) {
@@ -70,8 +103,7 @@ define(['domReady', 'jquery', 'underscore','jquery.ui'],function(domReady, $, _)
           if(check.indexOf('csv') == -1) {
             alert('fichier au format incorect');
           }else{
-            csv_preview('invite_participant','output');
-            $('#'+next).show();
+          csv_preview('invite_participant','output',next)
           }
         })
       }

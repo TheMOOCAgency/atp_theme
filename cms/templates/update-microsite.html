@@ -15,7 +15,7 @@ from openedx.core.djangolib.markup import HTML, Text
       IndexFactory();
   });
   //require(['${static.url("js/invite.js")}']);
-  require(['https://demo-atp.themoocagency.com/media/studio/update.js']);
+  require(['https://${settings.SITE_NAME}/media/studio/update.js']);
   //require(['${static.url("js/atp/update.js")}']);
 </%block>
 <%namespace name='static' file='static_content.html'/>
@@ -52,6 +52,7 @@ textarea{
       </div>
       <!--White Logo -->
       <div id="logo_preview">
+        <label>Logo transparent</label>
         <img src="https://${settings.SITE_NAME+logo_site}" />
       </div>
       <div id="pre_picture" class="form_update_logo">
@@ -62,9 +63,11 @@ textarea{
       <!--Logo Color -->
       % if logo_couleur:
       <div id="logo_preview_couleur">
+        <label>Logo couleur</label>
         <img src="https://${settings.SITE_NAME+logo_couleur}" />
       </div>
       %else:
+      <label>Logo couleur</label>
       <p>Aucun logo couleur défini pour ce site</p>
       %endif
       <div id="pre_picture" class="form_update_logo">
