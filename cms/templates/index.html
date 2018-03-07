@@ -1252,7 +1252,7 @@ header{
     float: left;
     text-shadow: none;
     color: rgb(102,102,102);
-    font-size: 14px;
+    font-size: 13px;
     font-weight: normal;
   }
   #campaign_search h2,#module_search h2 {
@@ -1264,6 +1264,7 @@ header{
   .search_result p{
     color: #666;
     margin-top: 10px !important;
+    font-size: 14px !important;
   }
   .search_result button,.search_result button:hover,.search_result button:focus{
     color: #fff !important;
@@ -1272,8 +1273,7 @@ header{
     border-radius: 5px !important;
     background-color: #31aeee !important;
     font-family: "mywebfont";
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 14px;
   }
   .is_hidden_atp {
     /*visibility: hidden;*/
@@ -1298,6 +1298,9 @@ header{
   ::-moz-placeholder {
       font-style: italic;
   }
+  :-ms-input-placeholder {
+      font-style: italic;
+  }
   .step-numbers{
     padding: 4px 9px;
     background-color: gray;
@@ -1314,13 +1317,19 @@ header{
     color: #05144d;
     font-weight: 600;
   }
+
+  #category_block button, #category_block button:hover, #category_block button:focus {
+    font-size: 13px !important;
+    color: rgb(102,102,102) !important;
+    font-weight: normal !important;
+  }
   </style>
 
 
 
   <!-- block recherche campagne -->
   <div id="campaign_search" class="is_show_atp">
-    <h2>${_("SEARCH IN MY CAMPAIGNS")}:</h2>
+    <h2>${_("SEARCH IN MY CAMPAIGNS")}…</h2>
     <div id="search_block_campaign">
       <input type="text" name="text" value="" placeholder='${_("Search for a campaign")}'/>
       <button class="action_search_campaign"></button>
@@ -1341,7 +1350,7 @@ header{
   </div>
   <!-- block recherche module -->
     <div id="module_search" class="is_hide_atp">
-      <h2>${_("SEARCH IN MY MODULES")}:</h2>
+      <h2>${_("SEARCH IN MY MODULES")}…</h2>
       <div id="search_block">
         <input type="text" name="text" value="" placeholder='${_("Search in a module")}'/>
         <button class="action_search"></button>
@@ -1504,7 +1513,6 @@ header{
 ${settings.FEATURES.get('SEM_ENDPOINTS')}
 </p>
 -->
-
 <div style="clear:both"></div>
 
 </%block>

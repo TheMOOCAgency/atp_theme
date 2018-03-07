@@ -71,11 +71,23 @@ except:
 #title p {
   text-transform: inherit !important;
 }
+.sub_input {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+.field input {
+  margin-bottom: 0px !important;
+}
+.cell_content {
+  padding-bottom: 0px !important;
+}
 </style>
 <link rel="stylesheet" type="text/css" href="${static.url("js/vendor/timepicker/jquery.timepicker.css")}">
 <section id="content">
   <section id="primary">
-    <div id="fil_ariane"><a href="/">${_('My campaigns')} ></a></div>
+    <div id="fil_ariane"><a href="/">${_('My modules')} ></a></div>
     <div id="title">
       <h1 style="text-transform:initial!important;">${_('Create my campaign')}</h1>
       <p>
@@ -118,7 +130,7 @@ except:
     </div>
     <div class="cell_content" id="cell_2">
       <div class="date_title">
-        <h5 style="padding-top: 25px;width:100%;">${_('Specify an unique campaign title as long as a target for your training campaign')}:</h5>
+        <h5 style="width:100%;">${_('Specify an unique campaign title as long as a target for your training campaign')}:</h5>
         <!--
         <p>${_('This identifier is reflected in the statistical dashboards')}</P>
         <p>${_('This allows you to specify the target and / or training period')}</P>

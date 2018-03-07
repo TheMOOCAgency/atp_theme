@@ -56,7 +56,7 @@ define(['domReady', 'jquery', 'underscore','jquery.ui'],function(domReady, $, _)
         if(ok_csv) {
             $('#'+next).show();
         }else{
-          console.log("csv file contains invalids email addresses");
+          $('#pop_up_mail_fail').addClass('is_show');
         }
       }
       reader.readAsText(fileinput.files[0]);
@@ -96,12 +96,14 @@ define(['domReady', 'jquery', 'underscore','jquery.ui'],function(domReady, $, _)
       this.file_up_input = function(id,next) {
         var This = $('#'+id);
         This.change(function(){
+          $('#pop_up_mail_fail').removeClass('is_show');
+          $('#pop_up_invite').removeClass('is_show');
           var val = This.attr('value');
           var split = val.split('.');
           var long = split.length - 1;
           var check = split[long];
           if(check.indexOf('csv') == -1) {
-            alert('fichier au format incorect');
+            $('#pop_up_mail_fail').addClass('is_show');
           }else{
           csv_preview('invite_participant','output',next)
           }

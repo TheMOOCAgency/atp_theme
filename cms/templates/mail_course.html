@@ -130,6 +130,24 @@ except:
 #title h1{
   text-transform: inherit!important;
 }
+#mceu_6 div#mceu_17{
+  display: none;
+}
+#email_2{
+  margin-top:0;
+}
+.last_block_compteur{
+  color:#70767A!important;
+}
+.ending_page{
+  padding-top:15px!important;
+}
+#error-field{
+  border:1px solid #CB5744;
+  display: none;
+  padding:20px;
+  color:#05144d;
+}
 </style>
 <section id="content">
   <section id="primary">
@@ -200,10 +218,10 @@ except:
       <h3 id="h3_6"><div class="num" id="num_6">1/1</div><span>${_("EMAIL TO PARTICIPANTS")}</span></h3>
     </div>
     <div class="cell_content" id="cell_6">
-      <div class="date_title particulary">
+      <!--<div class="date_title particulary">
         <h5>${_('Edit and send the invitation email to participants of your choice.')}</h5>
         <span style="clear:both;display:block;"></span>
-      </div>
+      </div>-->
       <div id="send_it">
         <h6>${_('Send email to:')}</h6>
         <!-- checkbox 1 -->
@@ -247,14 +265,18 @@ except:
       <div class="field textarea">
         <textarea id="mytextarea"></textarea>
       </div>
+      <!--
       <div class="sub_input last_sub_input last_block">
         <!--
         ${_("We recommend sending only one message per week to learners. Before sending your e-mail, read your text carefully and send it to your email address. You will be able to verify that all the links work and that the content is good.")}
-      -->
-      </div>
+
+    </div>-->
 
       <div class="sub_input last_sub_input last_block ending_page">
         <span>${_('WARNING')} : </span>${_("Don't hesitate to validate the email invitation by sending a test invitation to yourself. It will allow you to validate content and links included in the email invitation.")}
+      </div>
+      <div id="error-field">
+
       </div>
       <div class="field email_send">
         <button id="send_email">${_('Send')}</button>
@@ -305,5 +327,8 @@ while(actual > lim) {
   elem.style.fontSize = default_font+'em';
   actual = elem.clientHeight;
 }
+
+
+
 </script>
 </%block>

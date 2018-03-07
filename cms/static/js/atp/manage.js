@@ -219,6 +219,14 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
           /* init forms values */
           data.init_date('course-start-date');
           data.init_date('course-end-date');
+          //disable start date if enrolled users exists
+          var exists = $('#course-start-date').data('read');
+          if(exists == "true" || exists == true) {
+            $("#course-start-date").datepicker('disable');
+            $("#course-start-time").prop('readOnly', true);
+            $('#invite_already_msg').show();
+          }
+
           data.update_course_id('course_identity','course_session_top',data.course_id,data.run);
           /* action on campaign click */
           $('.campaign_type_check').click(function(){

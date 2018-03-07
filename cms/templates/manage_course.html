@@ -14,8 +14,8 @@ from openedx.core.djangolib.markup import HTML, Text
   require(["js/factories/index"], function (IndexFactory) {
       IndexFactory();
   });
-  require(['${static.url("js/atp/manage.js")}']);
-  //require(['https://demo-atp.themoocagency.com/media/studio/js/atp/manage.js'])
+  //require(['${static.url("js/atp/manage.js")}']);
+  require(['https://demo-atp.themoocagency.com/media/dev/manage.js'])
 </%block>
 <%namespace name='static' file='static_content.html'/>
 <%block name="content">
@@ -79,7 +79,11 @@ from openedx.core.djangolib.markup import HTML, Text
     else :
        language_display="Not defined"
 %>
-
+<style>
+#course_identity_voile_bis,.cell_content .field #course_identity_voile {
+  top: 40px !important;
+}
+</style>
 <section id="content">
   <section id="primary">
     <div id="fil_ariane"><a href="/">${_('My campaigns')} ></a></div>
@@ -137,11 +141,17 @@ from openedx.core.djangolib.markup import HTML, Text
     <!-- cell 1/4 -->
     <!-- cell 1/4 -->
     <div class="cell_title">
+      <!--
       <h3 id="h3_2"><div class="num" id="num_2">1/4</div><span>${_('campaign id')}</span></h3>
+      -->
+      <h3 id="h3_2"><div class="num" id="num_2">1/4</div><span>${_('identifying your campaign')}</span></h3>
     </div>
     <div class="cell_content" id="cell_2">
       <div class="date_title">
+        <!--
         <h5>${_('Create your campagne id')}</h5>
+        -->
+        <h5 style="width:100%;">${_('Specify an unique campaign title as long as a target for your training campaign')}:</h5>
         <!--
         <p>${_('This id is indicated in statistic reports.')}</P>
         <p>${_('Precise your target and/or campaign period.')}</P>
@@ -151,10 +161,10 @@ from openedx.core.djangolib.markup import HTML, Text
       <div class="field date">
         <div id="course_identity_voile"></div>
         <div id="course_identity_voile_bis"></div>
-        <label>${_('Unique ID')}</label>
+        <label>${_('Campaign title (unique id)')}</label>
         <label>${_('Target')}</label>
-        <input type="text" id="course_identity" placeholder="${_('')}" value="" disabled="true" value="555"/>
-        <input type="text" id="course_session_top" placeholder="${_('')}" value="" disabled="true" value="555"/>
+        <input style="margin-top: 0px;margin-bottom: 0px;" type="text" id="course_identity" placeholder="${_('')}" value="" disabled="true" value="555"/>
+        <input style="margin-top: 0px;margin-bottom: 0px;" type="text" id="course_session_top" placeholder="${_('')}" value="" disabled="true" value="555"/>
       </div>
       <div class="sub_input last_sub_input">
         ${_('Rules to create your campaign id: no space, no  punctuation mark')}
@@ -178,11 +188,14 @@ from openedx.core.djangolib.markup import HTML, Text
       </div>
       <div class="field date" id="field-course-start-date">
         <label>${_('Starting date')}</label>
-        <input type="text" id="course-start-date" placeholder="YYYY/MM/DD" data-key="start_date">
+        <input type="text" id="course-start-date" placeholder="YYYY/MM/DD" data-key="start_date" data-read="${'false' if not enroll_start else 'true'}">
       </div>
       <div class="field date" id="field-course-start-date">
         <label>${_('Starting time UTC')}</label>
-        <input type="text" id="course-start-time" placeholder="HH:MM" data-key="start_time">
+        <input type="text" id="course-start-time" placeholder="HH:MM" data-key="start_time" data-read="${'false' if not enroll_start else 'true'}">
+      </div>
+      <div class="sub_input last_sub_input" id="invite_already_msg" style="display: none;">
+        ${_('You already have invited participants to this training campaign. Starting date can no longer be edited.')}
       </div>
       <div class="sub_input separation-trait">
 	<!--
@@ -321,5 +334,6 @@ while(actual > lim) {
   elem.style.fontSize = default_font+'em';
   actual = elem.clientHeight;
 }
+console.log('is enroll : ${enroll_start}');
 </script>
 </%block>

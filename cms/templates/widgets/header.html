@@ -99,7 +99,6 @@ except:
 
   nav#studio-nav{
    background-color: ${primary_color};
-   padding: 5px;
    height: 70px;
    box-sizing: border-box;
    padding-bottom: 0;
@@ -120,6 +119,9 @@ except:
     display: flex;
     align-items: center;
   }
+  #logo-ms{
+    padding-top: 5px;
+  }
   #amundi-academy{
     float: left;
     height: 100%;
@@ -134,7 +136,6 @@ except:
   }
   #amundi-academy-wrapper{
     height: 100%;
-    padding-bottom: 5px;
     box-sizing: border-box;
   }
 
@@ -142,9 +143,13 @@ except:
   #user-icone svg{
     font-size: 20px;
     padding: 10px;
+    border: 1px solid ${primary_color};
+    background-color: ${primary_color};
+    border-radius: 50%;
+  }
+  #user-icone svg:hover{
     border: 1px solid ${secondary_color};
     background-color: ${secondary_color};
-    border-radius: 50%;
   }
   #user-icone{
     color: white;
@@ -259,7 +264,7 @@ except:
 
 <nav id="studio-nav">
   <div id="nav-logo">
-    <a href="\">
+    <a id="logo-ms" href="\">
       %if logo!='':
         <img class="logo-ms" src="${settings.LMS_ROOT_URL}${logo}" alt="${settings.STUDIO_NAME}" />
       %else:
