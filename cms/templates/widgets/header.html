@@ -12,7 +12,6 @@
 %>
 
 
-
 <%
 #Microsite-logo
 try:
@@ -55,7 +54,6 @@ except:
       course_org = ''
       pass
 %>
-<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
 <style>
 #fil_ariane a,#fil_ariane a:hover,#fil_ariane a:focus,#fil_ariane a:visited {
     color: #31aeee;
@@ -140,23 +138,19 @@ except:
   }
 
   /* Partie droite nav */
-  #user-icone svg{
-    font-size: 20px;
-    padding: 10px;
-    border: 1px solid ${primary_color};
-    background-color: ${primary_color};
-    border-radius: 50%;
+  #user-icone img{
+    height: 24px;
   }
   #user-icone svg:hover{
     border: 1px solid ${secondary_color};
     background-color: ${secondary_color};
   }
-  #user-icone{
-    color: white;
-    font-size: 22px;
-    padding: 11px 0px 11px 0px;
-    border-radius: 100%;
-    width: 45px;
+  #user-icone {
+      color: white;
+      font-size: 22px;
+      padding: 9px 2px 9px 0px;
+      border-radius: 100%;
+      width: 45px;
   }
   #account-menu:hover #user-icone{
     background-color: ${secondary_color};
@@ -214,6 +208,9 @@ except:
   #access-front a{
     font-weight: 600;
   }
+  #access-front:hover{
+    border-color:${secondary_color};
+  }
 
   /* Menu déroulant burger */
   #burger-dropdown{
@@ -264,16 +261,11 @@ except:
   .nav-not-signedin.nav-pitch a{
     color: white;
   }
-
-
-#user-icone {
-    color: white;
-    font-size: 22px;
-    padding: 11px 0px 11px 0px;
-    border-radius: 100%;
-    width: 45px;
-}
-
+  .campaign-link-back{
+    text-align: center;
+    padding-top: 50px;
+    font-size: 2.3rem;
+  }
 
 </style>
 
@@ -299,7 +291,7 @@ except:
     % if user.is_authenticated():
     <div id="account-menu">
       <div id="user-icone">
-        <i class="far fa-user"></i>
+        <img src="${settings.LMS_ROOT_URL}/media/user.png" alt="">
       </div>
       <div id="user-dropdown-menu">
       <div class="user-menu-element ">
@@ -313,8 +305,8 @@ except:
       </div>
       <div class="user-menu-element" id="logout-boutton">
         <a class="" href="/logout">
-          <i class="fas fa-power-off"></i>
-          ${_('logout')}
+          <img style="height:20px;"src="${settings.LMS_ROOT_URL}/media/poweroff.png" alt="">
+          <span>${_('logout')}</span>
         </a>
       </div>
     </div>
@@ -585,4 +577,5 @@ except:
 #course-index-tabs .sub_menu button:not(:disabled) {
   background: transparent;
 }
+
 </style>

@@ -362,6 +362,37 @@ define(["domReady", "jquery", "underscore"],
             svg_load();
             search_module();
             search_campaign();
+
+
+            // Redirection vers le module concerné après create my campaign back to modules
+            function getParameterByName(name, url) {
+                if (!url) url = window.location.href;
+                name = name.replace(/[\[\]]/g, "\\$&");
+                var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                    results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return '';
+                return decodeURIComponent(results[2]);
+            }
+            var campaign_from =getParameterByName("campaign");
+            var module_from =getParameterByName("module");
+            if(campaign_from){
+              $("#"+campaign_from).scrollIntoView();
+            }
+            if(module_from){
+              $("#my-campaigns").removeClass("active_button");
+              $("#my-modules").addClass("active_button");
+              $(".up_list_courses").css('display','none');
+              $("#generic_title").css("display","block");
+              $(".campaign_items").css("display","none");
+              $(".modules_items").css("display","list-item");
+              $("#campaign_search").addClass('is_hide_atp').removeClass('is_show_atp');
+              $("#module_search").removeClass('is_hide_atp').addClass('is_show_atp');
+              $("#info_my_campaign").css("display","none");
+              $("#info_my_module").css("display","inline");
+              $("#"+module_from).scrollIntoView();
+            }
+
             //$('#course-index-tabs .microsite-tab').bind('click', showTab('microsite'));
         };
 

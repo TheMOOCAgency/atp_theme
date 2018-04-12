@@ -123,13 +123,15 @@ header{
   text-transform: initial!important;
 }
 .page-sub-header{
-  padding-bottom: 30px;
+  margin-top: 30px;
 }
-
 </style>
 <%
 log.info("timer 4 {}".format(datetime.datetime.now()))
 %>
+
+
+<!-- BLOC TITRE ET ONGLETS NAV NOUVEAU COURS / NOUVELLE BIBLIOTHEQUE HIDDEN -->
 <div  id="main-header-wrapper" class="wrapper-mast wrapper">
   <header class="mast has-actions">
     <h1 class="page-header">${_("Welcome to your training modules management interface")}</h1>
@@ -170,7 +172,7 @@ log.info("timer 4 {}".format(datetime.datetime.now()))
     <article class="content-primary" role="main">
 
 
-<!-- Course Creator Status -->
+<!-- FORMULAIRE DE CREATION DE MODULE/COURS -->
       % if course_creator_status=='granted':
       <div class="wrapper-create-element wrapper-create-course">
         <form class="form-create create-course course-info" id="create-course-form" name="create-course-form">
@@ -179,7 +181,6 @@ log.info("timer 4 {}".format(datetime.datetime.now()))
             <p>${_("Please correct the highlighted fields below.")}</p>
             </div>
           </div>
-
           <div class="wrapper-form">
             <h3 class="title">${_("Create a New Course")}</h3>
 
@@ -246,7 +247,8 @@ log.info("timer 4 {}".format(datetime.datetime.now()))
 <%
 log.info("timer 6 {}".format(datetime.datetime.now()))
 %>
-<!-- libraries enables -->
+
+<!-- FORMULAIRE DE CREATION DE LIBRAIRIES -->
       %if libraries_enabled and show_new_library_button:
       <div class="wrapper-create-element wrapper-create-library">
         <form class="form-create create-library library-info" id="create-library-form" name="create-library-form">
@@ -258,10 +260,8 @@ log.info("timer 6 {}".format(datetime.datetime.now()))
 
           <div class="wrapper-form">
             <h3 class="title">${_("Create a New Library")}</h3>
-
             <fieldset>
               <legend class="sr">${_("Required Information to Create a New Library")}</legend>
-
               <ol class="list-input">
                 <li class="field text required" id="field-library-name">
                   <label for="new-library-name">${_("Library Name")}</label>
@@ -278,7 +278,6 @@ log.info("timer 6 {}".format(datetime.datetime.now()))
                   <span class="tip" id="tip-new-library-org">${_("The public organization name for your library.")} ${_("This cannot be changed.")}</span>
                   <span class="tip tip-error is-hiding" id="tip-error-new-library-org"></span>
                 </li>
-
                 <li class="field text required" id="field-library-number">
                   <label for="new-library-number">${_("Library Code")}</label>
                   ## Translators: This is an example for the "code" used to identify a library,
@@ -293,7 +292,6 @@ log.info("timer 6 {}".format(datetime.datetime.now()))
                   <span class="tip tip-error is-hiding" id="tip-error-new-library-number"></span>
                 </li>
               </ol>
-
             </fieldset>
           </div>
 
@@ -310,7 +308,7 @@ log.info("timer 6 {}".format(datetime.datetime.now()))
 log.info("timer 7 {}".format(datetime.datetime.now()))
 %>
 
-<!-- Staff user -->
+<!-- FORMULAIRE DE CREATION DE MICROSITE -->
       % if request.user.is_staff:
       <div class="wrapper-create-element wrapper-create-microsite">
         <form class="form-create create-microsite microsite-info" id="create-microsite-form" name="create-microsite-form" enctype="multipart/form-data">
@@ -502,9 +500,10 @@ log.info("timer 7 {}".format(datetime.datetime.now()))
       %endif
 
 
+<!-- ONGLETS DE NAVIGATION -->
       % if libraries_enabled or is_programs_enabled:
       <ul id="course-index-tabs">
-        <li class="sub_menu"><button class="active_button" data-sub="all">${_('My campaigns')}</button></li>
+        <li class="sub_menu"><button id="my-campaigns" class="active_button" data-sub="all">${_('My campaigns')}</button></li>
         <li class="sub_menu"><button id="my-modules" data-sub="template">${_('My modules')}</button></li>
           % if request.user.is_staff:
         <li class="sub_menu"><button data-sub="microsites">${_('Microsites')}</button></li>
@@ -514,15 +513,15 @@ log.info("timer 7 {}".format(datetime.datetime.now()))
           % endif
       </ul>
       % endif
-      <!-- ici nouveau menu -->
-      <!-- ici les cours -->
-      <!-- GEOFFREY -->
+
+
 <%
 log.info("timer 8 {}".format(datetime.datetime.now()))
 %>
 
-
+<!-- SI AU MOINS UN MODULE -->
       %if len(courses) > 0:
+<!-- CALCUL NOMBRE DE CAMPAGNES -->
         <%
         course_num_utils = 0
         for course_info in sorted(courses, key=lambda s: s['display_name'].lower() if s['display_name'] is not None else ''):
@@ -531,7 +530,7 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
         %>
 
 
-<!-- if course num utils ==0 -->
+<!-- SI AUCUNE CAMPAGNE -->
         %if course_num_utils == 0:
         <style>
         .view-dashboard .content-supplementary {
@@ -544,8 +543,6 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
           font-style: italic;
       	  font-weight: bold;
         }
-        </style>
-        <style>
           #no_course{
             display: none!important;
           }
@@ -575,9 +572,10 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
         </div>
 
 
-        %else:
+<!-- SI AU MOINS UNE CAMPAGNE DISPO-->
+        % else:
         <span id="courses_listing_all">
-            <!-- cours a venir -->
+  <!-- CAMPAGNES CREES -->
             <div class="up_list_courses">
               <h3>
                 <img src="${static.url('images/campagne_prgrammee.svg')}" class='svg svg-class-title' />
@@ -672,7 +670,8 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
                 %endfor
               %endfor
             </ul>
-            <!-- cours en cours -->
+
+    <!-- CAMPAGNES EN COURS -->
             <div class="up_list_courses next_list">
               <h3>
                 <img src="${static.url('images/campagne_encours.svg')}" class='svg svg-class-title' />
@@ -717,7 +716,7 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
                         else :
                            language_display="Not defined"
                     %>
-
+                    <div id="${course_key_id}"></div>
                     <li class="course-item campaign_items" data-course-key="${course_info['course_key']}" data-search="${categories.lower().replace(' ','')}" data-status="all">
                       <div class="content_img">
                         <span class="img_${categories.lower().replace(' ','')}" /></span>
@@ -800,7 +799,8 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
                 % endif
               % endif
             </ul>
-            <!-- cours terminé -->
+
+    <!-- CAMPAGNES TERMINEES -->
             <div class="up_list_courses next_list">
               <h3>
                 <img src="${static.url('images/campagne_terminee.svg')}" class='svg svg-class-title' />
@@ -843,7 +843,7 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
                         else :
                            language_display="Not defined"
                     %>
-
+                    <div id="${course_key_id}"></div>
                     <li class="course-item campaign_items" data-course-key="${course_info['course_key']}" data-search="${categories.lower().replace(' ','')}" data-status="all">
                       <div class="content_img">
                         <span class="img_${categories.lower().replace(' ','')}" /></span>
@@ -1046,12 +1046,12 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
                 </li>
             %endfor
           %endfor
-          <!-- new script -->
         </ul>
       </div>
-      <!-- fin de ici les cours -->
-      <!-- fin de ici les cours -->
-      <!-- fin de ici les cours -->
+
+  <!-- fin de ici les cours -->
+
+<!-- SI AUCUN MODULE %if len(courses) = 0-->
       %else:
     <!--<div class="notice notice-incontext notice-instruction notice-instruction-nocourses list-notices courses-tab active">
 
@@ -1219,20 +1219,24 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
     </article>
   </section>
   <style>
-  .active_s_atp {
+  .active_s_atp,.active_s_atp:focus,.active_s_atp:hover {
     color: #fff !important;
   }
-  .active_s_atp#fundamental_search {
+  .active_s_atp#fundamental_search,.active_s_atp#fundamental_search:focus,.active_s_atp#fundamental_search:hover {
     background-color: rgb(0,84,131) !important;
+    color: #fff !important;
   }
-  .active_s_atp#oursolutions_search {
+  .active_s_atp#oursolutions_search,.active_s_atp#oursolutions_search:hover,.active_s_atp#oursolutions_search:focus {
     background-color: rgb(160,120,40) !important;
+    color: #fff !important;
   }
-  .active_s_atp#salesapproach_search {
+  .active_s_atp#salesapproach_search,.active_s_atp#salesapproach_search:focus,.active_s_atp#salesapproach_search:hover {
     background-color: rgb(200,50,80) !important;
+    color: #fff !important;
   }
-  .active_s_atp#regulatory_search {
+  .active_s_atp#regulatory_search,.active_s_atp#regulatory_search:hover,.active_s_atp#regulatory_search:focus {
     background-color: rgb(57,178,182) !important;
+    color: #fff !important;
   }
   #campaign_search,#module_search {
     border: 1px solid rgb(200, 200, 200);
@@ -1517,19 +1521,11 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
 
   %endif
 </div>
-<!-- ici nouveau menu -->
-<!-- ici nouveau menu -->
-<!-- ici nouveau menu -->
-<!-- ici nouveau menu -->
 
-<!--
-<p>
-${settings.FEATURES.get('SEM_ENDPOINTS')}
-</p>
--->
 <div style="clear:both"></div>
 <%
 log.info("timer 9 {}".format(datetime.datetime.now()))
 %>
+
 
 </%block>

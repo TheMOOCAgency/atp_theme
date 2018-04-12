@@ -86,9 +86,10 @@ from openedx.core.djangolib.markup import HTML, Text
 </style>
 <section id="content">
   <section id="primary">
-    <div id="fil_ariane"><a href="/">${_('My campaigns')} ></a></div>
+    <div id="fil_ariane"><a href="/home/?campaign=${course_key}">${_('My campaigns')} ></a></div>
     <div id="title">
       <h1>${_('Manage my campaign')}</h1>
+      <h2></h2>
       <p>
         ${_('Provide all the information required to launch your training campaign: starting/ending date, minimum percentage of success required, and campaign type.')}
       </p>
@@ -296,6 +297,9 @@ from openedx.core.djangolib.markup import HTML, Text
   </section>
   <span style="display:block;clear:left;"></span>
 </section>
+
+<div class="campaign-link-back"><a href="/home/?campaign=${course_key}">< ${_('Back to')} ${_('My campaigns')}</a></div>
+
 <div class="wrapper wrapper-notification wrapper-notification-warning" id="notification-warning" aria-hidden="false" aria-labelledby="notification-warning-title" tabindex="-1" aria-describedby="notification-warning-description" role="dialog">
   <div class="notification warning has-actions"><span class="feedback-symbol fa fa-warning" aria-hidden="true"></span>
     <div class="copy">

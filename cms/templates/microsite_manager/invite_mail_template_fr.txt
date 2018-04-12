@@ -18,7 +18,7 @@
 <table width="600" border="0" cellspacing="0" cellpadding="0" align="center" style="font-family: arial;">
 	<tr><td>
 		<!--HEADER LOGOS-->
-<table width="600" border="0" cellspacing="0" cellpadding="0" align="center" style="font-family: arial;">
+<table width="600" border="0" cellspacing="0" cellpadding="0" align="center" style="font-family: arial;background-color:#fff;">
     <tr>
       <td><img src="${org_image}" alt="Amundi" width="150" height="68" style="display:block;"></td>
 		<td width="150" height="68"></td>
@@ -72,21 +72,21 @@
 		<td style="font-weight:bold; color:#040b31;">$first_name $last_name,</td>
 		</tr>
 		<tr>
-		<td style="color:#040b31;">Vous êtes invité à participer au module de formation <strong>${course_title}.</strong></td>
+		<td style="color:#040b31;">Vous êtes invité à participer au module pédagogique <strong>${course_title}.</strong></td>
 		</tr>
 		<tr>
-		<td style="color:#040b31;"><strong>Vous avez jusqu’au ${end_date}</strong> pour compléter le module de formation. <br>
-		  Ce module de formation est <strong>${mode}.</strong></td>
+		<td style="color:#040b31;"><strong>Vous avez jusqu’au ${end_date}</strong> pour compléter le module pédagogique. <br>
+		  Ce module pédagogique est <strong>${mode}.</strong></td>
 		</tr>
 			<tr>
-				<td style="color:#040b31;">Un score de <span style="font-weight:bold;">${grade_cutoff}</span> minimum est requis pour valider le module de formation.</td>
+				<td style="color:#040b31;">Un score de <span style="font-weight:bold;">${grade_cutoff}</span> minimum est requis pour valider le module pédagogique.</td>
 		</tr>
 		<tr>
 		<td style="color:#040b31;">${content}</td>
 		</tr>
 		<tr>
 		<td style="padding:0 0 10px; color:#040b31;">
-Pour accéder au module de formation <span style="font-weight:bold;">${course_title}</span>, veuillez cliquer sur le lien suivant :<a href="${link}">${link}</a></td>
+Pour accéder au module pédagogique <span style="font-weight:bold;">${course_title}</span>, veuillez cliquer sur le lien suivant :<a href="${link}">${link}</a></td>
 		</tr>
 
 	</table>

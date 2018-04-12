@@ -148,10 +148,14 @@ except:
   padding:20px;
   color:#05144d;
 }
+#send_email{
+  line-height: 45px !important;
+    font-size: 16px!important;
+}
 </style>
 <section id="content">
   <section id="primary">
-    <div id="fil_ariane" data-lang="${LANGUAGE_CODE}"><a href="/">${_('My campaigns')} ></a></div>
+    <div id="fil_ariane" data-lang="${LANGUAGE_CODE}"><a href="/home/?campaign=${course_key}">< ${_('My campaigns')}</a></div>
     <div id="title">
       <h1>${_('Send email to participants')}</h1>
       <p style="padding-bottom:0;">
@@ -289,6 +293,9 @@ except:
   </section>
   <span style="display:block;clear:left;"></span>
 </section>
+
+<div class="campaign-link-back"><a href="/home/?campaign=${course_key}">< ${_('Back to')} ${_('My campaigns')}</a></div>
+
 <div class="wrapper wrapper-notification wrapper-notification-warning" id="notification-warning" aria-hidden="false" aria-labelledby="notification-warning-title" tabindex="-1" aria-describedby="notification-warning-description" role="dialog">
   <div class="notification warning has-actions"><span class="feedback-symbol fa fa-warning" aria-hidden="true"></span>
     <div class="copy">
