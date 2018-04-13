@@ -86,7 +86,7 @@ from openedx.core.djangolib.markup import HTML, Text
 </style>
 <section id="content">
   <section id="primary">
-    <div id="fil_ariane"><a href="/home/?campaign=${course_key}">${_('My campaigns')} ></a></div>
+    <div id="fil_ariane"><a href="/home/?campaign=${course_key}"> < ${_('My campaigns')} </a></div>
     <div id="title">
       <h1>${_('Manage my campaign')}</h1>
       <h2></h2>
@@ -168,7 +168,7 @@ from openedx.core.djangolib.markup import HTML, Text
         <input style="margin-top: 0px;margin-bottom: 0px;" type="text" id="course_session_top" placeholder="${_('')}" value="" disabled="true" value="555"/>
       </div>
       <div class="sub_input last_sub_input">
-        ${_('Rules to create your campaign id: no space, no  punctuation mark')}
+        ${_('Rules for unique ID and target')} : ${_('no space, no punctuation, no special characters')}
       </div>
     </div>
     <!-- cell 2/4 -->
