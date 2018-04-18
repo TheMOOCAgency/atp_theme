@@ -104,7 +104,9 @@ from openedx.core.djangolib.markup import HTML, Text
   color: #05144d;
   font-weight: 600;
 }
-
+h1{
+  margin-bottom: 20px;
+}
 </style>
 <%
     if course.language=="fr":
@@ -124,10 +126,7 @@ from openedx.core.djangolib.markup import HTML, Text
   <section id="primary">
     <div id="fil_ariane"><a href="/home/?campaign=${course_key}">< ${_('My campaigns')}</a></div>
     <div id="title">
-      <h1>${_('Invite participants')}</h1>
-      <p>
-        ${_('Invite participants to your training campaign')}
-      </p>
+      <h1>${_('Participants already invited to the campaign')}</h1>
     </div>
     <ul class="list-courses">
       <!-- suite -->
@@ -176,11 +175,13 @@ from openedx.core.djangolib.markup import HTML, Text
         <span style="clear:left;display:block;"></span>
       </li>
     </ul>
-    <!-- cell 1/2 -->
-    <!-- cell 1/2 -->
-    <!-- cell 1/2 -->
-    <!-- cell 1/2 -->
-    <!-- cell 1/2 -->
+
+
+    <h3>
+      ${list_test.__dict__}
+    </h3>
+    <h3>${student_enrolled}</h3>
+
     <style>
     .sub_particularity {
       position: relative;
@@ -220,90 +221,9 @@ from openedx.core.djangolib.markup import HTML, Text
       color: red !important;
     }
     </style>
-    <!--<a href="/settings/invite/${course_key}/list"><button>View Participants invited</button></a>-->
-    <div class="cell_title">
-      <h3 id="h3_5"><div class="num" id="num_5">1/1</div><span>${_('participants')}</span></h3>
-    </div>
-    <div class="cell_content" id="cell_5">
-      <div class="date_title particulary">
-        <h5>${_('Invite participants to your training campaign')}</h5>
-        <span style="clear:both;display:block;"></span>
-        <div class="sub_particularity">
-          <object oa-reusable-svg
-                  data="${static.url('images/exclamation-triangle.svg')}"
-                  type="image/svg+xml"
-                  class="svg_bis"
-                  data-class="timer_svg_color"
-                  >
-          </object>
-          <p>${_("In order to invite participants to your training campaign, it is imperative that starting date of the training session is set before the current date.")}</p>
-        </div>
-        <div class="pop_up_mail" id="pop_up_invite">
-          <p>${_("The participants' list is successfully uploaded.")}</p>
-          <p>${_("An email invitation to participate to the training module has been sent to the participants.")}</p>
-        </div>
-        <div class="pop_up_mail" id="pop_up_mail_fail">
-          <p>${_("The structure of the file loaded is incorrect. Please, modify your file and load it again")}.</p>
-        </div>
-      </div>
-      <div class="field participants">
-        <form id="upload_form_participant" enctype="multipart/form-data">
-          <input type="file" name="file" id="invite_participant">
-        </form>
-        <div id="choise_from_file">
-          <button class="buton_from_file" id="register_from_csv">${_("Upload participants list")}</button>
-          <span style="clear:left;display:block;"></span>
-        </div>
-      </div>
-      <span style="display:block;clear:left;"></span>
-    </div>
-
-    <!-- end cell 1/2 -->
-    <!-- end cell 1/2 -->
-    <!-- end cell 1/2 -->
-    <!-- end cell 1/2 -->
-    <!-- end cell 1/2 -->
-    <!-- cell 2/2 -->
-    <!-- cell 2/2 -->
-    <!-- cell 2/2 -->
-    <!-- cell 2/2 -->
-    <!-- cell 2/2 -->
-
 
   </section>
-  <section id="secondary">
-  </section>
-  <span style="display:block;clear:left;"></span>
-</section>
 
-<div class="campaign-link-back"><a href="/home/?campaign=${course_key}">< ${_('Back to')} ${_('My campaigns')}</a></div>
-
-<div class="wrapper wrapper-notification wrapper-notification-warning" id="notification-warning" aria-hidden="false" aria-labelledby="notification-warning-title" tabindex="-1" aria-describedby="notification-warning-description" role="dialog">
-  <div class="notification warning has-actions"><span class="feedback-symbol fa fa-warning" aria-hidden="true"></span>
-    <div class="copy">
-      <h2 class="title title-3" id="notification-warning-title">You've made some changes</h2>
-      <p class="message" id="notification-warning-description">Your changes will not take effect until you save your progress.</p>
-    </div>
-    <nav class="nav-actions">
-      <ul>
-        <li class="nav-item">
-          <button class="action-primary action-save">Save Changes</button>
-        </li>
-        <li class="nav-item">
-          <button class="action-secondary action-cancel">Cancel</button>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</div>
-<p>
-  <div id="output_section">
-    <h5>${_("File preview")}</h5>
-    <output id="output">
-
-    </output>
-  </div>
-</p>
 <link rel="stylesheet" type="text/css" href="${static.url('css/invite_course.css')}">
 <!-- title font-size scale -->
 <script>

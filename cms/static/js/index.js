@@ -23,6 +23,7 @@ define(["domReady", "jquery", "underscore"],
           formData.append('language',$('#language-value').val());
           formData.append('amundi_brand',$('#amundi-brand').val());
           formData.append('disclaimer',$('#new-microsite-disclaimer').val());
+          formData.append('trademark',$('#new-microsite-trademark').val());
           $.ajax({
             url:url,
             data:formData,
