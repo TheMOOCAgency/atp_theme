@@ -15,8 +15,8 @@ from openedx.core.djangolib.markup import HTML, Text
       IndexFactory();
   });
   //require(['${static.url("js/invite.js")}']);
-  require(['https://${settings.SITE_NAME}/media/studio/update.js']);
-  //require(['${static.url("js/atp/update.js")}']);
+  //require(['https://${settings.SITE_NAME}/media/studio/update.js']);
+  require(['${static.url("js/atp/update.js")}']);
 </%block>
 <%namespace name='static' file='static_content.html'/>
 <%block name="content">

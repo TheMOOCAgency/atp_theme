@@ -163,34 +163,73 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
     mail_invite.actionAdress('#email_1');
     /* end file upload submit */
     $('#send_email').click(function(){
-      var submit = '#upload_form_participant';
-      /* use invit class */
-      var mail_invite = new mail();
-      mail_invite.actionAdress('#email_1');
-      mail_invite.setTinyMce(tinymce);
-      mail_invite.setObjectBody('#email_2');
-      mail_invite.setCheckbox('.checkbox_mail_field');
-      mail_invite.tinyMceContent();
-      mail_invite.sendMailData('data_mail');
-      var data = mail_invite.getData();
-      var path = window.location.path;
-      $.ajax({
-        url: path,
-        data: data,
-        cache: false,
-        contentType: false,
-        processData: false,
-        type: 'POST',
-        success: function(data){
-          $('.cell_title').addClass('not_margin_bottom');
-          $('.pop_up_mail').addClass('is_show');
-          $('#email_2').attr('value','');
-          $('#email_2').attr('value','');
-          $('.data_mail').parent().remove();
-          $('html').scrollTop(0);
-          tinyMCE.activeEditor.setContent('');
+      /*check for errors */
+      var lang=document.documentElement.lang;
+      var erreurs_form=false;
+      $('#error-field').css('display','none').html('');
+      /* Check diffusion list */
+      if($('input[class="checkbox_mail_field"]:checked').length==0) {
+          if(lang=='fr'){
+            $('#error-field').append('<p>Veuillez sélectionner un destinataire.</p>');
+          }
+          else{
+            $('#error-field').append('<p>Select a receiver for your email. </p>');
+          }
+          erreurs_form=true;
+      }
+      /* Check object */
+      if(!$('#email_2').val()){
+        if(lang=='fr'){
+          $('#error-field').append("<p>L'objet du mail est obligatoire. </p>");
         }
-      });
+        else{
+          $('#error-field').append('<p>Field object of the email is mandatory. </p>');
+        }
+          erreurs_form=true;
+      }
+      /* Check Message */
+      if(!$('#email_2').val()){
+        if (lang=="fr"){
+          $('#error-field').append('<p>Le corps du mail est obligatoire. </p>');
+        }
+        else{
+          $('#error-field').append('<p>Field body of the email is mandatory. </p>');
+        }
+          erreurs_form=true;
+      }
+      if(erreurs_form){
+      $('#error-field').css('display','block');
+      }
+      else{
+        var submit = '#upload_form_participant';
+        /* use invit class */
+        var mail_invite = new mail();
+        mail_invite.actionAdress('#email_1');
+        mail_invite.setTinyMce(tinymce);
+        mail_invite.setObjectBody('#email_2');
+        mail_invite.setCheckbox('.checkbox_mail_field');
+        mail_invite.tinyMceContent();
+        mail_invite.sendMailData('data_mail');
+        var data = mail_invite.getData();
+        var path = window.location.path;
+        $.ajax({
+          url: path,
+          data: data,
+          cache: false,
+          contentType: false,
+          processData: false,
+          type: 'POST',
+          success: function(data){
+            $('.cell_title').addClass('not_margin_bottom');
+            $('.pop_up_mail').addClass('is_show');
+            $('#email_2').attr('value','');
+            $('#email_2').attr('value','');
+            $('.data_mail').parent().remove();
+            $('html').scrollTop(0);
+            tinyMCE.activeEditor.setContent('');
+          }
+        });
+      }
     })
   };
   domReady(onReady);

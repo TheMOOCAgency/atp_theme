@@ -3,10 +3,13 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
     this.constructor = function(data) {
       this.data = data;
     },
-    this.get_value = function(id,idcolor,Class) {
-      var This = $('#'+id);
-      var data = new FormData($('#'+id).get(0));
-      data.append(new FormData($('#'+idcolor).get(0));)
+    this.get_value = function(idWhite, idCouleur,Class) {
+      var data = new FormData();
+      var logo = $('#'+idWhite).find('input')[0].files[0];
+      data.append('logo',logo);
+      var logo_couleur = $('#'+idCouleur).find('input')[0].files[0];
+      data.append('logo_couleur',logo_couleur);
+
       var That = $('.'+Class);
       $('.'+Class).each(function(){
         var val = $(this).attr('value');
@@ -51,15 +54,29 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
           updateMicrosite.success_ajax();
           $('#micro_primary_color').attr('value','');
           $('#micro_secondary_color').attr('value','');
-          var logo_url = retour.logo_value_path;
           var primary_color = retour.primary_color;
           $('#pre_primary').find('label').text(primary_color);
           var secondary_color = retour.secondary_color;
           $('#pre_secondary').find('label').text(secondary_color);
-          var src = $('#pre_picture').find('img').attr('src');
-          src = src.split('/media/')[0];
-          src = src+logo_url;
-          $('#pre_picture').find('img').attr('src',src);
+          if(retour.amundi_brand=="true"){
+            var amundi_brand="La marque AmundiBrand est affichée";
+          }
+          else{
+            var amundi_brand="La marque AmundiBrand est affichée";
+          }
+          $('#pre_amundibrand').find('label').text(amundi_brand);
+
+          var trademark = retour.trademark;
+          $('#pre_trademark').find('label').text(trademark);
+
+          var src = $('#logo_preview').find('img').attr('src');
+          base= src.split('/media/')[0];
+
+          var logo_couleur_url = retour.logo_couleur;
+          $('#logo_preview_couleur').find('img').attr('src',base+logo_couleur_url +"?"+ new Date().getTime());
+
+          var logo_url = retour.logo;
+          $('#logo_preview').find('img').attr('src',base+logo_url +"?"+ new Date().getTime());
         }
       })
     })
