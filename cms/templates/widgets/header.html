@@ -243,6 +243,25 @@ except:
     display: block;
   }
 
+  /*Ajustement des couleurs pages cms*/
+  .language_display, .content_info h3, .content_info .all_dates span, #title h1, .mast.has-actions h1{
+    color:${primary_color}!important;
+  }
+  #fil_ariane a, .campaign-link-back a, .more_about_courses a, #course-index-tabs .sub_menu .active_button{
+    color:${secondary_color}!important;
+  }
+  #course-index-tabs .sub_menu .active_button{
+    border-color: ${secondary_color}!important;
+  }
+  #course-index-tabs .sub_menu button:hover{
+    color:${secondary_color}!important;
+    border-color: ${secondary_color}!important;
+  }
+  .wrapper-l, .wrapper-r{
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
   /* Menu not connected */
   .nav-not-signedin .nav-item{
     display: inline;
@@ -273,6 +292,7 @@ except:
   .img_course{
     min-height: 153px;
   }
+
 </style>
 
 
@@ -492,6 +512,7 @@ except:
             lib_users_url = reverse('contentstore.views.manage_library_users', kwargs={'library_key_string': unicode(library_key)})
             export_url = reverse('contentstore.views.export_handler', kwargs={'course_key_string': unicode(library_key)})
       %>
+      <div class="wrapper-header wrapper" id="view-top">
       <h2 class="info-course">
         <span class="sr">${_("Current Library:")}</span>
         <a class="course-link" href="${index_url}">
@@ -534,6 +555,7 @@ except:
           </li>
         </ol>
       </nav>
+    </div>
       % elif show_programs_header:
       <h2 class="info-course">
         <span class="course-org">${settings.PLATFORM_NAME}</span><span class="course-number">${_("Programs")}</span>

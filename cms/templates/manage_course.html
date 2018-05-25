@@ -14,8 +14,8 @@ from openedx.core.djangolib.markup import HTML, Text
   require(["js/factories/index"], function (IndexFactory) {
       IndexFactory();
   });
-  //require(['${static.url("js/atp/manage.js")}']);
-  require(['https://demo-atp.themoocagency.com/media/dev/manage.js'])
+  require(['${static.url("js/atp/manage.js")}']);
+  //require(['https://demo-atp.themoocagency.com/media/dev/manage.js'])
 </%block>
 <%namespace name='static' file='static_content.html'/>
 <%block name="content">
@@ -64,26 +64,28 @@ from openedx.core.djangolib.markup import HTML, Text
   color: #05144d;
   font-weight: 600;
 }
-</style>
-<%
-    if course.language=="fr":
-        if LANGUAGE_CODE == 'fr':
-          language_display="Français"
-        else :
-          language_display="French"
-    elif course.language=="en" :
-        if LANGUAGE_CODE == 'fr':
-          language_display="Anglais"
-        else :
-          language_display="English"
-    else :
-       language_display="Not defined"
-%>
-<style>
 #course_identity_voile_bis,.cell_content .field #course_identity_voile {
   top: 40px !important;
 }
+.voile_gris{
+  position: relative;
+  height: 40px;
+  width: 40%;
+  left: calc(45% + 4px);
+  z-index: 1;
+  background-color: rgba(0,0,0,0.1);
+}
+#course_date_voile{
+  top: -138px;
+}
+#course_hour_voile{
+    top: -114px;
+}
+#invite_already_msg{
+  height: 30px;
+}
 </style>
+
 <section id="content">
   <section id="primary">
     <div id="fil_ariane"><a href="/home/?campaign=${course_key}"> < ${_('My campaigns')} </a></div>
@@ -114,11 +116,7 @@ from openedx.core.djangolib.markup import HTML, Text
           <div class="all_dates">
             <ul>
               <li><span id="add_course_org">${course.org}</span></li>
-              %if LANGUAGE_CODE == 'fr':
-                <span class="language_display">Langue : ${language_display} </span>
-              %else :
-                <span class="language_display">Language : ${language_display} </span>
-              %endif
+              <span class="language_display">${_('Language')} : ${_(language_course)} </span>
               <span style="display:block;clear:left;"></span>
             </ul>
           </div>
@@ -197,6 +195,8 @@ from openedx.core.djangolib.markup import HTML, Text
       </div>
       <div class="sub_input last_sub_input" id="invite_already_msg" style="display: none;">
         ${_('You already have invited participants to this training campaign. Starting date can no longer be edited.')}
+        <div class="voile_gris" id="course_date_voile"></div>
+        <div class="voile_gris" id="course_hour_voile"></div>
       </div>
       <div class="sub_input separation-trait">
 	<!--
