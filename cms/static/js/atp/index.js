@@ -377,7 +377,7 @@ define(["domReady", "jquery", "underscore"],
             var campaign_from =getParameterByName("campaign");
             var module_from =getParameterByName("module");
             if(campaign_from){
-              $("#"+campaign_from).scrollIntoView();
+              document.getElementById(campaign_from).scrollIntoView();
             }
             if(module_from){
               $("#my-campaigns").removeClass("active_button");
@@ -390,7 +390,7 @@ define(["domReady", "jquery", "underscore"],
               $("#module_search").removeClass('is_hide_atp').addClass('is_show_atp');
               $("#info_my_campaign").css("display","none");
               $("#info_my_module").css("display","inline");
-              $("#"+module_from).scrollIntoView();
+              document.getElementById(module_from).scrollIntoView();
             }
 
             //$('#course-index-tabs .microsite-tab').bind('click', showTab('microsite'));
