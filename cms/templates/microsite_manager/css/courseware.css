@@ -284,6 +284,13 @@ div.final_solution.details-decoration i.info_tag{
     width: auto !important;
     font-weight: bold;
 }
+#sequence-list li button.nav-item h3:hover{
+  color: !atp_primary_color !important;
+}
+#sequence-list li button.nav-item h3:hover:before{
+    border-right: 0.2em solid !atp_primary_color;
+    border-top: 0.2em solid !atp_primary_color;
+}
 
 
 
