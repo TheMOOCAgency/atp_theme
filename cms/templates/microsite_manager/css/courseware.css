@@ -141,6 +141,11 @@ body.view-in-course .course-wrapper {
 #course-content{
     padding: 0px;
 }
+#result-content{
+    padding: 0px 40px 20px;
+    background: white;
+    display: none;
+}
 #tma_course_ariane {
   width: 100%;
   height: auto;
@@ -183,23 +188,26 @@ body.view-in-course .course-wrapper {
 }
 .seq_content_next a{
     left:50%;
-    padding: 10px 15px;
     position: absolute;
-    background-color: !atp_primary_color;
+    background-color:!atp_primary_color;
     color: #fff;
-    border-radius: 30px;
-    font-weight: bold;
-    line-height: normal;
+    font-weight: 400;
     vertical-align: middle;
     text-align: center;
     font-size: 16px;
-    width:auto;
     cursor:pointer;
-}
-.seq_content_next.disabled_tma a{
+    width: 75px;
+    border-radius: 11px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    line-height: 18.4px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+}.seq_content_next.disabled_tma a{
     background-color: rgb(128, 128, 128);
-	cursor:auto;
-	font-weight: 400;
+    cursor:auto;
+    font-weight: 400;
     width: 75px;
     border-radius: 11px;
     padding-top: 3px;
@@ -235,6 +243,53 @@ body.view-in-course .course-wrapper {
     margin-top: 15px;
     border: none;
 }
+div.action div.final_solution.details-decoration{
+    background: whitesmoke;
+    padding: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+div.final_solution.details-decoration div.tag_container{
+    position: absolute;
+}
+
+div.final_solution.details-decoration i.info_tag{
+    position: absolute;
+    top: -40px;
+    left: -45px;
+    font-size: 50px;
+    color: rgb(128,128,128);
+}
+.xmodule_display.xmodule_CapaModule div.problem .notification .icon{
+    top: 5px;
+    font-size: 30px !important;
+    float: none;
+}
+.xmodule_display.xmodule_CapaModule div.problem .notification.error{
+    border-bottom: none !important;
+    text-align: center;
+    width: auto;
+    color: #cb0712;
+}
+.xmodule_display.xmodule_CapaModule div.problem .notification.success{
+    border-bottom: none !important;
+    text-align: center;
+    width: auto;
+    color: #009b00;
+}
+.notification.error.notification-submit span.notification-message{
+   color: #cb0712;
+}
+.xmodule_display.xmodule_CapaModule div.problem .notification .notification-message{
+    width: auto !important;
+    font-weight: bold;
+}
+
+
+
+
+
+
 /*
 .course-index .accordion .course-navigation .button-chapter,.course-index .accordion .course-navigation .chapter-content-container {
   margin-top: 15px;
@@ -336,6 +391,19 @@ body.view-in-course .course-wrapper {
   width: 100%;
   min-height: 45px;
 }
+@media screen and (max-width: 1021px) {
+  .xblock.xblock-student_view.xblock-student_view-html iframe{
+    max-height: calc( 100vh - 100px);
+    max-width: calc( 100vw - 150px);
+  }
+}
+@media screen and (min-width: 1022px) {
+  .xblock.xblock-student_view.xblock-student_view-html iframe{
+    max-height: calc( 100vh - 175px);
+    max-width: calc( 100vw - 400px);
+  }
+}
+
 /*
 .xblock .xblock h3.unit-title {
   display: none;
