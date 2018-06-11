@@ -1,3 +1,6 @@
+/* import variable */
+@import "variable";
+
 body.view-in-course .container {
   margin-top: 30px;
 }
@@ -41,105 +44,14 @@ body.view-in-course .course-wrapper {
   display: none;
 }
 */
-/*Display course page*/
-.xmodule_display.xmodule_SequenceModule .sequence-nav{
-    margin: 0px;
-    border:none;
-    padding: 0px 40px;
-    background:white;
-    margin: 20px 0px 0px 0px;
-}
-.xmodule_display.xmodule_SequenceModule .sequence-suptitle h3{
-  /* primary color */
-    color: !atp_primary_color;
-    font-family: !font_family_atp;
-    text-transform: uppercase;
-    text-align: left;
-    font-weight: bold;
-    font-size: 24px;
-    margin-bottom: 15px;
-    margin-top: 15px;
-    border: none;
-    padding-left: 40px;
-    margin: 40px 0px 0px 0px;
-}
-.xmodule_display.xmodule_SequenceModule .sequence-nav-button:hover, .xmodule_display.xmodule_SequenceModule .sequence-nav-button:active, .xmodule_display.xmodule_SequenceModule .sequence-nav-button.active, .xmodule_display.xmodule_SequenceModule .sequence-nav button:hover, .xmodule_display.xmodule_SequenceModule .sequence-nav button:active, .xmodule_display.xmodule_SequenceModule .sequence-nav button.active{
-    padding-top: 0px;
-}
-.xmodule_display.xmodule_SequenceModule .sequence-nav-button:hover, .xmodule_display.xmodule_SequenceModule .sequence-nav-button:active, .xmodule_display.xmodule_SequenceModule .sequence-nav-button.active, .xmodule_display.xmodule_SequenceModule .sequence-nav button:hover, .xmodule_display.xmodule_SequenceModule .sequence-nav button:active, .xmodule_display.xmodule_SequenceModule .sequence-nav button.active{
-    border: none;
-}
-.xmodule_display.xmodule_SequenceModule .sequence-nav ol li{
-    border: none;
-}
-.xmodule_display.xmodule_SequenceModule .sequence-nav ol li button{
-    border: none;
-    height: auto;
-}
-#sequence-list li button.nav-item h3{
-  /* color secondary */
-    color: !atp_secondary_color;
-    font-family: !font_family_atp;
-    text-transform: uppercase;
-    text-align: left;
-    font-weight: bold;
-    font-size: 24px;
-    margin-bottom: 15px;
-    margin-top: 15px;
-    border: none;
-}
-#sequence-list li button.result-score h3{
-  /* color secondary */
-    color: !atp_secondary_color;
-    font-family: !font_family_atp;
-    text-transform: uppercase;
-    text-align: left;
-    font-weight: bold;
-    font-size: 24px;
-    margin-bottom: 15px;
-    margin-top: 15px;
-    border: none;
-}
-#sequence-list li button.nav-item h3:before, #sequence-list li button.result-score h3:before{
-	/* color secondary */
-    position: relative;
-    content: "";
-    display: inline-block;
-    width: 0.4em;
-    height: 0.4em;
-    border-right: 0.2em solid !atp_secondary_color;
-    border-top: 0.2em solid !atp_secondary_color;
-    margin-right: 0.5em;
-    margin-bottom: 5px;
-    transform: rotate(135deg);
-}
-.xmodule_display.xmodule_SequenceModule .sequence-nav{
-    height:auto;
-}
-.xmodule_display.xmodule_SequenceModule .sequence-nav ol{
-    display: block;
-}
-#seq_content{
-    padding: 0px 40px 20px 40px;
-    background:white;	
-}
-.xmodule_display.xmodule_SequenceModule .sequence-nav-button.button-next,.xmodule_display.xmodule_SequenceModule .sequence-nav-button.button-previous{
-    display: none;
-}
-.course-wrapper .course-content .path, .course-wrapper .courseware-results-wrapper .path,.wrapper-course-modes {
+.xmodule_display.xmodule_SequenceModule .sequence-nav,.course-wrapper .course-content .path, .course-wrapper .courseware-results-wrapper .path,.wrapper-course-modes {
   display: none;
 }
 .xmodule_display.xmodule_SequenceModule .sequence-nav-button span:not(:last-child),.xmodule_display.xmodule_SequenceModule .sequence-nav-button span:not(:last-child),.button-previous span {
   display: none;
 }
-.course-wrapper .course-content .vert-mod .vert>.xblock-student_view,.course-wrapper .courseware-results-wrapper .vert-mod .vert>.xblock-student_view {
-    border: none;
-}
 .course-content .bookmark-button-wrapper {
   display: none;
-}
-#course-content{
-    padding: 0px;
 }
 #tma_course_ariane {
   width: 100%;
@@ -170,71 +82,7 @@ body.view-in-course .course-wrapper {
   text-align:center;
   display:none;
 }
-.seq_content_next{
-    padding: 0px 40px 20px 40px;
-    text-aling:center;
-    margin-left: auto;
-    margin-right: auto;
-    text-decoration: none;
-    background-color: white;
-    color: #fff;
-    height: 50px;
-    display:none;
-}
-.seq_content_next a{
-    left:50%;
-    padding: 10px 15px;
-    position: absolute;
-    background-color: !atp_primary_color;
-    color: #fff;
-    border-radius: 30px;
-    font-weight: bold;
-    line-height: normal;
-    vertical-align: middle;
-    text-align: center;
-    font-size: 16px;
-    width:auto;
-    cursor:pointer;
-}
-.seq_content_next a.disabled_tma{
-    background-color: rgb(128, 128, 128);
-	cursor:auto;
-	font-weight: 400;
-    width: 75px;
-    border-radius: 11px;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    line-height: 18.4px;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-.sequence-nav .sequence-list-wrapper button.nav-item.disabled_unit_tma{
-	color: rgb(128, 128, 128);
-}
-#sequence-list li button.nav-item.disabled_unit_tma h3:before{
-	color: rgb(128, 128, 128);
-    position: relative;
-    content: "";
-    display: inline-block;
-    width: 0.4em;
-    height: 0.4em;
-    border-right: 0.2em solid rgb(128, 128, 128);
-    border-top: 0.2em solid rgb(128, 128, 128);
-    margin-right: 0.5em;
-    margin-bottom: 5px;
-    transform: rotate(135deg);
-}
-#sequence-list li button.nav-item.disabled_unit_tma h3{
-    color: rgb(128, 128, 128);
-    font-family: !font_family_atp;
-    text-transform: uppercase;
-    text-align: left;
-    font-weight: bold;
-    font-size: 24px;
-    margin-bottom: 15px;
-    margin-top: 15px;
-    border: none;
-}
+
 /*
 .course-index .accordion .course-navigation .button-chapter,.course-index .accordion .course-navigation .chapter-content-container {
   margin-top: 15px;
@@ -374,8 +222,8 @@ body.view-in-course .course-wrapper {
   color: !atp_primary_color;
 }
 .xblock .xblock h3.unit-title {
-  /* color secondary */
-  color: !atp_secondary_color;
+  /* primary color */
+  color: !atp_primary_color;
   font-family:!font_family_atp;
   text-transform: uppercase;
 
@@ -450,7 +298,7 @@ body.view-in-course .course-wrapper {
 }
 .course-wrapper .course-content {
   padding-top: 0;
-  border: none;
+  background-color: #fff;
 }
 
 body.view-in-course .window-wrap {

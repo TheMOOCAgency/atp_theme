@@ -1,3 +1,6 @@
+/* import variable */
+@import "variable";
+
 #course_about_contenair {
  width: 100%;
  height: auto;
