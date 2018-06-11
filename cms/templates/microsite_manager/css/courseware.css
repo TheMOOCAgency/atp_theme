@@ -141,6 +141,11 @@ body.view-in-course .course-wrapper {
 #course-content{
     padding: 0px;
 }
+#result-content{
+    padding: 0px 40px 20px;
+    background: white;
+    display: none;
+}
 #tma_course_ariane {
   width: 100%;
   height: auto;
@@ -183,23 +188,26 @@ body.view-in-course .course-wrapper {
 }
 .seq_content_next a{
     left:50%;
-    padding: 10px 15px;
     position: absolute;
-    background-color: !atp_primary_color;
+    background-color:!atp_primary_color;
     color: #fff;
-    border-radius: 30px;
-    font-weight: bold;
-    line-height: normal;
+    font-weight: 400;
     vertical-align: middle;
     text-align: center;
     font-size: 16px;
-    width:auto;
     cursor:pointer;
-}
-.seq_content_next.disabled_tma a{
+    width: 75px;
+    border-radius: 11px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    line-height: 18.4px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+}.seq_content_next.disabled_tma a{
     background-color: rgb(128, 128, 128);
-	cursor:auto;
-	font-weight: 400;
+    cursor:auto;
+    font-weight: 400;
     width: 75px;
     border-radius: 11px;
     padding-top: 3px;
@@ -235,7 +243,6 @@ body.view-in-course .course-wrapper {
     margin-top: 15px;
     border: none;
 }
-<<<<<<< HEAD
 div.action div.final_solution.details-decoration{
     background: whitesmoke;
     padding: 20px;
@@ -290,8 +297,6 @@ div.final_solution.details-decoration i.info_tag{
 
 
 
-=======
->>>>>>> parent of f4c8d3e... update page cours 8juin12h
 /*
 .course-index .accordion .course-navigation .button-chapter,.course-index .accordion .course-navigation .chapter-content-container {
   margin-top: 15px;
@@ -393,6 +398,19 @@ div.final_solution.details-decoration i.info_tag{
   width: 100%;
   min-height: 45px;
 }
+@media screen and (max-width: 1021px) {
+  .xblock.xblock-student_view.xblock-student_view-html iframe{
+    max-height: calc( 100vh - 100px);
+    max-width: calc( 100vw - 150px);
+  }
+}
+@media screen and (min-width: 1022px) {
+  .xblock.xblock-student_view.xblock-student_view-html iframe{
+    max-height: calc( 100vh - 175px);
+    max-width: calc( 100vw - 400px);
+  }
+}
+
 /*
 .xblock .xblock h3.unit-title {
   display: none;
