@@ -196,7 +196,7 @@ body.view-in-course .course-wrapper {
     width:auto;
     cursor:pointer;
 }
-.seq_content_next a.disabled_tma{
+.seq_content_next.disabled_tma a{
     background-color: rgb(128, 128, 128);
 	cursor:auto;
 	font-weight: 400;
