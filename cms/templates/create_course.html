@@ -83,13 +83,20 @@ except:
 .cell_content {
   padding-bottom: 0px !important;
 }
+.campaign-link-back{
+  width:70%;
+  text-align: center;
+}
 </style>
+<%
+course_key_cleared=str(course_key).replace('+','').replace(':','')
+%>
 <link rel="stylesheet" type="text/css" href="${static.url("js/vendor/timepicker/jquery.timepicker.css")}">
 <section id="content">
   <section id="primary">
-    <div id="fil_ariane"><a href="/home/?module=${course_key}"> < ${_('My modules')} </a></div>
+    <div id="fil_ariane"></div>
     <div id="title">
-      <h1 style="text-transform:initial!important;">${_('Create my campaign')}</h1>
+      <h1 style="text-transform:initial!important;"><a href="/home/?module=${course_key_cleared}" class="primary_color"> < ${_('My modules')} </a> | ${_('Create my campaign')}</h1>
       <p>
         ${_('To create your training campaign, you have to specify an unique campaign title as long as a target for your training campaign.')}
         <br>
@@ -161,6 +168,9 @@ except:
   </section>
   <span style="display:block;clear:left;"></span>
 </section>
+
+<div class="campaign-link-back"><a href="/home/?campaign=${course_key_cleared}" class="primary_color">< ${_('Back to')} ${_('My campaigns')}</a></div>
+
 <div class="wrapper wrapper-notification wrapper-notification-warning" id="notification-warning" aria-hidden="false" aria-labelledby="notification-warning-title" tabindex="-1" aria-describedby="notification-warning-description" role="dialog">
   <div class="notification warning has-actions"><span class="feedback-symbol fa fa-warning" aria-hidden="true"></span>
     <div class="copy">

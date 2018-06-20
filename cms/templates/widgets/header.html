@@ -27,7 +27,6 @@ try:
     amundi_brand=microsite_data.get('amundi_brand')
   else :
     amundi_brand=''
-
   if microsite_data.get('primary_color') is not None:
     primary_color=microsite_data.get('primary_color')
   else :
@@ -247,9 +246,6 @@ except:
   .language_display, .content_info h3, .content_info .all_dates span, #title h1, .mast.has-actions h1{
     color:${primary_color}!important;
   }
-  #fil_ariane a, .campaign-link-back a, .more_about_courses a, #course-index-tabs .sub_menu .active_button{
-    color:${secondary_color}!important;
-  }
   #course-index-tabs .sub_menu .active_button{
     border-color: ${secondary_color}!important;
   }
@@ -260,6 +256,24 @@ except:
   .wrapper-l, .wrapper-r{
     margin-top: 0;
     margin-bottom: 0;
+  }
+
+  /* Couleurs page accueil */
+  .up_list_courses h3 span{
+    color:${primary_color}!important;
+  }
+  h3 .svg path{
+    fill:${primary_color}!important;
+  }
+  .more_about_courses li a, #campaign_search h2, #module_search h2, #info_my_campaign .title-3{
+    color:${secondary_color}!important;
+  }
+  .sub_menu .active_button{
+    color:${secondary_color}!important;
+    border-color:${secondary_color}!important;
+  }
+  #campaign_search #search_block_campaign button{
+    background-color: ${primary_color}!important;
   }
 
   /* Menu not connected */
@@ -288,6 +302,9 @@ except:
     color:#31aeee;
     font-family: 'mywebfont';
     font-weight: 700;
+  }
+  .primary_color{
+    color: ${primary_color}!important
   }
   .img_course{
     min-height: 153px;

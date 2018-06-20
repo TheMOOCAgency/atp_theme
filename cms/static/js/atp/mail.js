@@ -24,7 +24,7 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
         This.on('change keyup paste',function(){
           var text = This.attr('value');
           var split = text.trim().split(/\s+/);
-          var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))+[\s]$/;
+          var re =/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
           if(re.test(text)) {
             var span = "<div class='vr'><div class='data_mail' data-mail='"+text+"'><span>"+text+"</span><div class='close_span'></div></div></div>";
@@ -99,6 +99,7 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
           var check = This.is(':checked');
           if(check) {
             data.push({name:val,value:true});
+            console.log("email"+val);
           }else{
             data.push({name:val,value:false});
           }
@@ -119,6 +120,8 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
         // check_actions required
         for(var i=0;i<this.checkbox.length;i++) {
           data.append(this.checkbox[i].name,this.checkbox[i].value);
+          console.log('adding mails '+this.checkbox[i].name);
+          console.log('adding mails '+this.checkbox[i].value);
         }
         // get all adresses
         this.setAdress(adress);

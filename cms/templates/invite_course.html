@@ -104,14 +104,19 @@ from openedx.core.djangolib.markup import HTML, Text
   color: #05144d;
   font-weight: 600;
 }
-
+.campaign-link-back{
+  width:70%;
+  text-align: center;
+}
 </style>
-
+<%
+course_key_cleared=str(course_key).replace('+','').replace(':','')
+%>
 <section id="content">
   <section id="primary">
-    <div id="fil_ariane"><a href="/home/?campaign=${course_key}">< ${_('My campaigns')}</a></div>
+    <div id="fil_ariane"></div>
     <div id="title">
-      <h1>${_('Invite participants')}</h1>
+      <h1><a href="/home/?campaign=${course_key_cleared}" class="primary_color">< ${_('My campaigns')}</a> | ${_('Invite participants')}</h1>
       <p>
         ${_('Invite participants to your training campaign')}
       </p>
@@ -259,7 +264,7 @@ from openedx.core.djangolib.markup import HTML, Text
   <span style="display:block;clear:left;"></span>
 </section>
 
-<div class="campaign-link-back"><a href="/home/?campaign=${course_key}">< ${_('Back to')} ${_('My campaigns')}</a></div>
+<div class="campaign-link-back"><a href="/home/?campaign=${course_key_cleared}" class="primary_color">< ${_('Back to')} ${_('My campaigns')}</a></div>
 
 <div class="wrapper wrapper-notification wrapper-notification-warning" id="notification-warning" aria-hidden="false" aria-labelledby="notification-warning-title" tabindex="-1" aria-describedby="notification-warning-description" role="dialog">
   <div class="notification warning has-actions"><span class="feedback-symbol fa fa-warning" aria-hidden="true"></span>
