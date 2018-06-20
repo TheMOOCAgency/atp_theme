@@ -1,4 +1,4 @@
-@font-face{font-family:'mywebfont';src:url("../fonts/arial.otf") format("otf"),url("../fonts/arial.ttf") format("truetype")}html,body,span,h1,h2,h3,h4,h5,h6,div,a,button,input,p,section{font-family:"mywebfont"}
+@font-face{font-family:'mywebfont';src:url("../fonts/arial.otf") format("otf")}html,body,span,h1,h2,h3,h4,h5,h6,div,a,button,input,p,section{font-family:"mywebfont"}
 .content-wrapper{background-color:transparent}
 body{min-height:100vh}
 input[type="submit"]:not(:disabled),input[type="button"]:not(:disabled),button:not(:disabled),.button:not(:disabled){background:!atp_primary_color;background-image:none;box-shadow:none}
