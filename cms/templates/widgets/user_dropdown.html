@@ -59,7 +59,7 @@
           <a href="${settings.LMS_ROOT_URL.replace('https://','https://'+course_org)}">${_("Access Trainee Interface")}</a>
         </li>
         <li class="nav-item nav-account-signout">
-          <a class="action action-signout" href="${reverse('logout')}">${_("Sign Out")}</a>
+          <a class="action action-signout" href="${settings.LMS_ROOT_URL.replace('https://','https://'+course_org)}/logout">${_("Sign Out")}</a>
         </li>
       </ul>
     </div>

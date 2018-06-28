@@ -347,7 +347,7 @@ except:
         <a href="${settings.LMS_ROOT_URL.replace('https://','https://'+course_org)}">${_("Access Trainee Interface")}</a>
       </div>
       <div class="user-menu-element" id="logout-boutton">
-        <a class="" href="/logout">
+        <a class="" href="${settings.LMS_ROOT_URL.replace('https://','https://'+course_org)}/logout">
           <img style="height:20px;"src="${settings.LMS_ROOT_URL}/media/poweroff.png" alt="">
           <span>${_('logout')}</span>
         </a>
