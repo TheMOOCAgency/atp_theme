@@ -53,7 +53,6 @@ body.view-in-course .course-wrapper {
   /* primary color */
     color: !atp_primary_color;
     font-family: !font_family_atp;
-    text-transform: uppercase;
     text-align: left;
     font-weight: bold;
     font-size: 24px;
@@ -80,7 +79,6 @@ body.view-in-course .course-wrapper {
   /* color secondary */
     color: !atp_secondary_color;
     font-family: !font_family_atp;
-    text-transform: uppercase;
     text-align: left;
     font-weight: bold;
     font-size: 24px;
@@ -121,7 +119,7 @@ body.view-in-course .course-wrapper {
 }
 #seq_content{
     padding: 0px 40px 20px 40px;
-    background:white;	
+    background:white;
 }
 .xmodule_display.xmodule_SequenceModule .sequence-nav-button.button-next,.xmodule_display.xmodule_SequenceModule .sequence-nav-button.button-previous{
     display: none;
