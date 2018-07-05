@@ -90,7 +90,6 @@ body.view-in-course .course-wrapper {
   /* color secondary */
     color: !atp_secondary_color;
     font-family: !font_family_atp;
-    text-transform: uppercase;
     text-align: left;
     font-weight: bold;
     font-size: 24px;
@@ -233,7 +232,6 @@ body.view-in-course .course-wrapper {
 #sequence-list li button.nav-item.disabled_unit_tma h3{
     color: rgb(128, 128, 128);
     font-family: !font_family_atp;
-    text-transform: uppercase;
     text-align: left;
     font-weight: bold;
     font-size: 24px;

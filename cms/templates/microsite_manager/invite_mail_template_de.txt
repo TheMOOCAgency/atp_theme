@@ -85,7 +85,7 @@
 		<td style="color:#040b31;">${content}</td>
 		</tr>
 		<tr>
-		<td style="padding:0 0 10px; color:#040b31;">Um auf das Trainingsmodul zuzugreifen <span style="font-weight:bold;">${course_title}</span>, klicken Sie bitte auf den folgenden Link:<a href="${link}">${link}</a></td>
+		<td style="padding:0 0 10px; color:#040b31;">Um auf das Trainingsmodul zuzugreifen <span style="font-weight:bold;">${course_title}</span>, klicken Sie bitte auf den folgenden Link: <a href="${link}">${link}</a></td>
 		</tr>
 
 	</table>
