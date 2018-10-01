@@ -6,7 +6,6 @@
  height: auto;
 }
 #dashboard_tma h2 {
- color: !atp_primary_color;
  font-size: 28px;
  margin: 0;
  font-family: !font_family_atp;
@@ -17,7 +16,6 @@
  margin-bottom: 15px;
 }
 #dashboard_tma h2 svg {
- fill: !atp_primary_color;
  height: 50px;
  width: 50px;
  display:block;
@@ -33,7 +31,6 @@
  font-family:!font_family_atp;
 }
 #dashboard_tma p {
- color: !atp_primary_color;
  font-size: 18px;
  line-height: 22px;
  width: 100%;
@@ -48,7 +45,6 @@
 }
 /* toutes les section */
 #dashboard_tma section {
- width: calc(100% - 60px);
  padding: 30px;
  height: auto;
 }
@@ -63,7 +59,6 @@
  height: auto;
  margin-top: 25px;
  margin-bottom: 35px;
- color: !atp_primary_color;
 }
 
 /* lien tous modules */
@@ -94,6 +89,8 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+/* Aplats couleurs des sections */
 #dashboard_tma section a .img_fundamental {
   background-image: url('/static/images/fondamentaux.png');
 }
@@ -113,7 +110,6 @@
 #dashboard_header_atp {
  background-size: cover;
  background-repeat: no-repeat;
- background-color: $atp_tertiary_color;
  border-bottom: 1px solid #c6c6c6;
  background-position: right;
 }
@@ -132,7 +128,6 @@
  margin: 0;
  padding: 0;
  font-size: 18px;
- color: !atp_primary_color;
  font-weight: bold;
  font-family:!font_family_atp;
  margin-top: 20px;
@@ -145,7 +140,6 @@
  padding: 0;
  font-family: !font_family_atp;
  font-size: 16px;
- color: !atp_primary_color;
 }
 #dashboard_header_content h1 {
  margin: 0;
@@ -163,7 +157,6 @@
  text-align: left;
  font-weight: bold;
  font-family: !font_family_atp;
- color: !atp_primary_color;
 }
 #dashboard_header_content h1 span:first-child {
  display: block;
@@ -193,7 +186,6 @@
  font-weight: bold;
  font-size: 16px;
  font-family: !font_family_atp;
- color: !atp_primary_color;
  text-transform: inherit;
  border-style: none;
  text-shadow: none;
@@ -215,8 +207,7 @@
  display: none;
  height: auto;
  width: 100%;
- background-color: $atp_tertiary_color;
- border-bottom: 2px solid !atp_primary_color;
+ border-bottom: 2px solid black;
 }
 .dashboard_tuto_atp {
  height: auto;
@@ -226,7 +217,7 @@
  margin-right: auto;
  padding-top: 25px;
  padding-bottom: 25px;
- border-bottom: 1px solid !atp_primary_color;
+ border-bottom: 1px solid black;
 }
 .dashboard_tuto_atp:last-child {
  border-bottom: none;
@@ -247,7 +238,6 @@
  margin-top: 5px;
  width: 100%;
  margin-bottom: 5px;
- color: !atp_primary_color;
 }
 .dashboard_tuto_atp h3{
  text-align: center;
@@ -257,7 +247,6 @@
  line-height: 20px;
  height: auto;
  width: 100%;
- color: !atp_primary_color;
  font-weight: bold;
 }
 .dashboard_tuto_atp p{
@@ -268,7 +257,6 @@
  margin-top: 4px;
  margin-bottom: 4px;
  width: 100%;
- color: !atp_primary_color;
 }
 .dashboard_tuto_atp ul {
  margin: 0;
@@ -311,7 +299,6 @@
  font-size: 20px;
  font-weight: bold;
  text-align: left;
- color: !atp_primary_color;
 }
 #dashboard_tma .dashboard_tuto_atp ul li p {
  text-align: left;
@@ -331,7 +318,6 @@
  font-weight: bold;
  font-size: 14px;
  border-style: none;
- color: !atp_primary_color;
  background-color: transparent;
  text-shadow: none;
 }
@@ -369,7 +355,7 @@
 
 /* class add in JQUERY */
 #dashboard_header_atp.border_atp_head {
- border-bottom: 2px solid !atp_primary_color;
+ border-bottom: 2px solid black;
 }
 /* course_cards css */
 .atp_course_listing {
@@ -421,7 +407,6 @@
  font-size: 20px;
  font-weight: bold;
  font-family: !font_family_atp;
- color: !atp_primary_color;
  word-wrap: break-word;
 }
 .atp_course_picto {
@@ -452,7 +437,6 @@
  margin-top: 15px;
  margin-bottom: auto;
  text-decoration: none;
- background-color: !atp_primary_color;
  color: #fff;
  border-radius: 30px;
  font-weight: bold;
@@ -472,11 +456,8 @@
  font-family: !font_family_atp;
 }
 #dashboard_tma section .atp_dashboard_active_course {
- width: 210px;
  margin-left: auto;
  margin-right: auto;
- border-bottom: 1px solid !atp_secondary_colory;
- color: !atp_secondary_color;
 }
 
 /* picto en savoir plus */
@@ -530,7 +511,6 @@
  height: 60px;
  margin-left: auto;
  margin-right: auto;
- fill: !atp_primary_color;
 }
 
 #dashboard_tma #dashboard_tuto_atp .dashboard_picto_tuto_tma div span {
@@ -545,7 +525,6 @@
  padding-top: 15px;
  padding-bottom: 15px;
  text-align: center;
- color: !atp_primary_color;
 }
 
 #dashboard_tma #dashboard_tuto_atp .last_tuto_atp {
@@ -566,7 +545,7 @@
     height: 0px;
     border-left: 7px solid transparent;
     border-right: 7px solid transparent;
-    border-top: 11px solid !atp_primary_color;
+    border-top: 11px solid black;
     display: inline-block;
     margin-top: 7px;
 }
@@ -577,7 +556,7 @@
     height: 0px;
     border-left: 7px solid transparent;
     border-right: 7px solid transparent;
-    border-bottom: 11px solid !atp_primary_color;
+    border-bottom: 11px solid black;
     display: inline-block;
     margin-top: 7px;
 }
@@ -588,7 +567,7 @@
     height: 0px;
     border-top: 7px solid transparent;
     border-bottom: 7px solid transparent;
-    border-left: 11px solid !atp_primary_color;
+    border-left: 11px solid black;
     display: inline-block;
     margin-top: 5px;
 }
@@ -674,7 +653,6 @@
   text-transform: uppercase;
 }
 .progress_bar_status {
-  background-color: !atp_primary_color;
   height: 5px;
 }
 
@@ -683,6 +661,65 @@
   width: 100%;
   height: 5px;
   background-color: #c8c8c8;
+}
+
+#dashboard_header_content h1 span:last-child, #dashboard_header_content h1 span:first-child{
+font-size:50px !important;
+}
+
+#dashboard_tuto_atp_1,#sub_menu #cat_fond{
+ border-left-color: rgb(69,114,150) !important;
+}
+
+#dashboard_tuto_atp_2,#sub_menu #cat_dem_com {
+ border-left-color: rgb(230,50,94) !important;
+}
+
+#dashboard_tuto_atp_3,#sub_menu #cat_solu {
+ border-left-color: rgb(193,145,53) !important;
+}
+
+#dashboard_tuto_atp_4,#sub_menu #cat_reg {
+ border-left-color: rgb(57,178,192) !important;
+}
+/* Responsive mobile header */
+.header-mobile{
+  display: none;
+}
+#dashboard_header_content{
+  margin-top:25px!important;
+}
+@media(max-width:830px) {
+  .header-mobile{
+    display: block;
+    height: 300px;
+  }
+  #dashboard_tma #dashboard_header_atp{
+    padding: 0;
+  }
+  #dashboard_header_content{
+    padding: 20px;
+    margin: 0;
+    margin-left: 10%!important;
+    margin-right: 10%;
+    width: 80%!important;
+  }
+  #dashboard_tma #dashboard_header_atp{
+    background-image: none;
+  }
+  #dashboard_tma #dashboard_header_atp{
+    display: block!important;
+  }
+}
+
+/* Fix header taille texte */
+#intro-phrase-header{
+  font-size: 24px!important;
+  margin-top: 25px!important;
+  margin-bottom: 25px!important;
+}
+span.bouton-more{
+  font-size:18px!important;
 }
 
 /* pop up */
@@ -718,7 +755,6 @@
   margin-top: 15px;
   margin-bottom: auto;
   text-decoration: none;
-  background-color: !atp_primary_color;
   color: #fff;
   text-shadow: none;
   border-radius: 30px;
@@ -754,11 +790,109 @@
   padding-top: 15px !important;
 }
 #ariane_dashboard a,#ariane_dashboard a:hover,#ariane_dashboard a:focus,#ariane_dashboard a:visited {
-  /* secondary color */
-  color: !atp_secondary_color;
   text-decoration: none;
   text-align: left !important;
   display: inline !important;
   font-weight: 400 !important;
   font-size: 16px !important;
+}
+
+.bouton-more{
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+}
+.bouton-more span{
+  font-size: 14px;
+}
+
+#dashboard_header_content button:hover, #dashboard_header_content button{
+  border: none;
+  text-shadow: none;
+  border-radius: 25px;
+  text-transform: uppercase;
+  transition: all .1s linear;
+  box-shadow: 0 0 10px rgba(13,28,76,.1);
+  font-weight: 600;
+  padding: 3px 30px;
+  min-width: 130px;
+  color:white;
+  font-size:15px;
+}
+div.atp_course_picto svg path, div.atp_course_picto svg polygon{
+  fill:#C5C5C5!important;
+  mask:none;
+}
+#dashboard_tuto_atp svg path, #dashboard_tuto_atp svg polygon{
+  mask:none;
+}
+
+@media(max-width:1022px) {
+ #profile_menu {
+  margin-right: 0 !important;
+ }
+ #right-menu {
+  position: fixed !important;
+  width: 100%;
+  left: 0;
+  top: 70px;
+ }
+}
+
+#dashboard_tma section a .img_fundamentals {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 70%;
+  height: 191px;
+  z-index: 2;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.img_fundamentals {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 70%;
+    height: 191px;
+    z-index: 2;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover
+}
+#pop_up p {
+  text-align: justify !important;
+}
+#dashboard_header_content p:first-child {
+  margin-bottom: 3px;
+  font-size: 38px;
+  line-height: 38px;
+  margin-top:0;
+}
+#logo-amundiacademy {
+  margin-top: 10px;
+}
+.center-text{
+  text-align: center;
+}
+#dashboard_tma #dashboard_header_atp{
+  min-height: 256px!important;
+  box-sizing: border-box!important;
+  width: 100%!important;
+  background-color: #C6EAFB;
+  background-position: center;
+  background-size: contain;
+
+}
+#dashboard_tuto_atp_1, #dashboard_tuto_atp_2,#dashboard_tuto_atp_3,#dashboard_tuto_atp_4{
+  margin: 0!important;
+  width: 50%!important;
+  float: left!important;
+  box-sizing: border-box!important;
+  margin-bottom: 10px!important;
+}
+
+.is_none_more {
+  display: none !important;
 }

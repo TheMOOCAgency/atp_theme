@@ -11,12 +11,10 @@ body {
 
 /* submit button */
 input[type="submit"]:not(:disabled), input[type="button"]:not(:disabled), button:not(:disabled), .button:not(:disabled) {
-  background:!atp_primary_color;
   background-image: none;
   box-shadow:none;
 }
 input[type="submit"]:hover:not(:disabled), input[type="button"]:hover:not(:disabled), button:hover:not(:disabled), .button:hover:not(:disabled),button:focus:not(:disabled) {
-  background:!atp_secondary_color;
   background-image: none;
   box-shadow:none;
 }
@@ -25,20 +23,15 @@ input[type="submit"]:hover:not(:disabled), input[type="button"]:hover:not(:disab
 }
 button:hover:not(:disabled) {
   background: #fff;
-  border-color: !atp_secondary_color;
-  color: !atp_secondary_color;
 }
 button:not(:disabled) {
   background: #fff;
-  border-color: !atp_primary_color;
-  color: !atp_primary_color;
 }
 .login-register .form-field .field-link, .financial-assistance-wrapper .financial-assistance-form .form-field .field-link {
-  color: !atp_primary_color;
+
 }
 /* get primary color */
 .btn-blue:hover, .dashboard-banner .wrapper-msg .msg.has-actions .donate-actions .action-donate:hover, .login-register .action-primary:hover, .financial-assistance-wrapper .financial-assistance-form .action-primary:hover, .verification-process .action-primary-blue:hover, .verification-process .carousel .wrapper-task .controls .control .action:hover, .verification-process .carousel .wrapper-task .msg .list-actions .action-retakephotos a:hover, .verification-process .carousel #wrapper-review .review-task-name .list-actions .action-editname a:hover, .verification-process.step-select-track .register-choice-audit .action-select input:hover, .verification-process.step-confirmation .course-info .options .action-course:hover, .verification-process.step-confirmation .course-info .course-actions .action-dashboard:hover, .reverify-blocked .action-primary:hover, .wrapper-authorize .btn-authorization-allow:hover, .wrapper-msg.wrapper-auto-cert .auto-cert-message .has-actions .msg-actions .btn:hover, .btn-blue:active, .dashboard-banner .wrapper-msg .msg.has-actions .donate-actions .action-donate:active, .login-register .action-primary:active, .financial-assistance-wrapper .financial-assistance-form .action-primary:active, .verification-process .action-primary-blue:active, .verification-process .carousel .wrapper-task .controls .control .action:active, .verification-process .carousel .wrapper-task .msg .list-actions .action-retakephotos a:active, .verification-process .carousel #wrapper-review .review-task-name .list-actions .action-editname a:active, .verification-process.step-select-track .register-choice-audit .action-select input:active, .verification-process.step-confirmation .course-info .options .action-course:active, .verification-process.step-confirmation .course-info .course-actions .action-dashboard:active, .reverify-blocked .action-primary:active, .wrapper-authorize .btn-authorization-allow:active, .wrapper-msg.wrapper-auto-cert .auto-cert-message .has-actions .msg-actions .btn:active, .btn-blue:focus, .dashboard-banner .wrapper-msg .msg.has-actions .donate-actions .action-donate:focus, .login-register .action-primary:focus, .financial-assistance-wrapper .financial-assistance-form .action-primary:focus, .verification-process .action-primary-blue:focus, .verification-process .carousel .wrapper-task .controls .control .action:focus, .verification-process .carousel .wrapper-task .msg .list-actions .action-retakephotos a:focus, .verification-process .carousel #wrapper-review .review-task-name .list-actions .action-editname a:focus, .verification-process.step-select-track .register-choice-audit .action-select input:focus, .verification-process.step-confirmation .course-info .options .action-course:focus, .verification-process.step-confirmation .course-info .course-actions .action-dashboard:focus, .reverify-blocked .action-primary:focus, .wrapper-authorize .btn-authorization-allow:focus, .wrapper-msg.wrapper-auto-cert .auto-cert-message .has-actions .msg-actions .btn:focus {
-  background: !atp_primary_color;
   box-shadow: none;
 }
 /* kick off box-shadow */

@@ -14,19 +14,21 @@ from openedx.core.djangolib.markup import HTML, Text
   require(["js/factories/index"], function (IndexFactory) {
       IndexFactory();
   });
-  //require(['${static.url("js/invite.js")}']);
   //require(['https://${settings.SITE_NAME}/media/studio/update.js']);
   require(['${static.url("js/atp/update.js")}']);
 </%block>
 <%namespace name='static' file='static_content.html'/>
 <%block name="content">
 <style>
+.secondary-color-text{
+  color:${secondary_color}!important;
+}
 #logo_preview img, #logo_preview_couleur img {
   max-height: 250px;
   height: auto;
   width: auto;
-  margin-top: 25px;
-  margin-bottom: 25px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 #primary{
   padding: 15px;
@@ -39,74 +41,144 @@ from openedx.core.djangolib.markup import HTML, Text
 textarea{
   width: 50%;
 }
+.bold{
+  font-weight: bold;
+}
+#form{
+  padding-top: 40px;
+}
+.update_part{
+  margin-bottom: 30px!important;
+}
+#secondary_color_preview, #primary_color_preview{
+  height: 20px;
+  width:20px;
+  display: inline-block;
+  margin-right:15px;
+}
+#secondary_color_preview{
+  background-color: ${secondary_color};
+}
+#primary_color_preview{
+  background-color:${primary_color}
+}
+label{
+  display: inline!important;
+}
+.ms-title{
+  text-transform: capitalize;
+}
+.max_width{
+  width:100%;
+}
+#form label,#form input {
+  display: block;
+}
+#content {
+  min-height: 900px;
+}
+#primary {
+  width: 100%;
+}
+input[type="text"] {
+  width: 50%;
+}
+.form_update {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+#form label {
+  font-size: 18px;
+  font-family: "Arial";
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
 </style>
   <section id="primary">
-    <div id="fil_ariane"><a href="/">${_('My campaigns')} ></a></div>
+    <div id="fil_ariane"><a href="/"  class="secondary-color-text">${_('My campaigns')} ></a></div>
     <div id="title">
       <h1>${_('Manage my microsite')}</h1>
     </div>
     <div id="form">
-      <div id="pre_title" class="form_update">
-        <label data-value="${key}">${key}</label>
+
+      <!-- Site Title -->
+      <div id="pre_title" class="form_update update_part">
+        <label class="ms-title" data-value="${key}">${key}</label>
         <input type="text" value="" name="key" id="micro_key" placeholder="microsite title" class="input_update">
       </div>
+
+
       <!--White Logo -->
-      <div id="logo_preview">
-        <label>Logo transparent</label>
-        <img src="https://${settings.SITE_NAME+logo_site}" />
+      <div id="logo_preview" class="update_part">
+        <label class="">${_('White logo')}</label>
+        <div class="max_width">
+          <img src="https://${settings.SITE_NAME+logo_site}" />
+        </div>
+        <div id="pre_picture" class="form_update_logo">
+          <form id="upload_microsite_logo">
+            <input class="new-microsite-logo" id="new-microsite-logo" type="file" name="logo" required="" aria-describedby="tip-new-microsite-logo tip-error-new-microsite-logo">
+          </form>
+        </div>
       </div>
-      <div id="pre_picture" class="form_update_logo">
-        <form id="upload_microsite_logo">
-          <input class="new-microsite-logo" id="new-microsite-logo" type="file" name="logo" required="" aria-describedby="tip-new-microsite-logo tip-error-new-microsite-logo">
-        </form>
+
+      <!--Color Logo -->
+      <div id="logo_preview_couleur" class="update_part">
+        <label class="">${_('Color logo')}</label>
+        % if logo_couleur:
+        <div class="max_width">
+          <img src="https://${settings.SITE_NAME+logo_couleur}" />
+        </div>
+        % else :
+        <p>${_('No color logo defined for this site')}</p>
+        %endif
+        <div id="pre_picture" class="form_update_logo">
+          <form id="upload_microsite_logo_couleur">
+            <input class="new-microsite-logo" id="new-microsite-logo" type="file" name="logo_couleur" required="" aria-describedby="tip-new-microsite-logo tip-error-new-microsite-logo">
+          </form>
+        </div>
       </div>
-      <!--Logo Color -->
-      % if logo_couleur:
-      <div id="logo_preview_couleur">
-        <label>Logo couleur</label>
-        <img src="https://${settings.SITE_NAME+logo_couleur}" />
-      </div>
-      %else:
-      <label>Logo couleur</label>
-      <p>Aucun logo couleur défini pour ce site</p>
-      %endif
-      <div id="pre_picture" class="form_update_logo">
-        <form id="upload_microsite_logo_couleur">
-          <input class="new-microsite-logo" id="new-microsite-logo" type="file" name="logo_couleur" required="" aria-describedby="tip-new-microsite-logo tip-error-new-microsite-logo">
-        </form>
-      </div>
+
+
       <!--1st color -->
-      <div id="pre_primary" class="form_update">
-        <label data-value="${primary_color}">${primary_color}</label>
+      <div id="pre_primary" class="form_update update_part">
+        <div id="primary_color_preview"></div> <label data-value="${primary_color}"> ${_('Primary color')} :${primary_color}</label>
         <input type="text" value="" name="primary_color" id="micro_primary_color" placeholder="microsite primary color" class="input_update">
       </div>
+
+
       <!--2nd Color -->
-      <div id="pre_secondary" class="form_update">
-        <label data-value="${secondary_color}">${secondary_color}</label>
+      <div id="pre_secondary" class="form_update update_part">
+        <div id="secondary_color_preview"></div><label data-value="${secondary_color}">${_('Secondary color')} : ${secondary_color}</label>
         <input type="text" value="" name="secondary_color" id="micro_secondary_color" placeholder="microsite secondary color" class="input_update">
       </div>
+
       <!-- Technical contact address -->
-      <div id="pre_contact" class="form_update">
+      <div id="pre_contact" class="form_update update_part">
         % if contact_address:
-        <label data-value="${contact_address}">${contact_address}</label>
+        <span>${_('Contact address')} :</span><label data-value="${contact_address}"> ${contact_address}</label>
         %else:
-        <p>Aucune adresse de support technique définie pour ce site</p>
+        <span>${_('Contact address')} : </span><p>${_('No contact address defined for this site')}</p>
         %endif
         <input type="text" value="" name="contact_address" id="micro_contact_address" placeholder="microsite contact address" class="input_update">
       </div>
+
       <!-- Disclaimer -->
-      <div class="form_update">
-        <label> Disclaimer </label>
-        <textarea name="disclaimer" rows="15" id="micro_disclaimer" placeholder="site disclaimer" class="input_update">
-          %if disclaimer is UNDEFINED :
-            <p>No text</p>
-          %else:
-            ${disclaimer|n}
-          %endif
-        </textarea>
+      <div class="form_update update_part">
+        <label> ${_('Disclaimer')} </label>
+        <div class="max_width">
+          <textarea name="disclaimer" rows="15" id="micro_disclaimer" placeholder="site disclaimer" class="input_update">
+            %if disclaimer is UNDEFINED :
+              <p>${_('No text')}</p>
+            %else:
+              ${disclaimer|n}
+            %endif
+          </textarea>
+        </div>
       </div>
+
+
       <!--Trademark -->
-      <div id="pre_trademark" class="form_update">
+      <div id="pre_trademark" class="form_update update_part">
         %if trademark is UNDEFINED :
           <label> Trademark</label>
         %else:
@@ -114,30 +186,35 @@ textarea{
         %endif
         <input type="text" value="" name="trademark" id="micro_trademark" placeholder="microsite trademark" class="input_update">
       </div>
+
       <!-- AmundiAcademy Brand -->
-      <div id="pre_amundibrand" class="form_update">
+      <div id="pre_amundibrand" class="form_update update_part">
         % if amundi_brand:
           %if amundi_brand == 'true':
-            <label data-value="${amundi_brand}">La marque AmundiBrand est affichée</label>
+            <label data-value="${amundi_brand}">AmundiBrand : ${_('AmundiBrand is displayed')}</label>
           %else:
-           <label data-value="${amundi_brand}">La marque AmundiBrand est cachée</label>
+           <label data-value="${amundi_brand}">AmundiBrand : ${_('AmundiBrand is hidden')}</label>
           %endif
         %else:
-        <p>Veuillez sélectionner l'apparence de la marque AmundiAcademy</p>
+        <p>${_('Please select AmundiBrand appearance')}</p>
         %endif
-        <select class="input new-microsite-amundibrand select amundibrand-selector input_update" id="amundibrand-value" name="amundi_brand">
-          <option value="true">Display</value>
-          <option value="false">Hide</value>
-        </select>
+        <div class="max_width">
+          <select class="input new-microsite-amundibrand select amundibrand-selector input_update" id="amundibrand-value" name="amundi_brand">
+            <option value="true">${_('Display')}</value>
+            <option value="false">${_('Hide')}</value>
+          </select>
+        </div>
       </div>
 
       <!-- Language -->
-      <div id="language_code" class="form_update">
-        <label for="new-microsite-language">Chose Language</label>
-        <select class="input new-microsite-language select language-selector input_update" id="language-value" name="language_code">
-          <option value="fr">Français</value>
-          <option value="en">English</value>
-        </select>
+      <div id="language_code" class="form_update update_part">
+        <label for="new-microsite-language">${_('Chose language')}</label>
+        <div class="max_width">
+          <select class="input new-microsite-language select language-selector input_update" id="language-value" name="language_code">
+            <option value="fr">Français</value>
+            <option value="en">English</value>
+          </select>
+        </div>
       </div>
 
     </div>
@@ -161,36 +238,5 @@ textarea{
     </div>
   </div>
 <link rel="stylesheet" type="text/css" href="${static.url('css/invite_course.css')}">
-<style>
-#form label,#form input {
-  display: block;
-}
-#content {
-  min-height: 900px;
-}
-#primary {
-  width: 100%;
-}
-input[type="text"] {
-  width: 50%;
-}
-.form_update {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-#form label {
-  font-size: 18px;
-  font-family: "Arial";
-  margin-top: 4px;
-  margin-bottom: 4px;
-}
-/*
-.js .wrapper-notification {
-  bottom: 0;
-}
-#notification-warning {
-  display: none;
-}
-*/
-</style>
+
 </%block>

@@ -11,15 +11,25 @@ html,body,span,h1,h2,h3,h4,h5,h6,div,a,button,input,p,section{
 body{
   min-height:100vh
 }
-input[type="submit"]:not(:disabled),input[type="button"]:not(:disabled),button:not(:disabled),.button:not(:disabled){background:!atp_primary_color;background-image:none;box-shadow:none}
-input[type="submit"]:hover:not(:disabled),input[type="button"]:hover:not(:disabled),button:hover:not(:disabled),.button:hover:not(:disabled),button:focus:not(:disabled){background:!atp_secondary_color;background-image:none;box-shadow:none}
+input[type="submit"]:not(:disabled),input[type="button"]:not(:disabled),button:not(:disabled),.button:not(:disabled){
+  background-image:none;
+  box-shadow:none}
+input[type="submit"]:hover:not(:disabled),input[type="button"]:hover:not(:disabled),button:hover:not(:disabled),.button:hover:not(:disabled),button:focus:not(:disabled){
+  background-image:none;
+  box-shadow:none}
 .login-register .action-primary,.financial-assistance-wrapper .financial-assistance-form .action-primary{box-shadow:none}
-button:hover:not(:disabled){background:#fff;border-color:!atp_secondary_color;color:!atp_secondary_color}
-button:not(:disabled){background:#fff;border-color:!atp_primary_color;color:!atp_primary_color}
-.login-register .form-field .field-link,.financial-assistance-wrapper .financial-assistance-form .form-field .field-link{
-  color:!atp_primary_color
+button:hover:not(:disabled){
+  background:#fff;
 }
-.btn-blue:hover,.dashboard-banner .wrapper-msg .msg.has-actions .donate-actions .action-donate:hover,.login-register .action-primary:hover,.financial-assistance-wrapper .financial-assistance-form .action-primary:hover,.verification-process .action-primary-blue:hover,.verification-process .carousel .wrapper-task .controls .control .action:hover,.verification-process .carousel .wrapper-task .msg .list-actions .action-retakephotos a:hover,.verification-process .carousel #wrapper-review .review-task-name .list-actions .action-editname a:hover,.verification-process.step-select-track .register-choice-audit .action-select input:hover,.verification-process.step-confirmation .course-info .options .action-course:hover,.verification-process.step-confirmation .course-info .course-actions .action-dashboard:hover,.reverify-blocked .action-primary:hover,.wrapper-authorize .btn-authorization-allow:hover,.wrapper-msg.wrapper-auto-cert .auto-cert-message .has-actions .msg-actions .btn:hover,.btn-blue:active,.dashboard-banner .wrapper-msg .msg.has-actions .donate-actions .action-donate:active,.login-register .action-primary:active,.financial-assistance-wrapper .financial-assistance-form .action-primary:active,.verification-process .action-primary-blue:active,.verification-process .carousel .wrapper-task .controls .control .action:active,.verification-process .carousel .wrapper-task .msg .list-actions .action-retakephotos a:active,.verification-process .carousel #wrapper-review .review-task-name .list-actions .action-editname a:active,.verification-process.step-select-track .register-choice-audit .action-select input:active,.verification-process.step-confirmation .course-info .options .action-course:active,.verification-process.step-confirmation .course-info .course-actions .action-dashboard:active,.reverify-blocked .action-primary:active,.wrapper-authorize .btn-authorization-allow:active,.wrapper-msg.wrapper-auto-cert .auto-cert-message .has-actions .msg-actions .btn:active,.btn-blue:focus,.dashboard-banner .wrapper-msg .msg.has-actions .donate-actions .action-donate:focus,.login-register .action-primary:focus,.financial-assistance-wrapper .financial-assistance-form .action-primary:focus,.verification-process .action-primary-blue:focus,.verification-process .carousel .wrapper-task .controls .control .action:focus,.verification-process .carousel .wrapper-task .msg .list-actions .action-retakephotos a:focus,.verification-process .carousel #wrapper-review .review-task-name .list-actions .action-editname a:focus,.verification-process.step-select-track .register-choice-audit .action-select input:focus,.verification-process.step-confirmation .course-info .options .action-course:focus,.verification-process.step-confirmation .course-info .course-actions .action-dashboard:focus,.reverify-blocked .action-primary:focus,.wrapper-authorize .btn-authorization-allow:focus,.wrapper-msg.wrapper-auto-cert .auto-cert-message .has-actions .msg-actions .btn:focus{background:!atp_primary_color;box-shadow:none}
+button:not(:disabled){
+  background:#fff;
+}
+.login-register .form-field .field-link,.financial-assistance-wrapper .financial-assistance-form .form-field .field-link{
+
+}
+.btn-blue:hover,.dashboard-banner .wrapper-msg .msg.has-actions .donate-actions .action-donate:hover,.login-register .action-primary:hover,.financial-assistance-wrapper .financial-assistance-form .action-primary:hover,.verification-process .action-primary-blue:hover,.verification-process .carousel .wrapper-task .controls .control .action:hover,.verification-process .carousel .wrapper-task .msg .list-actions .action-retakephotos a:hover,.verification-process .carousel #wrapper-review .review-task-name .list-actions .action-editname a:hover,.verification-process.step-select-track .register-choice-audit .action-select input:hover,.verification-process.step-confirmation .course-info .options .action-course:hover,.verification-process.step-confirmation .course-info .course-actions .action-dashboard:hover,.reverify-blocked .action-primary:hover,.wrapper-authorize .btn-authorization-allow:hover,.wrapper-msg.wrapper-auto-cert .auto-cert-message .has-actions .msg-actions .btn:hover,.btn-blue:active,.dashboard-banner .wrapper-msg .msg.has-actions .donate-actions .action-donate:active,.login-register .action-primary:active,.financial-assistance-wrapper .financial-assistance-form .action-primary:active,.verification-process .action-primary-blue:active,.verification-process .carousel .wrapper-task .controls .control .action:active,.verification-process .carousel .wrapper-task .msg .list-actions .action-retakephotos a:active,.verification-process .carousel #wrapper-review .review-task-name .list-actions .action-editname a:active,.verification-process.step-select-track .register-choice-audit .action-select input:active,.verification-process.step-confirmation .course-info .options .action-course:active,.verification-process.step-confirmation .course-info .course-actions .action-dashboard:active,.reverify-blocked .action-primary:active,.wrapper-authorize .btn-authorization-allow:active,.wrapper-msg.wrapper-auto-cert .auto-cert-message .has-actions .msg-actions .btn:active,.btn-blue:focus,.dashboard-banner .wrapper-msg .msg.has-actions .donate-actions .action-donate:focus,.login-register .action-primary:focus,.financial-assistance-wrapper .financial-assistance-form .action-primary:focus,.verification-process .action-primary-blue:focus,.verification-process .carousel .wrapper-task .controls .control .action:focus,.verification-process .carousel .wrapper-task .msg .list-actions .action-retakephotos a:focus,.verification-process .carousel #wrapper-review .review-task-name .list-actions .action-editname a:focus,.verification-process.step-select-track .register-choice-audit .action-select input:focus,.verification-process.step-confirmation .course-info .options .action-course:focus,.verification-process.step-confirmation .course-info .course-actions .action-dashboard:focus,.reverify-blocked .action-primary:focus,.wrapper-authorize .btn-authorization-allow:focus,.wrapper-msg.wrapper-auto-cert .auto-cert-message .has-actions .msg-actions .btn:focus{
+  box-shadow:none;
+}
 .help-buttons button:hover,.login aside .btn-login .btn-login-action:hover,.register aside .btn-login .btn-login-action:hover,.passwordreset aside .btn-login .btn-login-action:hover,#forgot-password-modal #password-reset aside .btn-login .btn-login-action:hover,.login-register .login-provider:hover,.financial-assistance-wrapper .financial-assistance-form .login-provider:hover,.login .form-actions.form-third-party-auth button[type="submit"]:hover,.register .form-actions.form-third-party-auth button[type="submit"]:hover,.passwordreset .form-actions.form-third-party-auth button[type="submit"]:hover,#forgot-password-modal #password-reset .form-actions.form-third-party-auth button[type="submit"]:hover,.login-register .nav-btn:hover,.financial-assistance-wrapper .financial-assistance-form .nav-btn:hover,.login-register .button-secondary-login:hover,.financial-assistance-wrapper .financial-assistance-form .button-secondary-login:hover,.wrapper-authorize .btn-authorization-cancel:hover,.help-buttons button:active,.login aside .btn-login .btn-login-action:active,.register aside .btn-login .btn-login-action:active,.passwordreset aside .btn-login .btn-login-action:active,#forgot-password-modal #password-reset aside .btn-login .btn-login-action:active,.login-register .login-provider:active,.financial-assistance-wrapper .financial-assistance-form .login-provider:active,.login .form-actions.form-third-party-auth button[type="submit"]:active,.register .form-actions.form-third-party-auth button[type="submit"]:active,.passwordreset .form-actions.form-third-party-auth button[type="submit"]:active,#forgot-password-modal #password-reset .form-actions.form-third-party-auth button[type="submit"]:active,.login-register .nav-btn:active,.financial-assistance-wrapper .financial-assistance-form .nav-btn:active,.login-register .button-secondary-login:active,.financial-assistance-wrapper .financial-assistance-form .button-secondary-login:active,.wrapper-authorize .btn-authorization-cancel:active,.help-buttons button:focus,.login aside .btn-login .btn-login-action:focus,.register aside .btn-login .btn-login-action:focus,.passwordreset aside .btn-login .btn-login-action:focus,#forgot-password-modal #password-reset aside .btn-login .btn-login-action:focus,.login-register .login-provider:focus,.financial-assistance-wrapper .financial-assistance-form .login-provider:focus,.login .form-actions.form-third-party-auth button[type="submit"]:focus,.register .form-actions.form-third-party-auth button[type="submit"]:focus,.passwordreset .form-actions.form-third-party-auth button[type="submit"]:focus,#forgot-password-modal #password-reset .form-actions.form-third-party-auth button[type="submit"]:focus,.login-register .nav-btn:focus,.financial-assistance-wrapper .financial-assistance-form .nav-btn:focus,.login-register .button-secondary-login:focus,.financial-assistance-wrapper .financial-assistance-form .button-secondary-login:focus,.wrapper-authorize .btn-authorization-cancel:focus{
   box-shadow:none;background-image:none
 }
@@ -48,7 +58,6 @@ button:not(:disabled){background:#fff;border-color:!atp_primary_color;color:!atp
   height:58px;
   padding:0;
   margin:0;
-  background-color:!atp_primary_color;
   position:fixed;
   top:0;}
 
@@ -134,13 +143,12 @@ button:not(:disabled){background:#fff;border-color:!atp_primary_color;color:!atp
     width:calc(100% - 8px);
     text-align:center;
     top:96px;
-    border:1px solid !atp_primary_color;
+    border:1px solid black;
     font-size:10px;
     line-height:10px;
     vertical-align:middle;
     padding:3px;
     height:auto;
-    color:!atp_primary_color;
     background-color:#fff
   }
   #log_user_action:hover span{display:block}
@@ -155,7 +163,8 @@ button:not(:disabled){background:#fff;border-color:!atp_primary_color;color:!atp
     border-left:5px solid transparent;
     border-right:5px solid transparent;
     font-family:"mywebfont";
-    border-bottom:5px solid !atp_primary_color;}
+    border-bottom:5px solid black;
+  }
   #down_apt_nav #sub_to_dashboard{
     width:260px;
     line-height:90px;
@@ -178,8 +187,16 @@ button:not(:disabled){background:#fff;border-color:!atp_primary_color;color:!atp
     #logo_atp_redirect{
       cursor:pointer;
     margin-top:5px;}
-    #sub_menu{display:none;background-color:!atp_primary_color;width:100%;margin:0;position:absolute;min-height:54px;height:auto;z-index:200}
-    #menu_module_apt,#menu_cat_apt{width:100%;position:relative;top:0;float:none;left:0}
+    #sub_menu{
+      display:none;
+      width:100%;
+      margin:0;
+      position:absolute;
+      min-height:54px;
+      height:auto;
+      z-index:200
+    }
+    #menu_module_apt,#menu_cat_apt{width:100%;float:none;left:0}
     #sub_menu #nav_replace_before{border:none}
     #sub_menu button,#sub_menu button:focus,#sub_menu button:hover,#sub_menu a,#sub_menu a:focus,#sub_menu a:hover,#up_apt_nav a,#up_apt_nav a:hover,#up_apt_nav a:focus{width:100%;float:none}
     #up_apt_nav a,#up_apt_nav a:hover,#up_apt_nav a:focus{float:right;width:259px}
@@ -210,7 +227,7 @@ button:not(:disabled){background:#fff;border-color:!atp_primary_color;color:!atp
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
     font-family: "mywebfont";
-    border-bottom: 5px solid !atp_primary_color;
+    border-bottom: 5px solid black;
 }
 #sub_to_dashboard_account span {
     position: absolute;
@@ -219,13 +236,12 @@ button:not(:disabled){background:#fff;border-color:!atp_primary_color;color:!atp
     width: calc(100% - 8px);
     text-align: center;
     top: 96px;
-    border: 1px solid !atp_primary_color;
+    border: 1px solid black;
     font-size: 10px;
     line-height: 10px;
     vertical-align: middle;
     padding: 3px;
     height: auto;
-    color: !atp_primary_color;
     background-color: #fff;
 }
 #down_apt_nav #sub_to_dashboard_account{
@@ -308,7 +324,6 @@ border-bottom: 1px solid #c6c6c6 !important;
 #down_apt_nav{
   margin:0;
   height: 70px;
-  background-color:!atp_primary_color;
   box-shadow: 0 5px 15px rgba(0,0,0,.2);
   color :white;
   display: flex;
@@ -322,7 +337,6 @@ border-bottom: 1px solid #c6c6c6 !important;
   height: 100%;
   width: 100%;
   flex-direction: row-reverse;
-  background-color:!atp_primary_color;
 }
 .menu-item-atp{
   display: inline;
@@ -333,7 +347,6 @@ border-bottom: 1px solid #c6c6c6 !important;
   text-align: center;
   line-height: 70px;
   height: 100%;
-  background-color:!atp_primary_color;
   cursor:pointer;
 }
 #menu-categories, #menu-modules, #logout-btn{
@@ -345,27 +358,7 @@ border-bottom: 1px solid #c6c6c6 !important;
 }
 
 /* Sub menus */
-#menu_module_apt,#menu_cat_apt, #profile-submenu{
-  position:absolute;
-  top:69px;
-  width:250px;
-  height:auto;
-  z-index:10;
-  display:none;
-  font-weight: 600;
-}
-#menu_module_apt button,#menu_cat_apt button,#menu_module_apt button:hover,#menu_cat_apt button:hover,#menu_module_apt button:focus,#menu_cat_apt button:focus{
-  background-color: #fff;
-  border-left-color: transparent;
-  border-right: none;
-  color: #4a4a4a;
-  font-size: 16px;
-  border-bottom: 1px solid #c6c6c6;
-  border-radius: 0px;
-  width: 100%;
-  text-shadow: none!important;
-  font-weight: 600;
-}
+
 #menu_module_apt button{
   display: block;
 }
@@ -423,7 +416,6 @@ border-bottom: 1px solid #c6c6c6 !important;
     height: auto;
   }
   #menu_module_apt, #menu_cat_apt, #profile-submenu{
-    position: static;
     width: 100%;
   }
   #menu-modules{
@@ -442,7 +434,6 @@ border-bottom: 1px solid #c6c6c6 !important;
 }
 #profile-submenu a:hover{
   text-decoration: none;
-  border-top-color: !atp_secondary_color!important;
 }
 
 #profile-submenu a:last-child{
@@ -527,4 +518,204 @@ border-bottom: 1px solid #c6c6c6 !important;
   height: 100%;
   border-left: 1px solid white;
   opacity: 0.5;
+}
+
+.bold{
+  font-weight: 600;
+}
+.uppercase{
+  text-transform: uppercase;
+}
+.margin-null{
+  margin:0;
+}
+.pad5{
+  padding: 5px;
+}
+.logout-text{
+  color:rgb(128, 128, 128);
+  margin-left: 10px;
+}
+.content-wrapper{
+  padding-top: 70px;
+}
+  nav a:hover, nav a:visited{
+    text-decoration: none;
+  }
+  #main_atp_logo{
+    height: 100%;
+  }
+  .navbar-brand{
+    padding: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    height: auto;
+  }
+  #main_atp_logo{
+    max-height: 60px;
+  }
+  #amundibrand_logo{
+    max-height: 25px;
+  }
+  .amundibrand_wrapper{
+    margin-top: 17px;
+  }
+  .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand{
+    margin-left: 0px!important;
+  }
+  .separation-logos{
+    border-right: 1px solid rgba(255,255,255,0.5);
+  }
+  #modules_title, #categories_title{
+    font-family: "mywebfont";
+    color:white;
+    font-weight: 700;
+    font-size: 16px;
+    margin-top: 25px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 23px;
+  }
+  #user-icone{
+    cursor: pointer;
+  }
+  .navbar-toggle{
+    margin-top: 18px;
+  }
+  .navbar-default .navbar-toggle{
+    background: none!important;
+    border: 0px;
+  }
+  .navbar-default .navbar-toggle .icon-bar{
+    background-color: white;
+  }
+  #user-icone{
+    border-radius: 50%;
+    padding: 10px;
+  }
+
+  #user-icone img{
+    height: 24px!important;
+  }
+  .profile-menu-dropdown{
+    position: absolute;
+    right: 0;
+    top: 70px;
+    background-color: white;
+    padding: 10px;
+    display: none;
+    width:250px;
+    z-index: -20px;
+  }
+  .capitalize{
+    text-transform: capitalize;
+  }
+  #user-btn{
+    padding-right: 25px;
+    padding-left: 25px;
+    padding-top: 10px;
+    padding-bottom: 16px;
+    display: block;
+    position: absolute;
+    top:0;
+    right: 0;
+  }
+  @media(min-width:768px){
+    #module_btn:hover #menu_module_apt, #categories_btn:hover #categories_menu{
+      display: block!important;
+    }
+    #user-btn:hover .profile-menu-dropdown{
+      display: block;
+    }
+  }
+  #module_btn, #categories_btn{
+    width:250px;
+    text-align: center;
+  }
+  #module_btn{
+    border-left:1px solid rgba(255,255,255,0.5);
+  }
+  #categories_btn{
+    border-left:1px solid rgba(255,255,255,0.5);
+    border-right:1px solid rgba(255,255,255,0.5);
+  }
+  #menu_module_apt, #categories_menu{
+    width:250px;
+    border: 0px;
+    padding: 0px!important
+  }
+  #categories_menu{
+    padding: 0px;
+  }
+  .submenu-item-atp{
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    color:#4a4a4a;
+    font-family: 'mywebfont';
+    font-size: 16px;
+    padding: 5px;
+    font-weight: 600;
+    border-top: 1px solid #4a4a4a;
+  }
+  .font-basic{
+    color:#4a4a4a;
+    font-family: 'mywebfont';
+  }
+
+  .navbar-right{
+    margin-right: 75px;
+  }
+.font-12{
+  font-size: 12px;
+}
+.link-menu-user{
+  font-weight: 600;
+  font-size: 16px;
+  border-top: 1px solid black;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.gray-btn{
+  text-align: center;
+  background-color: lightgray;
+  padding: 5px;
+  color: white;
+  font-weight: 600;
+}
+.navbar-collapse{
+  height: auto!important;
+  overflow: initial!important;
+}
+@media(max-width:1023px){
+  .amundibrand_wrapper{
+    display: none;
+  }
+  .separation-logos{
+    border-right: none;
+  }
+}
+
+@media(max-width:768px){
+  #module_btn, #categories_btn{
+    width:100%;
+    border: none;
+  }
+  .navbar-default .navbar-toggle{
+    right: 50px;
+    position: absolute;
+    right: 65px;
+  }
+  #menu_module_apt, #categories_menu{
+    width:100%;
+  }
+  .navbar-right{
+    margin-right: 0px;
+  }
+  .navbar-collapse{
+    padding: 0px;
+  }
+  #categories_btn{
+    padding:1px;
+  }
 }

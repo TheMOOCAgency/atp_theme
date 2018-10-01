@@ -56,8 +56,10 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
           $('#micro_secondary_color').attr('value','');
           var primary_color = retour.primary_color;
           $('#pre_primary').find('label').text(primary_color);
+          $('#primary_color_preview').css('background-color',primary_color);
           var secondary_color = retour.secondary_color;
           $('#pre_secondary').find('label').text(secondary_color);
+          $('#secondary_color_preview').css('background-color',secondary_color);
           if(retour.amundi_brand=="true"){
             var amundi_brand="La marque AmundiBrand est affichée";
           }
