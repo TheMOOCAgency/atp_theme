@@ -14,7 +14,7 @@ from openedx.core.djangolib.markup import HTML, Text
   require(["js/factories/index"], function (IndexFactory) {
       IndexFactory();
   });
-  //require(['https://${settings.SITE_NAME}/media/studio/update.js']);
+  //require(['https://${settings.LMS_BASE}/media/studio/update.js']);
   require(['${static.url("js/atp/update.js")}']);
 </%block>
 <%namespace name='static' file='static_content.html'/>
@@ -59,9 +59,10 @@ textarea{
 #secondary_color_preview{
   background-color: ${secondary_color};
 }
-#primary_color_preview{
+#primary_color_preview, .primary-color-bg{
   background-color:${primary_color}
 }
+
 label{
   display: inline!important;
 }
@@ -93,6 +94,9 @@ input[type="text"] {
   margin-top: 4px;
   margin-bottom: 4px;
 }
+.w-150{
+  width: 150px!important;
+}
 </style>
   <section id="primary">
     <div id="fil_ariane"><a href="/"  class="secondary-color-text">${_('My campaigns')} ></a></div>
@@ -112,7 +116,7 @@ input[type="text"] {
       <div id="logo_preview" class="update_part">
         <label class="">${_('White logo')}</label>
         <div class="max_width">
-          <img src="https://${settings.SITE_NAME+logo_site}" />
+          <img class="w-150 primary-color-bg" src="https://${settings.LMS_BASE+logo_site}" />
         </div>
         <div id="pre_picture" class="form_update_logo">
           <form id="upload_microsite_logo">
@@ -126,7 +130,7 @@ input[type="text"] {
         <label class="">${_('Color logo')}</label>
         % if logo_couleur:
         <div class="max_width">
-          <img src="https://${settings.SITE_NAME+logo_couleur}" />
+          <img class="w-150" src="https://${settings.LMS_BASE+logo_couleur}" />
         </div>
         % else :
         <p>${_('No color logo defined for this site')}</p>
