@@ -60,8 +60,10 @@ from openedx.core.djangolib.js_utils import (
       window.baseUrl = "${settings.STATIC_URL | n, js_escaped_string}";
       var require = {baseUrl: window.baseUrl};
     </script>
+    % if not "/invite" in request.path:
     <script type="text/javascript" src="${static.url("common/js/vendor/require.js")}"></script>
     <script type="text/javascript" src="${static.url("cms/js/require-config.js")}"></script>
+    %endif
 
     <!-- view -->
     <div class="wrapper wrapper-view" dir="${static.dir_rtl()}">
@@ -97,6 +99,7 @@ from openedx.core.djangolib.js_utils import (
     <%block name="modal_placeholder"></%block>
 
     <%block name="jsextra"></%block>
+    % if not "/invite" in request.path:
     <script type="text/javascript">
       require(['common/js/common_libraries'], function () {
           require(['js/factories/base'], function () {
@@ -128,6 +131,7 @@ from openedx.core.djangolib.js_utils import (
       });
 
     </script>
+    %endif
     <%include file="widgets/segment-io-footer.html" />
     <div class="modal-cover"></div>
   </body>
