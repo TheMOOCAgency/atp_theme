@@ -1,8 +1,6 @@
 define(['domReady', 'jquery', 'underscore','jquery.ui'],function(domReady, $, _) {
   var onReady = function() {
     // method preview csv file
-    var ok_csv = true;
-
     function csv_preview(input,output,next) {
       var reader = new FileReader();
       var fileinput = document.getElementById(input);
@@ -10,7 +8,8 @@ define(['domReady', 'jquery', 'underscore','jquery.ui'],function(domReady, $, _)
         var lines = this.result.split('\n');
         var out = $('#'+output);
         var limit = 0;
-        out.html();
+        out.html('');
+        var header_list=[];
         for(var line = 0; line < lines.length; line++){
           if(limit < 6) {
             columns = lines[line].split(',');
@@ -19,16 +18,24 @@ define(['domReady', 'jquery', 'underscore','jquery.ui'],function(domReady, $, _)
             out.append(paragraphe);
             var cur_row = $('#'+row_id);
             var email_column;
+            //console.log(columns[0]);
             if(line > 0) {
               email_column = "<span class='email_row'>"+columns[0]+"</span>";
               cur_row.append(email_column);
             }else{
               email_column = "<span>"+columns[0]+"</span>";
               cur_row.append(email_column);
+              header_list.push(columns[0]);
             }
             for(var i = 1;i<columns.length;i++) {
-              var span = "<span>"+columns[i]+"</span>";
+              if(line==0){
+                header_list.push(columns[i]);
+                var span = "<span>"+columns[i]+"</span>";
+              }else{
+                var span = "<span class='"+header_list[i]+"'>"+columns[i]+"</span>";
+              }
               cur_row.append(span);
+              //console.log(columns[i]);
             }
             //out.append('<p><span>'+lines[line].split(',').join('</span><span>')+'</span><p>');
           }else{
@@ -42,6 +49,8 @@ define(['domReady', 'jquery', 'underscore','jquery.ui'],function(domReady, $, _)
             This.remove();
           }
         })
+        ok_csv = true;
+        //invalid and missing email test
         $('.email_row').each(function(){
           var This = $(this);
           var text = This.text();
@@ -51,12 +60,32 @@ define(['domReady', 'jquery', 'underscore','jquery.ui'],function(domReady, $, _)
             This.addClass("is_error");
           }
         })
+        //missing first name test
+        $('.first_name').each(function(){
+          console.log($(this).html());
+          if($(this).html()==null || $(this).html()==undefined || $(this).html()==''){
+            ok_csv = false;
+            $(this).addClass("is_error");
+          }
+        });
+        //missing last name test
+        $('.last_name').each(function(){
+          console.log($(this).html());
+          if($(this).html()==null || $(this).html()==undefined || $(this).html()==''){
+            ok_csv = false;
+            $(this).addClass("is_error");
+          }
+        });
         out.find('span').attr('style','');
         $('#output_section').show();
+        console.log('ok csv' +ok_csv);
         if(ok_csv) {
             $('#'+next).show();
+            $('#pop_up_mail_fail').removeClass('is_show');
+            $('#choise_from_file').css('display','block');
         }else{
           $('#pop_up_mail_fail').addClass('is_show');
+          $('#choise_from_file').css('display','none');
         }
       }
       reader.readAsText(fileinput.files[0]);
@@ -116,8 +145,9 @@ define(['domReady', 'jquery', 'underscore','jquery.ui'],function(domReady, $, _)
     var submit = '#upload_form_participant';
     var mail_invite = new invite();
     mail_invite.file_up_input('invite_participant','choise_from_file');
+
     // register users from csv
-    $('#register_from_csv').click(function(){
+    $('#register_from_csv').on('click',function(){
       $('#pop_up_invite').removeClass('is_show');
       mail_invite.load_csv(submit,'register_only');
       var path = window.location.path;
