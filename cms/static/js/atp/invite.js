@@ -1,14 +1,16 @@
-define(['domReady', 'jquery', 'underscore','dynatable','papaparse','jquery.ui'],function(domReady, $, _, dynatable, Papa) {
+define(['domReady', 'jquery', 'underscore','atp_theme/js/utilitaires/dynatable/jquery.dynatable','atp_theme/js/utilitaires/papaparse/papaparse.min','jquery.ui'],function(domReady, $, _, dynatable, Papa) {
   var onReady = function() {
 
     //////////////////////////////////////////////////// CHECK CSV FILE //////////////////////////////////////////////////
 function ParseCsvFile(evt) {
   $("#csv_import_error").css('display','none');
-  $('#csv_import').html('');
+  $('#csv_import').html('').css('display','none');
   $('#csv_import_preview').css('display','none');
   $('#csv_import_feedback').css('display','none');
+  $('#header-error-details').html('');
   final_valid_records={};
   final_error_records={};
+  final_total_records={};
   $('#register_user_btn').css('display','none');
   var file = evt.target.files[0];
   var fileread = new FileReader();
@@ -32,12 +34,15 @@ function ParseCsvFile(evt) {
           check_results = check_csv_errors(csv_users_cleaned);
           final_valid_records = check_results['valid_records'];
           final_error_records = check_results['errors'];
-          if(final_error_records.length>0){
-            manage_error_display(final_error_records);
+          console.log(final_error_records);
+          final_total_records=check_results['total'];
+
+          display_csv_rows(final_total_records);
+          if(final_error_records.length==0){
+            $('#register_user_btn').css('display','block');
           }
           else{
-            display_csv_rows(final_valid_records);
-            $('#register_user_btn').css('display','block');
+            manage_error_display(final_error_records);
           }
         }
         else{
@@ -85,15 +90,19 @@ function check_valid_header(csv_users_cleaned){
 function check_csv_errors(csv_users_cleaned){
   errors=[];
   valid_records=[];
+  total_records=[];
   check_results={};
   for (user in csv_users_cleaned){
     user_data=csv_users_cleaned[user];
     valid=true
     user_data['missing_fields']=[];
     user_data['line']=parseInt(user)+2;
-    console.log(user_data);
+
+    if(!isempty(user_data)){
+      total_records.push(user_data);
+    }
     for (var i = 0; i < required_fields.length; i++){
-      if(user_data[required_fields[i]]==undefined && user_data[required_fields[i]]==null){
+      if(user_data[required_fields[i]]==undefined || user_data[required_fields[i]]==null){
         valid=false;
         user_data['missing_fields'].push(required_fields[i]);
       }
@@ -111,6 +120,7 @@ function check_csv_errors(csv_users_cleaned){
   }
   check_results['valid_records']=valid_records;
   check_results['errors']=errors;
+  check_results['total']=total_records;
   return check_results;
 }
 
@@ -131,21 +141,27 @@ function display_csv_rows(csv_users_cleaned){
   times_displayed+=1;
   $('.dynatable-active-page a').addClass('primary-color-bg');
   $('#csv_import_preview').css('display','block');
+
+  //Add classes to columns
+  j=1;
+  $('#csv_import tr').each(function(){
+    for(i=0;i<header_fields.length;i++){
+      $(this).find('td').eq(i).attr('id',header_fields[i]+'_'+j);
+    }
+    j+=1;
+  })
 }
 
 function manage_error_display(errors){
   $('#csv_import_error').css('display','block');
-  $('#csv_import').css('display','none');
   $('.error-message').each(function(){
     $(this).css('display','none');
   })
 
-
-
   if('missing_header' in errors){
     header_error='';
     $("#incorrect_header").css('display','block');
-    header_errors+='<ul>';
+    header_error+='<ul>';
     for(missing_header in errors['missing_header']){
       header_error+='<li>'+errors['missing_header'][missing_header]+'</li>';
     }
@@ -153,26 +169,20 @@ function manage_error_display(errors){
     $('#header-error-details').html(header_error);
   }
   else{
-    missing_error='<ul>';
-    incorrect_error='<ul>';
     for(user in errors){
       if('invalid_email' in errors[user]){
         $("#incorrect-data").css('display','block');
-        incorrect_error+='<li>l'+ errors[user]['line']+' '+(errors[user]['email']||'')+' : email</li>';
+        id_name="email_"+errors[user]['line'];
+        $('#'+id_name).css('background-color','red').css('color','white');
       }
       else if ('missing_fields' in errors[user]){
         $("#required-data").css('display','block');
-        missing_error+='<li>l'+ errors[user]['line']+' '+(errors[user]['email']||'')+' : ';
         for(i=0;i<errors[user]['missing_fields'].length;i++){
-          missing_error+=errors[user]['missing_fields'][i];
+          id_name=errors[user]['missing_fields'][i]+'_'+errors[user]['line'];
+          $('#'+id_name).css('background-color','red').css('color','white');
         }
-        missing_error+='</li>';
       }
     }
-    missing_error+='</ul>';
-    $('#incorrect-error-detail').html(incorrect_error);
-    incorrect_error='</ul>';
-    $('#missing-error-detail').html(missing_error);
   }
 
 }
@@ -181,7 +191,6 @@ function manage_error_display(errors){
 
 
 function set_header(){
-  header_fields = ['email','first_name','last_name','level_1','level_2','level_3','level_4'];
   $('#csv_import').append('<thead><tr></tr></thead>');
   for (i=0;i<header_fields.length;i++){
       $('#csv_import thead tr').append('<th class="primary-color-bg white-border white-text">'+header_fields[i]+'</th>');
@@ -208,6 +217,7 @@ function isempty(obj) {
 $(document).ready(function () {
   times_displayed=0;
   required_fields = ['email','first_name','last_name'];
+  header_fields = ['email','first_name','last_name','level_1','level_2','level_3','level_4'];
   $("#invite_participant").change(ParseCsvFile);
 
   // register users from csv

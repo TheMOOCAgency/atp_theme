@@ -8,6 +8,7 @@ primary_color=configuration_helpers.get_value('primary_color')
 %>
 <%inherit file="base.html" />
 
+
 <%def name="online_help_token()"><% return "home" %></%def>
 <%block name="title">${_("{studio_name} Home").format(studio_name=settings.STUDIO_SHORT_NAME)}</%block>
 <%block name="bodyclass">is-signedin index view-dashboard</%block>
@@ -28,6 +29,14 @@ primary_color=configuration_helpers.get_value('primary_color')
 </%block>
 <%namespace name='static' file='static_content.html'/>
 <%block name="content">
+<%
+    course_opened=True
+    if course.start and time.time() < int(course.start.strftime("%s")) :
+      course_opened=False
+
+    if course.end and time.time() > int(course.end.strftime("%s")):
+      course_opened=False
+%>
 <link rel="stylesheet" type="text/css" href="${static.url('js/vendor/timepicker/jquery.timepicker.css')}">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="${static.url('css/invite_course.css')}">
@@ -271,9 +280,9 @@ course_key_cleared=str(course_key).replace('+','').replace(':','')
         <h5 class="primary-color-text">${_('Invite participants to your training campaign')}</h5>
         <span style="clear:both;display:block;"></span>
         <div class="invite_instructions">
-          %if (course.start and time.time() > int(course.start.strftime("%s"))) :
+          %if course_opened :
           <div class="classic_instructions">
-            <p class="primary-color-text" style='width:100%;text-align:left;float:none;'>${_('Add your csv file to invite participants to your course. CSV must have the following header :')}</p>
+            <p class="primary-color-text" style='width:100%;text-align:left;float:none;'>${_('Add your csv file to invite participants to your course. CSV must have the following header')}</p>
             <table id="example_header">
               <tr>
                 <td class="primary-color-text">email</td>
@@ -288,10 +297,7 @@ course_key_cleared=str(course_key).replace('+','').replace(':','')
           </div>
           %else:
           <div id="closed_instructions">
-            <div id="triangle">
-              <i class="primary-color-text fa fa-exclamation-triangle pad-20"></i>
-            </div>
-            <p>${_("In order to invite participants to your training campaign, it is imperative that starting date of the training session is set before the current date.")}</p>
+            <i class="primary-color-text fa fa-exclamation-triangle pad-20" style='font-size:45px;'></i> <span class="primary-color-text ">${_("In order to invite participants to your training campaign, it is imperative that starting date of the training session is set before the current date.")}</span>
             <div>
 
             </div>
