@@ -204,8 +204,13 @@ input[type="text"] {
         %endif
         <div class="max_width">
           <select class="input new-microsite-amundibrand select amundibrand-selector input_update" id="amundibrand-value" name="amundi_brand">
-            <option value="true">${_('Display')}</value>
+            %if amundi_brand == 'true':
+            <option value="true" selected>${_('Display')}</value>
             <option value="false">${_('Hide')}</value>
+            %else :
+            <option value="true">${_('Display')}</value>
+            <option value="false" selected>${_('Hide')}</value>
+            %endif
           </select>
         </div>
       </div>
