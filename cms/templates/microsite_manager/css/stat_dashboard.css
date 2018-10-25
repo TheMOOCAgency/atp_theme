@@ -370,7 +370,7 @@ button:not(:disabled) {
     display: none;
 }
 .user_grade_cell {
-    width: 271px;
+    width: 250px;
     height: auto;
     margin: 25px;
     border: 2px solid #c6c6c6;
@@ -603,7 +603,7 @@ button:not(:disabled) {
 }
 #nav_participant {
     background-color: #fff;
-    width: calc(100% - 42px);
+    width: calc(100%);
     padding-left: 40px;
     border: 1px solid #C8C8C8;
 }
