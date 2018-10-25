@@ -25,6 +25,8 @@ function ParseCsvFile(evt) {
       header: true,
       dynamicTyping: true,
       encoding: encoding_type,
+      skipEmptyLines:'greedy',
+      trimHeaders: true,
       complete: function(results) {
         data = results;
         csv_users=results['data'];
