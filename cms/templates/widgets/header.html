@@ -26,7 +26,7 @@ try:
   if microsite_data.get('amundi_brand'):
     amundi_brand=microsite_data.get('amundi_brand')
   else :
-    amundi_brand=''
+    amundi_brand=False
   if microsite_data.get('primary_color') is not None:
     primary_color=microsite_data.get('primary_color')
   else :
@@ -38,7 +38,7 @@ try:
     secondary_color="#00B6ED"
 except:
   logo='/media/logo-amundi.png'
-  amundi_brand='true'
+  amundi_brand=True
   secondary_color="#00B6ED"
   primary_color="#0C1C49"
   pass
@@ -349,7 +349,7 @@ except:
         <img class="logo-ms" src="${settings.LMS_ROOT_URL}/media/logo-amundi.png" alt="${settings.STUDIO_NAME}" />
       %endif
     </a>
-    %if amundi_brand!='' and amundi_brand=="true":
+    %if amundi_brand:
     <div id="amundi-academy-wrapper">
       <div id="amundi-academy">
         <img src="${settings.LMS_ROOT_URL}/media/logo-amundiacademy_blanc.png" alt="amundi_academy" id="logo-amundi-academy">

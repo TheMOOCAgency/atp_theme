@@ -15,6 +15,8 @@ trademark='© Amundi 2018'
 contact_address='amundiacademy@amundi.com'
 primary_color="#0C1C49"
 disclaimer=''
+cms_supplemental_js=''
+
 try:
   microsite_key = MicrositeAdminManager.objects.get(user=user).microsite_id
   microsite_data=Microsite.objects.get(pk=microsite_key).values
@@ -31,12 +33,10 @@ try:
   if microsite_data.get('disclaimer') is not None:
     disclaimer=microsite_data.get('disclaimer')
 
+  if microsite_data.get('cms_supplemental_js') is not None :
+    cms_supplemental_js = microsite_data.get('cms_supplemental_js')
+
 except:
-  default_contact = ''
-  trademark='© Amundi 2018'
-  contact_address='amundiacademy@amundi.com'
-  primary_color="#0C1C49"
-  disclaimer=''
   pass
 %>
 
@@ -180,6 +180,11 @@ ul{
     <span id="legal_notice">${_("disclaimer")}</span>
   </div>
 </footer>
+%  if cms_supplemental_js and cms_supplemental_js is not '' :
+  <script id="cms_supplemental_js" type="text/javascript" charset="utf-8">
+    ${cms_supplemental_js | n}
+  </script>
+% endif
 
 
 
