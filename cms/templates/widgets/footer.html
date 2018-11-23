@@ -153,19 +153,33 @@ ul{
   margin-bottom: 5px !important;
   font-size: 18px !important;
 }
+#pop_up_legal_notice{
+  font-size: 14px;
+  overflow: scroll;
+  max-height: 650px;
+  text-align: center;
+}
+#close_cross{
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-align: right;
+}
+#close_cross span{
+  cursor: pointer;
+}
+#close_legal{
+  margin-top: 10px;
+}
 </style>
 
 
 <!--- legal notice -->
 <div id="pop_up_legal_notice" class="pop_up_atp">
+  <div class="text-right" id="close_cross"><span onclick="hidePopUp()">X</span></div>
+  ${disclaimer|n}
   <div class="modal-close">
-    ${disclaimer}
     <a  class="btn btn-success btn-no-green" id="close_legal">
-      % if LANGUAGE_CODE == "fr":
-        Close
-      % else :
-        Fermer
-      % endif
+      ${_('Close')}
     </a>
   </div>
 </div>
@@ -177,7 +191,7 @@ ul{
   </div>
   <div id="footer-right">
     <a href="mailto:${contact_address}">${_("Contact")}</a>
-    <span id="legal_notice">${_("disclaimer")}</span>
+    <span id="legal_notice" class="capitalize">${_("disclaimer")}</span>
   </div>
 </footer>
 %  if cms_supplemental_js and cms_supplemental_js is not '' :
@@ -186,7 +200,11 @@ ul{
   </script>
 % endif
 
-
+<script>
+function hidePopUp(){
+  document.getElementById('pop_up_legal_notice').style.display = 'none';
+}
+</script>
 
 
 
