@@ -175,6 +175,9 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
           if(lang=='fr'){
             $('#error-field').append('<p>Veuillez sélectionner un destinataire.</p>');
           }
+          else if(lang=="cs"){
+            $('#error-field').append('<p>Vyberte příjemce emailu. </p>');
+          }
           else{
             $('#error-field').append('<p>Select a receiver for your email. </p>');
           }
@@ -185,6 +188,9 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
         if(lang=='fr'){
           $('#error-field').append("<p>L'objet du mail est obligatoire. </p>");
         }
+        else if(lang=="cs"){
+          $('#error-field').append('<p>Vyplňte předmět emailu</p>');
+        }
         else{
           $('#error-field').append('<p>Field object of the email is mandatory. </p>');
         }
@@ -194,6 +200,9 @@ define(['domReady', 'jquery', 'underscore','jquery.ui','tinymce','jquery.tinymce
       if(!$('#email_2').val()){
         if (lang=="fr"){
           $('#error-field').append('<p>Le corps du mail est obligatoire. </p>');
+        }
+        else if(lang=="cs"){
+          $('#error-field').append('<p>Vyplňte text emailu</p>');
         }
         else{
           $('#error-field').append('<p>Field body of the email is mandatory. </p>');
