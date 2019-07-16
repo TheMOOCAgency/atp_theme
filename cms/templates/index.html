@@ -1379,6 +1379,54 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
           </ul>
         </span>
 
+        % elif LANGUAGE_CODE == 'cs':
+        <span id="info_my_campaign">
+          <h3 class="title title-3">${_('WHAT YOU CAN DO')}…</h3>
+          <div class="step-info">
+            <p><span class="step-numbers">1</span>  <strong>Spravujte své kampaně</strong></p>
+            <h5>Ve vytvořených kampaních můžete spravovat:</h5>
+            <ul class="list">
+              <li>- datum začátku/konce</li>
+              <li>- minimální procento pro úspěšné splnění</li>
+              <li>- povinnost/volitelnost kampaně</li>
+            </ul>
+            <h5>Tyto parametry můžete kdykoliv upravit.</h5>
+          </div>
+
+          <div class="step-info">
+            <p><span class="step-numbers">2</span> <strong> Pozvěte účastníky</strong></p>
+            <h5>U probíhajících vytvořených kampaní můžete pozvat účastníky:</h5>
+            <ul class="list">
+              <li>- účastníky lze pozvat pouze do již probíhající kampaně (začátek data musí být přesažen)</li>
+              <li>- do probíhající kampaně můžete kdykoliv přizvat i další účastníky</li>
+            </ul>
+          </div>
+
+          <div class="step-info">
+            <p><span class="step-numbers">3</span> <strong>Pošlete emaily účastníkům</strong></p>
+            <h5>U probíhajících kampaní můžete kdykoliv poslat personalizovaný email:</h5>
+            <ul class="list">
+              <li>- Můžete vytvořit email, abyste připomněli účastníkům vzdělávací kurz, či jim poslat odkaz na nové materiály</li>
+              <li>- Email může být zaslán na všechny účastníky neboi jen na některé</li>
+            </ul>
+          </div>
+
+          <div class="step-info">
+            <p><span class="step-numbers">4</span> <strong>Statistiky</strong></p>
+            <h5>V probíhajících kampaních můžete prohlížet následující statistiky: míra účasti, míra úspěšnosti, skóre dle jednotlivých účastníků atd.</h5>
+            </ul>
+          </div>
+        </span>
+
+        <span id="info_my_module">
+          <h3 class="title title-3">${_('WHAT YOU CAN DO')}…</h3>
+          <p>${_('My modules:')}</p>
+          <ul class="list">
+            <li>- ${_('Access the training modules library provided by Amundi')}</li>
+            <li>- ${_('Create a training campaign associated to the module you selected by clicking on "Create my Campaign"')}</li>
+          </ul>
+        </span>
+
         % else:
         <span id="info_my_campaign">
           <h3 class="title title-3">${_('WHAT YOU CAN DO')}…</h3>
