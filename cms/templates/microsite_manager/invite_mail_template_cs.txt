@@ -45,10 +45,10 @@
 		<!--DETAILS-->
 	<table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color:#fff; font-family:arial;" align="center">
 		<tr>
-          <td style="padding:0 5px; text-align:center; font-weight:bold; text-align:center; font-size:14px; color:#d2840a;">Catégorie:</td>
-			 <td style="padding:0 5px; text-align:center; font-weight:bold; text-align:center; font-size:14px; color:#d2840a;">Durée:</td>
-			 <td style="padding:0 5px; text-align:center; font-weight:bold; text-align:center; font-size:14px; color:#d2840a;">Mode:</td>
-			 <td style="padding:0 5px; text-align:center; font-weight:bold; text-align:center; font-size:14px; color:#d2840a;">Date de fin:</td>
+          <td style="padding:0 5px; text-align:center; font-weight:bold; text-align:center; font-size:14px; color:#d2840a;">Kategorie:</td>
+			 <td style="padding:0 5px; text-align:center; font-weight:bold; text-align:center; font-size:14px; color:#d2840a;">Doba trvání:</td>
+			 <td style="padding:0 5px; text-align:center; font-weight:bold; text-align:center; font-size:14px; color:#d2840a;">Režim:</td>
+			 <td style="padding:0 5px; text-align:center; font-weight:bold; text-align:center; font-size:14px; color:#d2840a;">Datum ukončení:</td>
         </tr>
         <tr>
           <td style="padding:0 5px 15px; text-align:center; font-weight:bold; text-align:center; font-size:14px; color:#040b31;">${category}</td>
@@ -85,7 +85,7 @@
 		<td style="color:#040b31;">${content}</td>
 		</tr>
 		<tr>
-		<td style="padding:0 0 10px; color:#040b31;">Pro přístup ke vzdělávacímu kurzu <span style="font-weight:bold;">${course_title}</span>, prosím klikněte na odkaz níže:<a href="${link}">${link}</a></td>
+		<td style="padding:0 0 10px; color:#040b31;">Pro přístup ke vzdělávacímu kurzu <span style="font-weight:bold;">${course_title}</span>, prosím klikněte na odkaz níže: <a href="${link}">${link}</a></td>
 		</tr>
 
 	</table>
