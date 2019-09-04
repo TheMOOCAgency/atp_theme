@@ -72,14 +72,14 @@
 		<td style="font-weight:bold; color:#040b31;">$first_name $last_name,</td>
 		</tr>
 		<tr>
-		<td style="color:#040b31;">You are invited to participate to the training module <strong>${course_title}.</strong></td>
+		<td style="color:#040b31;">You are invited to participate to the training module for <strong>${course_title}.</strong></td>
 		</tr>
 		<tr>
 		<td style="color:#040b31;"><strong>You have until ${end_date}</strong> to complete the training module. <br>
 		  This training module is <strong>${mode}.</strong></td>
 		</tr>
 			<tr>
-				<td style="color:#040b31;">A minimum score of <span style="font-weight:bold;">${grade_cutoff}</span> is required to validate the training module.</td>
+				<td style="color:#040b31;">A minimum score of <span style="font-weight:bold;">${grade_cutoff}</span> is needed to pass.</td>
 		</tr>
 		<tr>
 		<td style="color:#040b31;">${content}</td>
