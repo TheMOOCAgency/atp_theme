@@ -616,7 +616,7 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
                     <li class="course-item campaign_items" data-course-key="${course_info['course_key']}" data-search="${categories.lower().replace(' ','')}" data-status="all">
                       <div class="content_img">
                         <span class="img_${categories.lower().replace(' ','')}" /></span>
-                        <img src="${course_img['raw']}" class="img_course"/>
+                        <img src="blank.gif" data-src="${course_img['raw']}" class="img_course b-lazy"/>
                         <span class="course_module_categ">${_(categories)}</span>
                       </div>
                       <div class="content_info">
@@ -698,7 +698,7 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
                     <li class="course-item campaign_items" data-course-key="${course_info['course_key']}" data-search="${categories.lower().replace(' ','')}" data-status="all">
                       <div class="content_img">
                         <span class="img_${categories.lower().replace(' ','')}" /></span>
-                        <img src="${course_img['raw']}" class="img_course"/>
+                        <img src="blank.gif" data-src="${course_img['raw']}" class="img_course b-lazy"/>
                         <span class="course_module_categ">${_(categories)}</span>
                       </div>
                       <div class="content_info">
@@ -749,7 +749,7 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
                   <li class="course-item" data-status="microsites" style="display:none;">
                   <div class="content_img">
                     <a href="/update-microsite/${microsite_info.id}">
-                      <img src="${settings.LMS_ROOT_URL}/media/microsite/${microsite_info.name}/images/${microsite_info.logo}" class="img_course"/>
+                      <img src="blank.gif" data-src="${settings.LMS_ROOT_URL}/media/microsite/${microsite_info.name}/images/${microsite_info.logo}" class="img_course b-lazy"/>
                     </a>
                   </div>
                   <div class="content_info">
@@ -808,7 +808,7 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
                     <li class="course-item campaign_items" data-course-key="${course_info['course_key']}" data-search="${categories.lower().replace(' ','')}" data-status="all">
                       <div class="content_img">
                         <span class="img_${categories.lower().replace(' ','')}" /></span>
-                        <img src="${course_img['raw']}" class="img_course"/>
+                        <img src="blank.gif" data-src="${course_img['raw']}" class="img_course b-lazy"/>
                         <span class="course_module_categ">${_(categories)}</span>
                       </div>
                       <div class="content_info">
@@ -941,7 +941,7 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
                 <li class="course-item modules_items" data-course-key="${course_info['course_key']}" data-status="template" data-search="${categories.lower().replace(' ','')}">
                   <div class="content_img">
                     <span class="img_${categories.lower().replace(' ','')}" /></span>
-                    <img src="${course_img['raw']}" class="img_course"/>
+                    <img src="blank.gif" data-src="${course_img['raw']}" class="img_course b-lazy"/>
                     <span class="course_module_categ">${_(categories)}</span>
                   </div>
                   <div class="content_info">
@@ -1514,5 +1514,5 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
 log.info("timer 9 {}".format(datetime.datetime.now()))
 %>
 
-
 </%block>
+
