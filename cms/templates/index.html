@@ -511,10 +511,10 @@ log.info("timer 7 {}".format(datetime.datetime.now()))
 <!-- ONGLETS DE NAVIGATION -->
       % if libraries_enabled or is_programs_enabled:
       <ul id="course-index-tabs">
-        <li class="sub_menu"><button id="my-campaigns" class="active_button" data-sub="all">${_('My campaigns')}</button></li>
-        <li class="sub_menu"><button id="my-modules" data-sub="template">${_('My modules')}</button></li>
+        <li class="sub_menu"><button id="my-campaigns" class="active_button" data-sub="all" onclick="var bLazy = new Blazy(); bLazy.revalidate();">${_('My campaigns')}</button></li>
+        <li class="sub_menu"><button id="my-modules" data-sub="template" onclick="var bLazy = new Blazy(); bLazy.revalidate();">${_('My modules')}</button></li>
           % if request.user.is_staff:
-        <li class="sub_menu"><button data-sub="microsites">${_('Microsites')}</button></li>
+        <li class="sub_menu"><button data-sub="microsites" onclick="var bLazy = new Blazy(); bLazy.revalidate();">${_('Microsites')}</button></li>
             %if len(libraries) > 0:
         <li class="sub_menu"><button data-sub="libraries-tab">${_('Libraries')}</button></li>
             % endif
