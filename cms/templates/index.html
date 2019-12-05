@@ -36,7 +36,7 @@ log = logging.getLogger(__name__)
 <link rel="stylesheet" type="text/css" href="${static.url('css/index.css')}">
 <link rel="stylesheet" type="text/css" href="${static.url('css/index_sub.css')}">
 <style>
-.course-item .img_fundamentals,.course-item .img_regulatory,.course-item .img_fundamental,.course-item .img_oursolutions,.course-item .img_salesapproach {
+.course-item .img_fundamentals,.course-item .img_regulatory,.course-item .img_fundamental,.course-item .img_oursolutions,.course-item .img_salesapproach, .course-item .img_softskills, .course-item .img_expert {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -64,6 +64,12 @@ log = logging.getLogger(__name__)
 }
 .course-item .img_regulatory {
   background-image: url("${static.url('images/reglementaire.png')}");
+}
+.course-item .img_softskills {
+  background-image: url("${static.url('images/softskills.png')}");
+}
+.course-item .img_expert {
+  background-image: url("${static.url('images/expert.png')}");
 }
 
 .is_block_clear {
@@ -505,10 +511,10 @@ log.info("timer 7 {}".format(datetime.datetime.now()))
 <!-- ONGLETS DE NAVIGATION -->
       % if libraries_enabled or is_programs_enabled:
       <ul id="course-index-tabs">
-        <li class="sub_menu"><button id="my-campaigns" class="active_button" data-sub="all">${_('My campaigns')}</button></li>
-        <li class="sub_menu"><button id="my-modules" data-sub="template">${_('My modules')}</button></li>
+        <li class="sub_menu"><button id="my-campaigns" class="active_button" data-sub="all" onclick="var bLazy = new Blazy(); bLazy.revalidate();">${_('My campaigns')}</button></li>
+        <li class="sub_menu"><button id="my-modules" data-sub="template" onclick="var bLazy = new Blazy(); bLazy.revalidate();">${_('My modules')}</button></li>
           % if request.user.is_staff:
-        <li class="sub_menu"><button data-sub="microsites">${_('Microsites')}</button></li>
+        <li class="sub_menu"><button data-sub="microsites" onclick="var bLazy = new Blazy(); bLazy.revalidate();">${_('Microsites')}</button></li>
             %if len(libraries) > 0:
         <li class="sub_menu"><button data-sub="libraries-tab">${_('Libraries')}</button></li>
             % endif
@@ -610,7 +616,7 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
                     <li class="course-item campaign_items" data-course-key="${course_info['course_key']}" data-search="${categories.lower().replace(' ','')}" data-status="all">
                       <div class="content_img">
                         <span class="img_${categories.lower().replace(' ','')}" /></span>
-                        <img src="${course_img['raw']}" class="img_course"/>
+                        <img src="blank.gif" data-src="${course_img['raw']}" class="img_course b-lazy"/>
                         <span class="course_module_categ">${_(categories)}</span>
                       </div>
                       <div class="content_info">
@@ -692,7 +698,7 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
                     <li class="course-item campaign_items" data-course-key="${course_info['course_key']}" data-search="${categories.lower().replace(' ','')}" data-status="all">
                       <div class="content_img">
                         <span class="img_${categories.lower().replace(' ','')}" /></span>
-                        <img src="${course_img['raw']}" class="img_course"/>
+                        <img src="blank.gif" data-src="${course_img['raw']}" class="img_course b-lazy"/>
                         <span class="course_module_categ">${_(categories)}</span>
                       </div>
                       <div class="content_info">
@@ -743,7 +749,7 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
                   <li class="course-item" data-status="microsites" style="display:none;">
                   <div class="content_img">
                     <a href="/update-microsite/${microsite_info.id}">
-                      <img src="${settings.LMS_ROOT_URL}/media/microsite/${microsite_info.name}/images/${microsite_info.logo}" class="img_course"/>
+                      <img src="blank.gif" data-src="${settings.LMS_ROOT_URL}/media/microsite/${microsite_info.name}/images/${microsite_info.logo}" class="img_course b-lazy"/>
                     </a>
                   </div>
                   <div class="content_info">
@@ -802,7 +808,7 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
                     <li class="course-item campaign_items" data-course-key="${course_info['course_key']}" data-search="${categories.lower().replace(' ','')}" data-status="all">
                       <div class="content_img">
                         <span class="img_${categories.lower().replace(' ','')}" /></span>
-                        <img src="${course_img['raw']}" class="img_course"/>
+                        <img src="blank.gif" data-src="${course_img['raw']}" class="img_course b-lazy"/>
                         <span class="course_module_categ">${_(categories)}</span>
                       </div>
                       <div class="content_info">
@@ -935,7 +941,7 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
                 <li class="course-item modules_items" data-course-key="${course_info['course_key']}" data-status="template" data-search="${categories.lower().replace(' ','')}">
                   <div class="content_img">
                     <span class="img_${categories.lower().replace(' ','')}" /></span>
-                    <img src="${course_img['raw']}" class="img_course"/>
+                    <img src="blank.gif" data-src="${course_img['raw']}" class="img_course b-lazy"/>
                     <span class="course_module_categ">${_(categories)}</span>
                   </div>
                   <div class="content_info">
@@ -1171,17 +1177,27 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
     background-color: rgb(57,178,182) !important;
     color: #fff !important;
   }
+<<<<<<< HEAD
   /*TODO : Finalize new categories into search*/
   .active_s_atp#expert_search,.active_s_atp#expert_search:hover,.active_s_atp#expert_search:focus {
     background-color: #004F9F !important;
     color: #fff !important;
   }
+=======
+>>>>>>> 6adeef47077765cadec6fd8e38df40a3391f24dd
   .active_s_atp#softskills_search,.active_s_atp#softskills_search:hover,.active_s_atp#softskills_search:focus {
     background-color: #39B2B6 !important;
     color: #fff !important;
   }
+<<<<<<< HEAD
 
 
+=======
+  .active_s_atp#expert_search,.active_s_atp#expert_search:hover,.active_s_atp#expert_search:focus {
+    background-color: #004F9B !important;
+    color: #fff !important;
+  }
+>>>>>>> 6adeef47077765cadec6fd8e38df40a3391f24dd
   #campaign_search,#module_search {
     border: 1px solid rgb(200, 200, 200);
     padding: 10px;
@@ -1251,7 +1267,13 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
     border: 2px solid #c83250;
   }
   #regulatory_search {
-    border: 2px solid #39b2b6;
+    border: 2px solid #39B2C0;
+  }
+  #softskills_search{
+    border: 2px solid #39B2B6;
+  }
+  #expert_search{
+    border:2px solid #004F9F;
   }
 
   ::-webkit-input-placeholder {
@@ -1302,6 +1324,8 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
       <button class="action_search" id="oursolutions_search" data-categ="oursolutions">${_("Our solutions")}</button>
       <button class="action_search" id="salesapproach_search" data-categ="salesapproach">${_("Sales approach")}</button>
       <button class="action_search" id="regulatory_search" data-categ="regulatory">${_("Regulatory")}</button>
+      <button class="action_search" id="softskills_search" data-categ="softskills">${_("SoftSkills")}</button>
+      <button class="action_search" id="expert_search" data-categ="expert">${_("Expert")}</button>
       <span class="is_block_clear"></span>
     </div>
     <div class="search_result is_hide_atp">
@@ -1323,6 +1347,8 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
         <button class="action_search" id="oursolutions_search" data-categ="oursolutions">${_("Our solutions")}</button>
         <button class="action_search" id="salesapproach_search" data-categ="salesapproach">${_("Sales approach")}</button>
         <button class="action_search" id="regulatory_search" data-categ="regulatory">${_("Regulatory")}</button>
+        <button class="action_search" id="softskills_search" data-categ="softskills">${_("SoftSkills")}</button>
+        <button class="action_search" id="expert_search" data-categ="expert">${_("Expert")}</button>
         <span class="is_block_clear"></span>
       </div>
       <div class="search_result is_hide_atp">
@@ -1519,5 +1545,5 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
 log.info("timer 9 {}".format(datetime.datetime.now()))
 %>
 
-
 </%block>
+
