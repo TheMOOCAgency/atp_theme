@@ -23,6 +23,9 @@ from openedx.core.djangolib.markup import HTML, Text
 .secondary-color-text{
   color:${secondary_color}!important;
 }
+.third-color-text{
+  color:${third_color}!important;
+}
 #logo_preview img, #logo_preview_couleur img {
   max-height: 250px;
   height: auto;
@@ -50,7 +53,7 @@ textarea{
 .update_part{
   margin-bottom: 30px!important;
 }
-#secondary_color_preview, #primary_color_preview{
+#third_color_preview, #secondary_color_preview, #primary_color_preview{
   height: 20px;
   width:20px;
   display: inline-block;
@@ -58,6 +61,9 @@ textarea{
 }
 #secondary_color_preview{
   background-color: ${secondary_color};
+}
+#third_color_preview{
+  background-color: ${third_color};
 }
 #primary_color_preview, .primary-color-bg{
   background-color:${primary_color}
@@ -154,6 +160,12 @@ input[type="text"] {
       <div id="pre_secondary" class="form_update update_part">
         <div id="secondary_color_preview"></div><label data-value="${secondary_color}">${_('Secondary color')} : ${secondary_color}</label>
         <input type="text" value="" name="secondary_color" id="micro_secondary_color" placeholder="microsite secondary color" class="input_update">
+      </div>
+
+      <!--3nd Color -->
+      <div id="pre_third" class="form_update update_part">
+        <div id="third_color_preview"></div><label data-value="${third_color}">${_('Header and footer color')} : ${third_color}</label>
+        <input type="text" value="" name="third_color" id="micro_third_color" placeholder="microsite third color" class="input_update">
       </div>
 
       <!-- Technical contact address -->
