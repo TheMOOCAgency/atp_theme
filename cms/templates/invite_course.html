@@ -331,6 +331,10 @@ course_key_cleared=str(course_key).replace('+','').replace(':','')
     </div>
     <div id="register_user_btn" class="pad-20" style='display:none'>
       <button class="buton_from_file boutons-cms" id="register_from_csv">${_("Upload participants list")}</button>
+      <div class="check_box_field" style="width:auto;display:inline-block;margin-left:20px;">
+        <input type="checkbox" id="notify_participants_chkbox" name="notify_participants_chkbox" class="checkbox_mail_field" checked>
+        <label id="notify_participants_label" for="notify_participants_chkbox">${_("Notify participants")}</label>
+      </div>
     </div>
 
   </section>

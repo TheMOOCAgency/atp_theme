@@ -23,6 +23,7 @@ $(document).ready(function () {
     var path = window.location.path;
     var data = new FormData();
     data.append('file',$('#invite_participant')[0].files[0])
+    data.append('notify_participants',document.getElementById('notify_participants_chkbox').checked);
     data.append('request_type','register_only');
     $.ajax({
       url:path,
