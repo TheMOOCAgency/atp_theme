@@ -76,7 +76,7 @@
 		</tr>
 		<tr>
 		<td style="color:#040b31;"><strong>Kurz můžete začít kdykoliv až do ${end_date}.</strong><br>
-		  Tento vzdělávací kurz je <strong>${mode}.</strong></td>
+		  Tento vzdělávací kurz je <strong>${mode_in_text}.</strong></td>
 		</tr>
 			<tr>
 				<td style="color:#040b31;">K úspěšnému absolvování kurzu musíte získat minimální skóre <span style="font-weight:bold;">${grade_cutoff}</span>.</td>
