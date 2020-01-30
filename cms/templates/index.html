@@ -594,6 +594,7 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
                 ${_("To launch your campaign, please click on ")} « ${_("Manage my campaign")} » ${_("and set up starting date at today.")}
             </div>
             <ul class="list-courses my_campaign_listing">
+            %if course_scheduled:
               %for _c_s in course_scheduled:
                 % for q in _c_s:
                     <%
@@ -660,6 +661,7 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
                     </li>
                 %endfor
               %endfor
+              %endif
             </ul>
 
     <!-- CAMPAGNES EN COURS -->
@@ -676,6 +678,7 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
             </div>
             <ul class="list-courses my_campaign_listing">
               <!-- new script -->
+            %if course_in_progress:
               %for c_i_p in course_in_progress:
                 % for q in c_i_p:
                     <%
@@ -742,6 +745,7 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
                     </li>
                 %endfor
               %endfor
+            %endif
               <!-- new script -->
               % if request.user.is_staff:
                 % if len(microsites)>0:
@@ -786,6 +790,7 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
             </div>
             <ul class="list-courses my_campaign_listing">
               <!-- new script -->
+            %if course_completed:
               %for c_c in course_completed:
                 % for q in c_c:
                     <%
@@ -849,6 +854,7 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
                     </li>
                 %endfor
               %endfor
+            %endif
               <!-- new script -->
             </ul>
             %if len(libraries) > 0:
