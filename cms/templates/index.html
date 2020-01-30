@@ -857,6 +857,7 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
             %endif
               <!-- new script -->
             </ul>
+          %if libraries:
             %if len(libraries) > 0:
             <div class="libraries libraries-tab">
               <ul class="list-courses">
@@ -915,6 +916,7 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
             <!-- end courses end courses -->
           </span>
         %endif
+      %endif
 
 
 <!-- ONGLET MES MODULES -->
