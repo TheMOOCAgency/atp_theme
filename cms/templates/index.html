@@ -931,6 +931,7 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
         </div>
         <ul class="list-courses">
           <!-- new script -->
+        %if amundi_template:
           %for a_t in amundi_template:
             %for q in a_t:
                 <%
@@ -995,6 +996,7 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
                 </li>
             %endfor
           %endfor
+        %endif
         </ul>
       </div>
 
