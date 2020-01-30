@@ -6,70 +6,78 @@
   from django.utils.translation import ugettext as _
   from contentstore.context_processors import doc_url
   import os.path
-  from microsite_manager.models import MicrositeAdminManager
-  from microsite_configuration.models import Microsite
+  #from microsite_manager.models import MicrositeAdminManager
+  #from microsite_configuration.models import Microsite
   from student.models import User
 %>
 
 
 <%
 #Microsite-logo
-try:
-  microsite_key = MicrositeAdminManager.objects.get(user=user).microsite_id
-  microsite_data=Microsite.objects.get(pk=microsite_key).values
 
-  if microsite_data.get('logo') is not None:
-    logo=microsite_data.get('logo')
-  else :
-    logo=''
+#try:
+#  microsite_key = MicrositeAdminManager.objects.get(user=user).microsite_id
+#  microsite_data=Microsite.objects.get(pk=microsite_key).values
+#
+#  if microsite_data.get('logo') is not None:
+#    logo=microsite_data.get('logo')
+#  else :
+#    logo=''
+#
+#  if microsite_data.get('amundi_brand'):
+#    amundi_brand=microsite_data.get('amundi_brand')
+#  else :
+#    amundi_brand=False
+#  if microsite_data.get('primary_color') is not None:
+#    primary_color=microsite_data.get('primary_color')
+#  else :
+#    primary_color="#0C1C49"
+#
+#  if microsite_data.get('secondary_color') is not None:
+#    secondary_color=microsite_data.get('secondary_color')
+#  else :
+#    secondary_color="#00B6ED"
+#except:
+#  logo='/media/logo-amundi.png'
+#  amundi_brand=True
+#  secondary_color="#00B6ED"
+#  primary_color="#0C1C49"
+#  pass
 
-  if microsite_data.get('amundi_brand'):
-    amundi_brand=microsite_data.get('amundi_brand')
-  else :
-    amundi_brand=False
-  if microsite_data.get('primary_color') is not None:
-    primary_color=microsite_data.get('primary_color')
-  else :
-    primary_color="#0C1C49"
+logo='/media/logo-amundi.png'
 
-  if microsite_data.get('secondary_color') is not None:
-    secondary_color=microsite_data.get('secondary_color')
-  else :
-    secondary_color="#00B6ED"
-except:
-  logo='/media/logo-amundi.png'
-  amundi_brand=True
-  secondary_color="#00B6ED"
-  primary_color="#0C1C49"
-  pass
-
+amundi_brand=True
+secondary_color="#00B6ED"
+primary_color="#0C1C49"
 %>
 <%
-  course_org = ''
-  try:
-      microsite_key = MicrositeAdminManager.objects.get(user=user).microsite_id
-      course_org = microsite = Microsite.objects.get(pk=microsite_key).key+'.'
-  except:
-      course_org = ''
-      pass
+#
+#  course_org = ''
+#  try:
+#      microsite_key = MicrositeAdminManager.objects.get(user=user).microsite_id
+#      course_org = microsite = Microsite.objects.get(pk=microsite_key).key+'.'
+#  except:
+#      course_org = ''
+#      pass
+#
 %>
 <style>
 
 .primary-color-bg{
-  background-color: ${primary_color}!important;
+  background-color: #0C1C49!important;
 }
 .primary-color-border{
-  border-color: ${primary_color}!important;
+  border-color: #0C1C49!important;
 }
 .primary-color-text{
-  color: ${primary_color}!important;
+  color: #0C1C49!important;
 }
 .white-text{
   color:white!important;
 }
 .boutons-cms{
-  border-color: ${primary_color}!important;
-  background-color: ${primary_color}!important;
+  border-color: #0C1C49!important;
+  background-color: #0C1C49!important;
   color:white!important;
   border-radius:3px;
   padding:5px 10px;
@@ -116,7 +124,7 @@ except:
 }
 
   nav#studio-nav{
-   background-color: ${primary_color};
+   background-color: #0C1C49;
    height: 70px;
    box-sizing: border-box;
    padding-bottom: 0;
@@ -162,8 +170,8 @@ except:
     height: 24px;
   }
   #user-icone svg:hover{
-    border: 1px solid ${secondary_color};
-    background-color: ${secondary_color};
+    border: 1px solid #00B6ED;
+    background-color: #00B6ED;
   }
   #user-icone {
       color: white;
@@ -173,7 +181,7 @@ except:
       width: 45px;
   }
   #account-menu:hover #user-icone{
-    background-color: ${secondary_color};
+    background-color: #00B6ED;
   }
   #nav-commandes{
     height: 100%;
@@ -229,7 +237,7 @@ except:
     font-weight: 600;
   }
   #access-front:hover{
-    border-color:${secondary_color};
+    border-color: #00B6ED;
   }
 
   /* Menu déroulant burger */
@@ -238,7 +246,7 @@ except:
     top: 65px;
     left: 0px;
     width: 100%;
-    background-color:${primary_color};
+    background-color:#0C1C49;
     z-index:10000;
     display:none;
     padding-top: 20px;
@@ -265,14 +273,14 @@ except:
 
   /*Ajustement des couleurs pages cms*/
   .language_display, .content_info h3, .content_info .all_dates span, #title h1, .mast.has-actions h1{
-    color:${primary_color}!important;
+    color:#0C1C49!important;
   }
   #course-index-tabs .sub_menu .active_button{
-    border-color: ${secondary_color}!important;
+    border-color: #00B6ED!important;
   }
   #course-index-tabs .sub_menu button:hover{
-    color:${secondary_color}!important;
-    border-color: ${secondary_color}!important;
+    color:#00B6ED!important;
+    border-color: #00B6ED!important;
   }
   .wrapper-l, .wrapper-r{
     margin-top: 0;
@@ -281,20 +289,20 @@ except:
 
   /* Couleurs page accueil */
   .up_list_courses h3 span{
-    color:${primary_color}!important;
+    color:#0C1C49!important;
   }
   h3 .svg path{
-    fill:${primary_color}!important;
+    fill:#0C1C49!important;
   }
   .more_about_courses li a, #campaign_search h2, #module_search h2, #info_my_campaign .title-3{
-    color:${secondary_color}!important;
+    color:#00B6ED!important;
   }
   .sub_menu .active_button{
-    color:${secondary_color}!important;
-    border-color:${secondary_color}!important;
+    color:#00B6ED!important;
+    border-color:#00B6ED!important;
   }
   #campaign_search #search_block_campaign button{
-    background-color: ${primary_color}!important;
+    background-color: #0C1C49!important;
   }
 
   /* Menu not connected */
@@ -325,7 +333,7 @@ except:
     font-weight: 700;
   }
   .primary_color{
-    color: ${primary_color}!important
+    color: #0C1C49!important
   }
   .img_course{
     min-height: 153px;
@@ -415,10 +423,8 @@ except:
           <a href="${get_online_help_info(online_help_token)['doc_url']}" title="${_('Contextual Online Help')}" target="_blank">${_("Help")}</a>
         </li>
         <li class="nav-item nav-not-signedin-signup">
-          <a class="action action-signup" href="${reverse('signup')}">${_("Sign Up")}</a>
         </li>
         <li class="nav-item nav-not-signedin-signin">
-          <a class="action action-signin" href="${reverse('login')}">${_("Sign In")}</a>
         </li>
       </ol>
     </nav>
@@ -437,7 +443,9 @@ except:
       <span style="display:block;clear:left"></span>
 
       <%
+
             course_key = context_course.id
+	    """	
             index_url = reverse('contentstore.views.course_handler', kwargs={'course_key_string': unicode(course_key)})
             course_team_url = reverse('contentstore.views.course_team_handler', kwargs={'course_key_string': unicode(course_key)})
             assets_url = reverse('contentstore.views.assets_handler', kwargs={'course_key_string': unicode(course_key)})
@@ -450,9 +458,12 @@ except:
             grading_url = reverse('contentstore.views.grading_handler', kwargs={'course_key_string': unicode(course_key)})
             advanced_settings_url = reverse('contentstore.views.advanced_settings_handler', kwargs={'course_key_string': unicode(course_key)})
             tabs_url = reverse('contentstore.views.tabs_handler', kwargs={'course_key_string': unicode(course_key)})
+            """
             certificates_url = ''
-            if settings.FEATURES.get("CERTIFICATES_HTML_VIEW") and context_course.cert_html_view_enabled:
+            """
+	    if settings.FEATURES.get("CERTIFICATES_HTML_VIEW") and context_course.cert_html_view_enabled:
                 certificates_url = reverse('contentstore.views.certificates.certificates_list_handler', kwargs={'course_key_string': unicode(course_key)})
+            """
       %>
       <h2 class="info-course">
         <span class="sr">${_("Current Course:")}</span>
@@ -607,36 +618,6 @@ except:
         <span class="course-title">${_("Program Administration")}</span>
       </h2>
       % endif
-
-
-    <div class="wrapper wrapper-r">
-      % if static.show_language_selector():
-        <% languages = static.get_released_languages() %>
-        % if len(languages) > 1:
-        <nav class="user-language-selector" aria-label="${_('Language preference')}">
-          <form action="/i18n/setlang/" method="post" class="settings-language-form" id="language-settings-form">
-              <input type="hidden" id="csrf_token" name="csrfmiddlewaretoken" value="${csrf_token}">
-              % if user.is_authenticated():
-              <input title="preference api" type="hidden" id="preference-api-url" class="url-endpoint" value="${reverse('preferences_api', kwargs={'username': user.username})}" data-user-is-authenticated="true">
-              % else:
-              <input title="session update url" type="hidden" id="update-session-url" class="url-endpoint" value="${reverse('session_language')}" data-user-is-authenticated="false">
-              % endif
-              <label><span class="sr">${_("Choose Language")}</span>
-              <select class="input select language-selector" id="settings-language-value" name="language">
-              % for language in languages:
-                % if language[0] == LANGUAGE_CODE:
-                 <option value="${language[0]}" selected="selected">${language[1]}</option>
-                % else:
-                 <option value="${language[0]}" >${language[1]}</option>
-                % endif
-              % endfor
-              </select>
-              </label>
-          </form>
-        </nav>
-      % endif
-      % endif
-
     </div>
 
 
