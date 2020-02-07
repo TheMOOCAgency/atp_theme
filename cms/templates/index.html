@@ -13,6 +13,8 @@ from opaque_keys.edx.keys import CourseKey
 from lms.djangoapps.courseware.courses import get_course_by_id
 from student.roles import CourseInstructorRole,CourseStaffRole
 import logging
+from openedx.core.djangoapps.site_configuration.models import SiteConfiguration
+orgs = SiteConfiguration.get_all_orgs()
 log = logging.getLogger(__name__)
 %>
 
@@ -778,6 +780,28 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
                   % endif
                 % endif
               % endif
+              % if len(orgs)>0:
+                %for org in sorted(orgs):
+                <li class="course-item" data-status="microsites" style="display:none;">
+                <div class="content_img">
+                  <a href="/update-microsite/${org}">
+                    <img src="blank.gif" data-src="${settings.LMS_ROOT_URL}/media/microsite/${org}/images/${org}" class="img_course b-lazy"/>
+                  </a>
+                </div>
+                <div class="content_info">
+                  <a class="course-link" href="/update-microsite/${org}">
+                    <h3 class="course-title">${org}</h3>
+                  </a>
+                </div>
+                <span style="clear:left;display:block;"></span>
+                  <ul class="more_about_courses">
+                    <li><a href="https://${org}.${settings.SITE_NAME}">${_('Microsite')}</a></li>
+                    <li><a href="/update-microsite/${org}">${_('Manage Microsite')}</a></li>
+                    <li><a href="/admin-microsite/${org}">${_('Manage Microsite Admin')}</a></li>
+                  </ul>
+                </li>
+                %endfor
+              % endif
             </ul>
 
     <!-- CAMPAGNES TERMINEES -->
@@ -1532,10 +1556,8 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
 
   %endif
 </div>
-
 <div style="clear:both"></div>
 <%
 log.info("timer 9 {}".format(datetime.datetime.now()))
 %>
-
 </%block>

@@ -44,7 +44,7 @@
 #  primary_color="#0C1C49"
 #  pass
 
-logo='/media/logo-amundi.png'
+logo='/edx/var/edxapp/media/logo-amundi.png'
 
 amundi_brand=True
 secondary_color="#00B6ED"
@@ -354,15 +354,15 @@ course_org = ''
   <div id="nav-logo">
     <a id="logo-ms" href="\">
       %if logo!='':
-        <img class="logo-ms" src="${settings.LMS_ROOT_URL}${logo}" alt="${settings.STUDIO_NAME}" />
+        <img class="logo-ms" src="https://qualif-atp.themoocagency.com/media/logo-amundi.png" alt="${settings.STUDIO_NAME}" />
       %else:
-        <img class="logo-ms" src="${settings.LMS_ROOT_URL}/media/logo-amundi.png" alt="${settings.STUDIO_NAME}" />
+        <img class="logo-ms" src="https://qualif-atp.themoocagency.com/media/logo-amundi.png" alt="${settings.STUDIO_NAME}" />
       %endif
     </a>
     %if amundi_brand:
     <div id="amundi-academy-wrapper">
       <div id="amundi-academy">
-        <img src="${settings.LMS_ROOT_URL}/media/logo-amundiacademy_blanc.png" alt="amundi_academy" id="logo-amundi-academy">
+        <img src="https://qualif-atp.themoocagency.com/media/logo-amundiacademy_blanc.png" alt="amundi_academy" id="logo-amundi-academy">
       </div>
     </div>
     %endif
@@ -433,10 +433,6 @@ course_org = ''
   </div>
   <div style="clear:both"></div>
 </nav>
-
-
-
-
 
 % if context_course:
 <div class="wrapper-header wrapper" id="view-top">
