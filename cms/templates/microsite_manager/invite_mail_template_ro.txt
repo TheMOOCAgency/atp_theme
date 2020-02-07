@@ -75,10 +75,9 @@
 		<td style="color:#040b31;">Esti invitat sa participi la modulul de training <strong>${course_title}.</strong></td>
 		</tr>
 		<tr>
-		<td style="color:#040b31;"><strong>Ai la dispozitie pana la data de ${end_date}</strong> sa finalizezi modulul de training.<br>
-		  Please note that it is <strong>${mode}.</strong></td>
+		<td style="color:#040b31;"><strong>Ai la dispozitie pana la data de ${end_date}</strong> sa finalizezi modulul de training.<br>Te rugam sa ai in vedere ca parcurgerea acestui modul este <strong>${mode}.</strong></td>
 		</tr>
-			<tr>
+	        <tr>
 				<td style="color:#040b31;">Un scor minim de <span style="font-weight:bold;">${grade_cutoff}</span> este necesar pentru validarea modulul de training.</td>
 		</tr>
 		<tr>
