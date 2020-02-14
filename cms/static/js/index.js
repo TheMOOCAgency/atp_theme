@@ -357,6 +357,7 @@ define(["domReady", "jquery", "underscore"],
           $('img.svg').show();
         }
         var onReady = function () {
+
             $('.new-microsite-button').bind('click',new_microsite_form);
             $('.new-microsite-save').bind('click',ajax_call_create_microsite);
             $('.new-microsite-cancel').bind('click',ajax_cancel_microsite);
@@ -364,6 +365,73 @@ define(["domReady", "jquery", "underscore"],
             svg_load();
             search_module();
             search_campaign();
+
+            function getParameterByName(name, url) {
+                if (!url) url = window.location.href;
+                name = name.replace(/[\[\]]/g, "\\$&");
+                var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                    results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return '';
+                return decodeURIComponent(results[2]);
+            }
+            var campaign_from =getParameterByName("campaign");
+            var module_from =getParameterByName("module");
+            if(campaign_from){
+              document.getElementById(campaign_from).scrollIntoView();
+            }
+            if(module_from){
+              $("#my-campaigns").removeClass("active_button");
+              $("#my-modules").addClass("active_button");
+              $(".up_list_courses").css('display','none');
+              $("#generic_title").css("display","block");
+              $(".campaign_items").css("display","none");
+              $(".modules_items").css("display","list-item");
+              $("#campaign_search").addClass('is_hide_atp').removeClass('is_show_atp');
+              $("#module_search").removeClass('is_hide_atp').addClass('is_show_atp');
+              $("#info_my_campaign").css("display","none");
+              $("#info_my_module").css("display","inline");
+              document.getElementById(module_from).scrollIntoView();
+            }
+            $('.course-item').each(function(){
+              var This = $(this);
+              var data = This.data('status');
+              if(data == 'template') {
+                This.hide();
+              }
+            })
+            /* action on click on the index menu */
+            $('.sub_menu').find('button').click(function(){
+              var This = $(this);
+              var data = This.data('sub');
+              $('.sub_menu').find('button').not(This).removeClass('active_button');
+              This.addClass('active_button');
+              $('.course-item').each(function(){
+                var That = $(this);
+                var that_data = That.data('status');
+                if(that_data == data){
+                  That.show();
+                }else{
+                  That.hide();
+                }
+                if(data != 'all') {
+                  $('.up_list_courses').hide();
+                }else{
+                  $('.up_list_courses').show();
+                }
+              })
+            });
+            /* action on svgs */
+            // Get the Object by ID
+            $(".svg-class").each(function(){
+              var This = $(this);
+              This.contents().find('svg').attr("fill", "#dc9e29");
+            })
+            $('.svg-class-title').each(function(){
+              var This = $(this);
+              This.contents().find('svg').attr("fill", "#05144d");
+            })
+
             //$('#course-index-tabs .microsite-tab').bind('click', showTab('microsite'));
         };
 

@@ -34,7 +34,9 @@ log = logging.getLogger(__name__)
 </%block>
 <%namespace name='static' file='static_content.html'/>
 <%block name="content">
-              ${orgs}
+
+${orgs}
+
 <link rel="stylesheet" type="text/css" href="${static.url('css/index.css')}">
 <link rel="stylesheet" type="text/css" href="${static.url('css/index_sub.css')}">
 <style>
@@ -750,57 +752,28 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
             %endif
               <!-- new script -->
               % if request.user.is_staff:
-                % if microsites:
-                  % if len(microsites)>0:
-                    %for microsite_info in sorted(microsites, key=lambda s: s.name.lower() if s.name is not None else ''):
-                    <li class="course-item" data-status="microsites" style="display:none;">
-                    <div class="content_img">
-                      <a href="/update-microsite/${microsite_info.id}">
-                        <img src="blank.gif" data-src="${settings.LMS_ROOT_URL}/media/microsite/${microsite_info.name}/images/${microsite_info.logo}" class="img_course b-lazy"/>
-                      </a>
-                    </div>
-                    <div class="content_info">
-                      <a class="course-link" href="/update-microsite/${microsite_info.id}">
-                        <h3 class="course-title">${microsite_info.name}</h3>
-                      </a>
-                    <!--<h3 class="title" style="position:absolute;bottom:10px;width:calc(100% - 20px);left:10px;">
-                        <span class="label">
-                          <a href="https://${microsite_info.name}.${settings.SITE_NAME}" class="button">Voir le microsite(Pensez à faire CTRL+F5)</a>
-                        </span>
-                      </h3>-->
-                    </div>
-                    <span style="clear:left;display:block;"></span>
-                      <ul class="more_about_courses">
-                        <li><a href="https://${microsite_info.name}.${settings.SITE_NAME}">${_('Microsite')}</a></li>
-                        <li><a href="/update-microsite/${microsite_info.id}">${_('Manage Microsite')}</a></li>
-                        <li><a href="/admin-microsite/${microsite_info.id}">${_('Manage Microsite Admin')}</a></li>
-                      </ul>
-                    </li>
-                    %endfor
-                  % endif
+                % if len(orgs)>0:
+                  %for org in sorted(orgs):
+                  <li class="course-item" data-status="microsites" style="display:none;">
+                  <div class="content_img">
+                    <a href="/update-microsite/${org}">
+                      <img src="blank.gif" data-src="${settings.LMS_ROOT_URL}/media/microsite/${org}/images/${org}" class="img_course b-lazy"/>
+                    </a>
+                  </div>
+                  <div class="content_info">
+                    <a class="course-link" href="/update-microsite/${org}">
+                      <h3 class="course-title">${org}</h3>
+                    </a>
+                  </div>
+                  <span style="clear:left;display:block;"></span>
+                    <ul class="more_about_courses">
+                      <li><a href="https://${org}.${settings.SITE_NAME}">${_('Microsite')}</a></li>
+                      <li><a href="/update-microsite/${org}">${_('Manage Microsite')}</a></li>
+                      <li><a href="/admin-microsite/${org}">${_('Manage Microsite Admin')}</a></li>
+                    </ul>
+                  </li>
+                  %endfor
                 % endif
-              % endif
-              % if len(orgs)>0:
-                %for org in sorted(orgs):
-                <li class="course-item" data-status="microsites" style="display:none;">
-                <div class="content_img">
-                  <a href="/update-microsite/${org}">
-                    <img src="blank.gif" data-src="${settings.LMS_ROOT_URL}/media/microsite/${org}/images/${org}" class="img_course b-lazy"/>
-                  </a>
-                </div>
-                <div class="content_info">
-                  <a class="course-link" href="/update-microsite/${org}">
-                    <h3 class="course-title">${org}</h3>
-                  </a>
-                </div>
-                <span style="clear:left;display:block;"></span>
-                  <ul class="more_about_courses">
-                    <li><a href="https://${org}.${settings.SITE_NAME}">${_('Microsite')}</a></li>
-                    <li><a href="/update-microsite/${org}">${_('Manage Microsite')}</a></li>
-                    <li><a href="/admin-microsite/${org}">${_('Manage Microsite Admin')}</a></li>
-                  </ul>
-                </li>
-                %endfor
               % endif
             </ul>
 

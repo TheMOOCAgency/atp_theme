@@ -1,6 +1,8 @@
 define(['domReady', 'jquery', 'underscore'],
     function(domReady, $, _) {
       var onReady = function() {
+    
+      console.log("salut")
         /* action on card */
         $('.course-item').each(function(){
           var This = $(this);
