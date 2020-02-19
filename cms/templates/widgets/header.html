@@ -9,6 +9,9 @@
   #from microsite_manager.models import MicrositeAdminManager
   #from microsite_configuration.models import Microsite
   from student.models import User
+  import six
+  from six.moves.urllib.parse import quote
+
 %>
 
 
@@ -438,14 +441,29 @@ course_org = ''
 <div class="wrapper-header wrapper" id="view-top">
   <header>
       <span style="display:block;clear:left"></span>
-      ${context_course.id}
-      <%
-            index_url = []
-            course_key = str(context_course.id)
-            index_url = reverse('contentstore.views.course_handler', kwargs={'course_key_string': course_key})
 
-      %>
-      ${str(course_key)}
+        <%
+          course_key = context_course.id
+
+          url_encoded_course_key = quote(six.text_type(course_key).encode('utf-8'), safe='')
+          index_url = reverse('course_handler', kwargs={'course_key_string': six.text_type(course_key)})
+          course_info_url = reverse('course_info_handler', kwargs={'course_key_string': six.text_type(course_key)})
+          course_team_url = reverse('course_team_handler', kwargs={'course_key_string': six.text_type(course_key)})
+          assets_url = reverse('assets_handler', kwargs={'course_key_string': six.text_type(course_key)})
+          textbooks_url = reverse('textbooks_list_handler', kwargs={'course_key_string': six.text_type(course_key)})
+          videos_url = reverse('videos_handler', kwargs={'course_key_string': six.text_type(course_key)})
+          import_url = reverse('import_handler', kwargs={'course_key_string': six.text_type(course_key)})
+          export_url = reverse('export_handler', kwargs={'course_key_string': six.text_type(course_key)})
+          settings_url = reverse('settings_handler', kwargs={'course_key_string': six.text_type(course_key)})
+          grading_url = reverse('grading_handler', kwargs={'course_key_string': six.text_type(course_key)})
+          advanced_settings_url = reverse('advanced_settings_handler', kwargs={'course_key_string': six.text_type(course_key)})
+          tabs_url = reverse('tabs_handler', kwargs={'course_key_string': six.text_type(course_key)})
+          certificates_url = ''
+          if settings.FEATURES.get("CERTIFICATES_HTML_VIEW") and context_course.cert_html_view_enabled:
+              certificates_url = reverse('certificates_list_handler', kwargs={'course_key_string': six.text_type(course_key)})
+          checklists_url = reverse('checklists_handler', kwargs={'course_key_string': six.text_type(course_key)})
+        %>
+
       <h2 class="info-course">
         <span class="sr">${_("Current Course:")}</span>
         <a class="course-link" href="${index_url}">
@@ -467,20 +485,20 @@ course_org = ''
                     <a href="${index_url}">${_("Outline")}</a>
                   </li>
                   <li class="nav-item nav-course-courseware-updates">
-
+                    <a href="${course_info_url}">${_("Updates")}</a>
                   </li>
                   <li class="nav-item nav-course-courseware-pages">
-
+                    <a href="${tabs_url}">${_("Pages")}</a>
                   </li>
                   <li class="nav-item nav-course-courseware-uploads">
-
+                    <a href="${assets_url}">${_("Files & Uploads")}</a>
                   </li>
                   <li class="nav-item nav-course-courseware-textbooks">
-
+                    <a href="${textbooks_url}">${_("Textbooks")}</a>
                   </li>
                   % if context_course.video_pipeline_configured:
                   <li class="nav-item nav-course-courseware-videos">
-
+                    <a href="${videos_url}">${_("Video Uploads")}</a>
                   </li>
                   % endif
                 </ul>
@@ -498,20 +516,20 @@ course_org = ''
                     <a href="${settings_url}">${_("Schedule & Details")}</a>
                   </li>
                   <li class="nav-item nav-course-settings-grading">
-
+                    <a href="${grading_url}">${_("Grading")}</a>
                   </li>
                   <li class="nav-item nav-course-settings-team">
-
+                    <a href="${course_team_url}">${_("Course Team")}</a>
                   </li>
                   <li class="nav-item nav-course-settings-group-configurations">
-
+                    <a href="${reverse('group_configurations_list_handler', kwargs={'course_key_string': six.text_type(course_key)})}">${_("Group Configurations")}</a>
                   </li>
                   <li class="nav-item nav-course-settings-advanced">
-
+                    <a href="${advanced_settings_url}">${_("Advanced Settings")}</a>
                   </li>
                   % if certificates_url:
                   <li class="nav-item nav-course-settings-certificates">
-
+                    <a href="${certificates_url}">${_("Certificates")}</a>
                   </li>
                   % endif
                 </ul>
@@ -525,14 +543,14 @@ course_org = ''
               <div class="nav-sub">
                 <ul>
                   <li class="nav-item nav-course-tools-import">
-
+                    <a href="${import_url}">${_("Import")}</a>
                   </li>
                   <li class="nav-item nav-course-tools-export">
-
+                    <a href="${export_url}">${_("Export")}</a>
                   </li>
                   % if settings.FEATURES.get('ENABLE_EXPORT_GIT') and context_course.giturl:
                   <li class="nav-item nav-course-tools-export-git">
-
+                    <a href="${reverse('export_git', kwargs=dict(course_key_string=unicode(course_key)))}">${_("Export to Git")}</a>
                   </li>
                   % endif
                 </ul>
@@ -544,10 +562,10 @@ course_org = ''
       % elif context_library:
        <%
             library_key = context_library.location.course_key
-            index_url = reverse('contentstore.views.library_handler', kwargs={'library_key_string': unicode(library_key)})
-            import_url = reverse('contentstore.views.import_handler', kwargs={'course_key_string': unicode(library_key)})
-            lib_users_url = reverse('contentstore.views.manage_library_users', kwargs={'library_key_string': unicode(library_key)})
-            export_url = reverse('contentstore.views.export_handler', kwargs={'course_key_string': unicode(library_key)})
+            index_url = reverse('library_handler', kwargs={'library_key_string': six.text_type(library_key)})
+            import_url = reverse('import_handler', kwargs={'course_key_string': six.text_type(library_key)})
+            lib_users_url = reverse('manage_library_users', kwargs={'library_key_string': six.text_type(library_key)})
+            export_url = reverse('export_handler', kwargs={'course_key_string': six.text_type(library_key)})
       %>
       <div class="wrapper-header wrapper" id="view-top">
       <h2 class="info-course">

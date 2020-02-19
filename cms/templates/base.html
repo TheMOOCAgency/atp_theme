@@ -167,7 +167,7 @@ from openedx.core.release import RELEASE_LINE
         });
       </script>
     % endif
-    ${context}
+
     % if user.is_authenticated:
       <%static:webpack entry='js/sock'/>
       require(['${static.url("js/custo.js")}']);

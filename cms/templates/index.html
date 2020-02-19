@@ -35,8 +35,6 @@ log = logging.getLogger(__name__)
 <%namespace name='static' file='static_content.html'/>
 <%block name="content">
 
-${orgs}
-
 <link rel="stylesheet" type="text/css" href="${static.url('css/index.css')}">
 <link rel="stylesheet" type="text/css" href="${static.url('css/index_sub.css')}">
 <style>
@@ -931,6 +929,7 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
         %if amundi_template:
           %for a_t in amundi_template:
             %for q in a_t:
+                ${q['courses_stats']}    
                 <%
                 course_info = q['course_info']
                 course_key_id = q['course_key_id']
@@ -945,6 +944,7 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
                 course_start_compare = q['course_start_compare']
                 duration = q['duration']
                 %>
+
                 <div id="${course_key_id}"></div>
                 <li class="course-item modules_items" data-course-key="${course_info['course_key']}" data-status="template" data-search="${categories.lower().replace(' ','')}">
                   <div class="content_img">
@@ -959,7 +959,12 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
                       <a class="course-link" href="#">
                     % endif
                       <h3 class="course-title">${course_info['display_name']}</h3>
-                      <span class="language_display">${_('Language')} : ${_(language_options_dict[courses_stats.language])} </span>
+                      <%
+                          languagecourse = 'en'
+                          if courses_stat:
+                            languagecourse = courses_stat.language
+                      %>
+                      <span class="language_display">${_('Language')} : ${_(language_options_dict[languagecourse])} </span>
                     </a>
                     <!--<div class="all_dates">
                       <ul>
