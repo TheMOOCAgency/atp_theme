@@ -1445,6 +1445,57 @@ log.info("timer 8 {}".format(datetime.datetime.now()))
           </ul>
         </span>
 
+        % elif LANGUAGE_CODE == 'ro':
+        <span id="info_my_campaign">
+          <h3 class="title title-3">${_('WHAT YOU CAN DO')}…</h3>
+          <div class="step-info">
+            <p><span class="step-numbers">1</span>  <strong>Administrarea campaniei mele</strong></p>
+            <h5>In campaniile de training create, puteti sa va gestionati campaniile de training:</h5>
+            <ul class="list">
+              <li>- Data de inceput / Data de sfarsit</li>
+              <li>- Procentul minim pentru parcurgerea cu succes</li>
+              <li>- Daca campania de training este obligatorie sau optionala</li>
+            </ul>
+            <h5>Acesti parametrii pot fi modificati pe toata perioada de derulare a campaniei.</h5>
+          </div>
+
+          <div class="step-info">
+            <p><span class="step-numbers">2</span> <strong>Invitarea participantilor</strong></p>
+            <h5>In campaniile in curs de desfasurare, poti invita paricipanti la campania ta de training:</h5>
+            <ul class="list">
+              <li>- Data de start a campaniei trebuie sa fie depasita pentru a putea invita participanti</li>
+              <li>- Poti invita participanti pe toata perioada de desfasurare a campaniei de training</li>
+            </ul>
+          </div>
+
+          <div class="step-info">
+            <p><span class="step-numbers">3</span> <strong>Trimiterea de emailuri catre participanti</strong></p>
+            <h5>In campaniile in curs de desfasurare, puteti trimite emailuri personalizate participantilor:</h5>
+            <ul class="list">
+              <li>- Poate sa fie un email catre sa le reaminteasca participantilor apropierea perioadei de incheiere a campaniei, ca aceasta campanie este obligatorie, etc</li>
+              <li>- Email-ul poate fi trimis tuturor participantilor sau unei liste personalizate</li>
+            </ul>
+          </div>
+
+          <div class="step-info">
+            <p><span class="step-numbers">4</span> <strong>Statistici</strong></p>
+            <h5>In campaniile in curs de desfasurare, poti accesa statistici ale campaniei de training in desfasurare: rata de participare, rata de succes, scorul per participant, etc</h5>
+            <h5>In campaniile de training finalizate, poti accesa statistici ale campaniei de training, dupa ce aceasta a luat sfarsit: rata de participare, rata de succes, scorul per participant, etc.</h5>
+            </ul>
+          </div>
+
+        </span>
+
+
+        <span id="info_my_module">
+          <h3 class="title title-3">${_('WHAT YOU CAN DO')}…</h3>
+          <p>${_('My modules:')}</p>
+          <ul class="list">
+            <li>- ${_('Access the training modules library provided by Amundi')}</li>
+            <li>- ${_('Create a training campaign associated to the module you selected by clicking on "Create my Campaign"')}</li>
+          </ul>
+        </span>
+
         % else:
         <span id="info_my_campaign">
           <h3 class="title title-3">${_('WHAT YOU CAN DO')}…</h3>
